@@ -1,2391 +1,1090 @@
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="vi" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ICUS – Spa & Phục Hồi Đồ Hiệu Cao Cấp | Vệ Sinh 1 Túi Tặng 1 Túi</title>
-  <meta name="description" content="Chuyên gia spa và phục hồi đồ hiệu cao cấp: túi xách, giày dép Chanel, Louis Vuitton, Dior, Hermes, Gucci... 100% hóa chất Saphir (Pháp) & Angelus (Mỹ). Nhận & giao 2 chiều tận nơi." />
+  <title>ICUS - Aesthetics Footwear & Bags | Đồ Hiệu Xuống Cấp - Tới ICUS Gấp</title>
+  <meta name="description" content="Chuyên sâu spa, phục hồi màu da, khử mốc, dán đế Vibram và custom độc bản cho túi xách, giày dép hàng hiệu tại TP.HCM. Hotline: 0393.19.00.77" />
   
-  <!-- Open Graph -->
-  <meta property="og:title" content="ICUS – Chuyên Gia Spa & Phục Hồi Đồ Hiệu Cao Cấp" />
-  <meta property="og:description" content="Ưu đãi tuần này: Vệ sinh 1 túi tặng 1 túi. Đền bù 100% rủi ro, bảo hành màu 3-6 tháng." />
-  <meta property="og:type" content="website" />
+  <!-- Google Fonts: DM Serif Display + Plus Jakarta Sans + Caveat (Handwriting) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=DM+Serif+Display:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
   
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;0,900;1,600&display=swap" rel="stylesheet" />
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <!-- FontAwesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            icus: {
+              cream: '#FAF6EF',
+              creamCard: '#FFFFFF',
+              black: '#171717',
+              orange: '#FF5722',
+              orangeLight: '#FFF0EB',
+              green: '#1B8755',
+              greenLight: '#EBF7F0',
+              blue: '#1E60D5',
+              blueLight: '#EDF4FF',
+              yellow: '#FFC727',
+              yellowLight: '#FFF9E6',
+              pink: '#FFAEB8',
+              pinkLight: '#FFF0F3',
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            serif: ['"DM Serif Display"', 'serif'],
+            hand: ['"Caveat"', 'cursive'],
+          },
+          boxShadow: {
+            'brutal-sm': '3px 3px 0px #171717',
+            'brutal': '5px 5px 0px #171717',
+            'brutal-lg': '8px 8px 0px #171717',
+            'brutal-xl': '12px 12px 0px #171717',
+          }
+        }
+      }
+    }
+  </script>
 
   <style>
-    /* RESET & VARIABLES */
-    :root {
-      --bg-dark: #090a0d;
-      --bg-surface: #12141a;
-      --bg-card: rgba(22, 26, 34, 0.88);
-      --bg-card-hover: rgba(30, 36, 48, 0.95);
-      --bg-light: #fcfaf6;
-      --bg-cream: #f4efe6;
-      
-      --text-white: #ffffff;
-      --text-light: #e8e8ed;
-      --text-muted: #9ba1ad;
-      --text-dark: #12141a;
-      
-      --gold-primary: #d4af37;
-      --gold-light: #f5e49e;
-      --gold-dark: #aa821c;
-      --gold-gradient: linear-gradient(135deg, #dfba48 0%, #faeab0 50%, #b8860b 100%);
-      --gold-glow: 0 0 25px rgba(212, 175, 55, 0.35);
-      
-      --accent-orange: #e65c00;
-      --accent-wine: #7b1828;
-      --zalo-color: #0068ff;
-      --phone-color: #ff9800;
-      
-      --border-gold: rgba(212, 175, 55, 0.3);
-      --border-subtle: rgba(255, 255, 255, 0.08);
-      
-      --font-serif: 'Playfair Display', 'Cormorant Garamond', Georgia, serif;
-      --font-sans: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
-      
-      --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    }
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-      font-size: 16px;
-    }
-
+    /* Neo-Brutalist Streetwear Sticker Styling */
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      font-family: var(--font-sans);
-      line-height: 1.65;
-      overflow-x: hidden;
-      -webkit-font-smoothing: antialiased;
+      background-color: #FAF6EF;
+      background-image: radial-gradient(#E2D9CA 1px, transparent 1px);
+      background-size: 24px 24px;
     }
-
-    /* TYPOGRAPHY */
-    h1, h2, h3, h4, .font-serif {
-      font-family: var(--font-serif);
-      font-weight: 700;
-      letter-spacing: -0.01em;
+    .sticker-border {
+      border: 3px solid #171717;
     }
-
-    .gold-gradient-text {
-      background: var(--gold-gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .sticker-btn {
+      transition: all 0.15s ease-in-out;
+    }
+    .sticker-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 7px 7px 0px #171717;
+    }
+    .sticker-btn:active {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px 0px #171717;
+    }
+    .badge-rotate-left {
+      transform: rotate(-2deg);
+    }
+    .badge-rotate-right {
+      transform: rotate(2.5deg);
+    }
+    .sparkle {
       display: inline-block;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
-
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1240px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-
-    .section-padding {
-      padding: 90px 0;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 56px;
-      max-width: 860px;
-      margin-left: auto;
-      margin-right: auto;
-    }
-
-    .section-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border-gold);
-      padding: 6px 18px;
-      border-radius: 999px;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 2.5rem;
-      line-height: 1.25;
-      color: var(--text-white);
-      margin-bottom: 16px;
-    }
-
-    .section-subtitle {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      font-weight: 400;
-    }
-
-    /* BUTTONS */
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-      padding: 16px 30px;
-      border-radius: 50px;
-      cursor: pointer;
-      transition: var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-      border: none;
-      text-align: center;
-    }
-
-    .btn-gold {
-      background: var(--gold-gradient);
-      color: #121316;
-      box-shadow: var(--gold-glow);
-    }
-
-    .btn-gold:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 30px rgba(212, 175, 55, 0.55);
-      color: #000;
-    }
-
-    .btn-outline-gold {
-      background: transparent;
-      color: var(--gold-light);
-      border: 1.5px solid var(--gold-primary);
-      backdrop-filter: blur(8px);
-    }
-
-    .btn-outline-gold:hover {
-      background: rgba(212, 175, 55, 0.15);
-      border-color: #fff;
-      color: #fff;
-      transform: translateY(-2px);
-    }
-
-    .btn-zalo {
-      background: linear-gradient(135deg, #0068ff 0%, #004ecc 100%);
-      color: #fff;
-      box-shadow: 0 4px 20px rgba(0, 104, 255, 0.4);
-    }
-
-    .btn-zalo:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 104, 255, 0.6);
-    }
-
-    /* ==========================================
-       PHẦN 1: HEADER & TOP BAR
-       ========================================== */
-    .top-bar {
-      background: linear-gradient(90deg, #aa821c 0%, #d4af37 40%, #e67e22 70%, #aa821c 100%);
-      background-size: 200% auto;
-      animation: shimmerBg 8s ease infinite;
-      color: #111;
-      padding: 9px 15px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      text-align: center;
-      position: relative;
-      z-index: 1001;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
-    }
-
-    @keyframes shimmerBg {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .top-bar-content {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .top-bar-timer {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: rgba(0, 0, 0, 0.85);
-      color: var(--gold-light);
-      padding: 3px 12px;
-      border-radius: 20px;
-      font-size: 0.82rem;
-      letter-spacing: 0.5px;
-    }
-
-    .main-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      background: rgba(9, 10, 13, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-bottom: 1px solid var(--border-subtle);
-      transition: var(--transition-fast);
-    }
-
-    .nav-wrapper {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-    }
-
-    .brand-logo {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .brand-logo .logo-main {
-      font-family: var(--font-serif);
-      font-size: 1.95rem;
-      font-weight: 900;
-      letter-spacing: 4px;
-      color: var(--gold-light);
-      line-height: 1;
-      text-transform: uppercase;
-    }
-
-    .brand-logo .logo-tagline {
-      font-size: 0.65rem;
-      letter-spacing: 2.2px;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    .header-contacts {
-      display: flex;
-      align-items: center;
-      gap: 24px;
-    }
-
-    .header-hotline {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--text-light);
-      font-size: 0.95rem;
-    }
-
-    .header-hotline .icon-circle {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-primary);
-    }
-
-    .header-hotline .hotline-label {
-      font-size: 0.72rem;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    .header-hotline .hotline-number {
-      font-weight: 700;
-      color: var(--gold-light);
-      letter-spacing: 0.5px;
-    }
-
-    .btn-header-consult {
-      padding: 11px 22px;
-      font-size: 0.85rem;
-      border-radius: 40px;
-      background: var(--gold-gradient);
-      color: #0d0f12;
-      font-weight: 800;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .btn-header-consult:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(212, 175, 55, 0.5);
-    }
-
-    /* ==========================================
-       PHẦN 2: HERO SECTION
-       ========================================== */
-    .hero-section {
-      position: relative;
-      padding: 90px 0 100px;
-      background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.08) 0%, transparent 60%),
-                  radial-gradient(circle at 10% 80%, rgba(139, 30, 47, 0.12) 0%, transparent 50%),
-                  var(--bg-dark);
-      overflow: hidden;
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 50px;
-      align-items: center;
-    }
-
-    .hero-preheadline {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      color: var(--gold-light);
-      font-size: 0.88rem;
-      font-weight: 700;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-    .hero-preheadline::before {
-      content: '';
-      width: 28px;
-      height: 2px;
-      background: var(--gold-primary);
-    }
-
-    .hero-headline {
-      font-size: 3.4rem;
-      line-height: 1.15;
-      color: #ffffff;
-      margin-bottom: 24px;
-      font-weight: 900;
-    }
-
-    .hero-headline span.highlight {
-      background: linear-gradient(135deg, #ffd700 0%, #ff8a00 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      text-shadow: 0 0 30px rgba(255, 138, 0, 0.3);
-    }
-
-    .hero-subheadline {
-      font-size: 1.12rem;
-      line-height: 1.75;
-      color: #c9cdd4;
-      margin-bottom: 36px;
-      max-width: 620px;
-    }
-
-    .hero-subheadline strong {
-      color: var(--gold-light);
-      font-weight: 600;
-    }
-
-    .hero-cta-group {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 42px;
-    }
-
-    .hero-commitments {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-      padding-top: 28px;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .commitment-card {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      border-radius: 12px;
-      padding: 16px 14px;
-      transition: var(--transition-fast);
-    }
-
-    .commitment-card:hover {
-      border-color: var(--border-gold);
-      background: rgba(212, 175, 55, 0.05);
-      transform: translateY(-2px);
-    }
-
-    .commitment-icon {
-      font-size: 1.4rem;
-      margin-bottom: 8px;
-    }
-
-    .commitment-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      margin-bottom: 4px;
-    }
-
-    .commitment-desc {
-      font-size: 0.78rem;
-      color: var(--text-muted);
-      line-height: 1.45;
-    }
-
-    /* HERO SHOWCASE CARD (RIGHT SIDE) */
-    .hero-visual-card {
-      position: relative;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-gold);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), var(--gold-glow);
-      background: #000;
-    }
-
-    .hero-visual-card img {
-      width: 100%;
-      height: 480px;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      cursor: zoom-in;
-    }
-
-    .hero-visual-card:hover img {
-      transform: scale(1.03);
-    }
-
-    .hero-visual-badge {
-      position: absolute;
-      bottom: 20px;
-      left: 20px;
-      right: 20px;
-      background: rgba(15, 18, 24, 0.85);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-gold);
-      padding: 14px 18px;
-      border-radius: 12px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
-    .hero-visual-badge .badge-tag {
-      font-size: 0.75rem;
-      font-weight: 700;
-      color: var(--gold-light);
-      text-transform: uppercase;
-      letter-spacing: 1.5px;
-    }
-
-    .hero-visual-badge .badge-title {
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: #fff;
-    }
-
-    /* ==========================================
-       PHẦN 3: PAIN POINTS (NỖI ĐAU KHÁCH HÀNG)
-       ========================================== */
-    .pain-section {
-      background: linear-gradient(180deg, var(--bg-dark) 0%, #11141a 100%);
-      position: relative;
-    }
-
-    .pain-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .pain-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 32px 28px;
-      position: relative;
-      transition: var(--transition-smooth);
-      display: flex;
-      gap: 20px;
-    }
-
-    .pain-card:hover {
-      border-color: rgba(220, 53, 69, 0.4);
-      background: var(--bg-card-hover);
-      transform: translateY(-4px);
-    }
-
-    .pain-card.critical {
-      border-color: rgba(230, 92, 0, 0.45);
-      background: linear-gradient(145deg, rgba(230, 92, 0, 0.08) 0%, rgba(20, 24, 32, 0.9) 100%);
-    }
-
-    .pain-num {
-      width: 46px;
-      height: 46px;
-      flex-shrink: 0;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 800;
-      font-size: 1.1rem;
-      color: var(--gold-light);
-    }
-
-    .pain-card.critical .pain-num {
-      background: rgba(230, 92, 0, 0.2);
-      border-color: var(--accent-orange);
-      color: #ffaa5a;
-    }
-
-    .pain-body h3 {
-      font-size: 1.18rem;
-      color: #fff;
-      margin-bottom: 10px;
-      font-family: var(--font-sans);
-      font-weight: 700;
-    }
-
-    .pain-body p {
-      font-size: 0.94rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    .pain-warning-quote {
-      background: radial-gradient(circle at center, rgba(139, 30, 47, 0.18) 0%, rgba(18, 20, 26, 0.9) 100%);
-      border: 1px solid rgba(212, 175, 55, 0.35);
-      border-radius: 16px;
-      padding: 32px 40px;
-      text-align: center;
-      max-width: 900px;
-      margin: 0 auto;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-    }
-
-    .pain-warning-quote p {
-      font-family: var(--font-serif);
-      font-size: 1.35rem;
-      color: #fff;
-      font-style: italic;
-      line-height: 1.6;
-    }
-
-    .pain-warning-quote p strong {
-      color: var(--gold-light);
-      font-style: normal;
-    }
-
-    /* ==========================================
-       PHẦN 4: SERVICES (GIẢI PHÁP TẠI ICUS)
-       ========================================== */
-    .services-section {
-      background: var(--bg-dark);
-      position: relative;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
-    .service-card {
-      background: linear-gradient(145deg, rgba(26, 30, 39, 0.95) 0%, rgba(16, 18, 24, 0.9) 100%);
-      border: 1px solid var(--border-subtle);
-      border-radius: 20px;
-      padding: 40px 36px;
-      transition: var(--transition-smooth);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .service-card::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: var(--gold-gradient);
-      opacity: 0;
-      transition: var(--transition-fast);
-    }
-
-    .service-card:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-6px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5), var(--gold-glow);
-    }
-
-    .service-card:hover::before {
-      opacity: 1;
-    }
-
-    .service-icon-wrap {
-      width: 64px;
-      height: 64px;
-      border-radius: 16px;
-      background: rgba(212, 175, 55, 0.12);
-      border: 1px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.6rem;
-      color: var(--gold-light);
-      margin-bottom: 24px;
-    }
-
-    .service-card h3 {
-      font-size: 1.45rem;
-      color: #fff;
-      margin-bottom: 14px;
-    }
-
-    .service-card .en-tag {
-      font-size: 0.85rem;
-      font-weight: 500;
-      color: var(--gold-primary);
-      font-family: var(--font-sans);
-    }
-
-    .service-card p {
-      font-size: 0.96rem;
-      color: #a7adb9;
-      line-height: 1.7;
-      margin-bottom: 24px;
-    }
-
-    .service-perks {
-      list-style: none;
-      margin-bottom: 24px;
-      padding-top: 16px;
-      border-top: 1px dashed rgba(255, 255, 255, 0.1);
-    }
-
-    .service-perks li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 0.88rem;
-      color: #d1d5db;
-      margin-bottom: 8px;
-    }
-
-    .service-perks li i {
-      color: var(--gold-primary);
-      font-size: 0.8rem;
-    }
-
-    /* ==========================================
-       PHẦN 5: BEFORE & AFTER (MINH CHỨNG THỰC TẾ)
-       ========================================== */
-    .showcase-section {
-      background: linear-gradient(180deg, #11141a 0%, var(--bg-dark) 100%);
-      position: relative;
-    }
-
-    .showcase-featured {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      margin-bottom: 40px;
-    }
-
-    .case-card {
-      background: var(--bg-card);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      overflow: hidden;
-      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-      transition: var(--transition-smooth);
-    }
-
-    .case-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), var(--gold-glow);
-    }
-
-    .case-media {
-      position: relative;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .case-media img {
-      width: 100%;
-      height: 380px;
-      object-fit: cover;
-      transition: transform 0.6s ease;
-      cursor: zoom-in;
-    }
-
-    .case-card:hover .case-media img {
-      transform: scale(1.03);
-    }
-
-    .case-info {
-      padding: 24px;
-    }
-
-    .case-badge {
-      display: inline-block;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      background: rgba(212, 175, 55, 0.15);
-      padding: 4px 12px;
-      border-radius: 6px;
-      margin-bottom: 12px;
-    }
-
-    .case-title {
-      font-size: 1.3rem;
-      color: #fff;
-      margin-bottom: 10px;
-      font-weight: 700;
-    }
-
-    .case-desc {
-      font-size: 0.92rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ADDITIONAL SHOWCASE GALLERY */
-    .showcase-gallery-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-bottom: 48px;
-    }
-
-    .gallery-card {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      overflow: hidden;
-      transition: var(--transition-fast);
-    }
-
-    .gallery-card:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-3px);
-    }
-
-    .gallery-card img {
-      width: 100%;
-      height: 270px;
-      object-fit: cover;
-      cursor: zoom-in;
-    }
-
-    .gallery-caption {
-      padding: 16px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: #e5e7eb;
-      text-align: center;
-      background: rgba(18, 21, 28, 0.95);
-    }
-
-    .showcase-cta {
-      text-align: center;
-    }
-
-    /* ==========================================
-       PHẦN 6: LỢI ÍCH VƯỢT TRỘI (WHY CHOOSE US)
-       ========================================== */
-    .why-section {
-      background: var(--bg-dark);
-      position: relative;
-      border-top: 1px solid var(--border-subtle);
-    }
-
-    .why-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 24px;
-    }
-
-    .why-card {
-      background: linear-gradient(180deg, rgba(25, 29, 38, 0.7) 0%, rgba(15, 17, 22, 0.9) 100%);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 16px;
-      padding: 32px 22px;
-      text-align: center;
-      transition: var(--transition-smooth);
-    }
-
-    .why-card:hover {
-      border-color: var(--border-gold);
-      background: rgba(212, 175, 55, 0.05);
-      transform: translateY(-5px);
-    }
-
-    .why-icon-box {
-      width: 60px;
-      height: 60px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.1);
-      border: 1.5px solid var(--border-gold);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-      color: var(--gold-light);
-      font-size: 1.4rem;
-    }
-
-    .why-card h3 {
-      font-size: 1.15rem;
-      color: #fff;
-      margin-bottom: 12px;
-      font-family: var(--font-sans);
-      font-weight: 700;
-    }
-
-    .why-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-
-    /* ==========================================
-       PHẦN 7: QUY TRÌNH 5 BƯỚC (HOW IT WORKS)
-       ========================================== */
-    .process-section {
-      background: linear-gradient(180deg, var(--bg-dark) 0%, #11141c 100%);
-    }
-
-    .process-timeline {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      gap: 20px;
-      position: relative;
-    }
-
-    .process-step {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 30px 20px;
-      text-align: center;
-      position: relative;
-      transition: var(--transition-smooth);
-    }
-
-    .process-step:hover {
-      border-color: var(--border-gold);
-      transform: translateY(-4px);
-    }
-
-    .step-number {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      background: var(--gold-gradient);
-      color: #111;
-      font-weight: 900;
-      font-size: 1.2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 18px;
-      box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-    }
-
-    .process-step h4 {
-      font-size: 1.05rem;
-      color: #fff;
-      margin-bottom: 10px;
-      font-family: var(--font-sans);
-      font-weight: 700;
-    }
-
-    .process-step p {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    /* ==========================================
-       PHẦN 8: CẢM NHẬN KHÁCH HÀNG (SOCIAL PROOF)
-       ========================================== */
-    .feedback-section {
-      background: var(--bg-dark);
-      position: relative;
-    }
-
-    .feedback-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-    }
-
-    .feedback-card {
-      background: linear-gradient(145deg, rgba(24, 28, 36, 0.9) 0%, rgba(14, 16, 22, 0.9) 100%);
-      border: 1px solid var(--border-gold);
-      border-radius: 20px;
-      padding: 36px 32px;
-      position: relative;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
-    }
-
-    .feedback-stars {
-      color: #f59e0b;
-      margin-bottom: 16px;
-      font-size: 1.1rem;
-      letter-spacing: 2px;
-    }
-
-    .feedback-text {
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: #e2e4e9;
-      font-style: italic;
-      margin-bottom: 24px;
-      position: relative;
-    }
-
-    .feedback-author {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      padding-top: 18px;
-    }
-
-    .feedback-avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      background: rgba(212, 175, 55, 0.15);
-      border: 1.5px solid var(--gold-primary);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-light);
-      font-weight: 700;
-    }
-
-    .feedback-name {
-      font-weight: 700;
-      color: #fff;
-      font-size: 0.95rem;
-    }
-
-    .feedback-location {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-    }
-
-    .feedback-verified {
-      margin-left: auto;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 0.75rem;
-      color: #10b981;
-      font-weight: 600;
-    }
-
-    /* ==========================================
-       PHẦN 9: CÂU HỎI THƯỜNG GẶP (FAQ)
-       ========================================== */
-    .faq-section {
-      background: linear-gradient(180deg, #11141a 0%, var(--bg-dark) 100%);
-    }
-
-    .faq-accordion {
-      max-width: 860px;
-      margin: 0 auto;
-    }
-
-    .faq-item {
-      background: var(--bg-card);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      margin-bottom: 16px;
-      overflow: hidden;
-      transition: var(--transition-fast);
-    }
-
-    .faq-item.active {
-      border-color: var(--border-gold);
-    }
-
-    .faq-header {
-      padding: 22px 24px;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      user-select: none;
-    }
-
-    .faq-header h3 {
-      font-size: 1.08rem;
-      color: #fff;
-      font-family: var(--font-sans);
-      font-weight: 600;
-    }
-
-    .faq-toggle-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.05);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-light);
-      transition: transform 0.3s ease;
-      flex-shrink: 0;
-    }
-
-    .faq-item.active .faq-toggle-icon {
-      transform: rotate(180deg);
-      background: rgba(212, 175, 55, 0.2);
-    }
-
-    .faq-body {
-      padding: 0 24px 22px 24px;
-      display: none;
-      font-size: 0.95rem;
-      color: #abb2bf;
-      line-height: 1.7;
-      border-top: 1px solid rgba(255, 255, 255, 0.05);
-      padding-top: 16px;
-    }
-
-    .faq-item.active .faq-body {
-      display: block;
-    }
-
-    /* ==========================================
-       PHẦN 10: FORM ĐĂNG KÝ & FINAL CTA
-       ========================================== */
-    .cta-section {
-      background: radial-gradient(circle at top center, rgba(212, 175, 55, 0.12) 0%, transparent 70%),
-                  #0a0c10;
-      position: relative;
-    }
-
-    .promo-box {
-      background: linear-gradient(135deg, rgba(139, 30, 47, 0.4) 0%, rgba(20, 24, 33, 0.95) 50%, rgba(170, 130, 28, 0.25) 100%);
-      border: 2px solid var(--gold-primary);
-      border-radius: 24px;
-      padding: 48px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.7), var(--gold-glow);
-      max-width: 960px;
-      margin: 0 auto;
-    }
-
-    .promo-banner-badge {
-      background: var(--gold-gradient);
-      color: #111;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 24px;
-      border-radius: 999px;
-      font-weight: 800;
-      font-size: 0.92rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 24px;
-      box-shadow: 0 4px 20px rgba(212, 175, 55, 0.4);
-    }
-
-    .promo-header {
-      text-align: center;
-      margin-bottom: 36px;
-    }
-
-    .promo-header h2 {
-      font-size: 2.3rem;
-      color: #fff;
-      margin-bottom: 12px;
-    }
-
-    .promo-header p {
-      font-size: 1.05rem;
-      color: #f1f2f6;
-    }
-
-    .booking-form {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 20px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group.full-width {
-      grid-column: span 2;
-    }
-
-    .form-group label {
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--gold-light);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .form-control {
-      background: rgba(10, 12, 16, 0.85);
-      border: 1px solid rgba(212, 175, 55, 0.3);
-      border-radius: 12px;
-      padding: 14px 18px;
-      color: #fff;
-      font-size: 0.95rem;
-      font-family: var(--font-sans);
-      outline: none;
-      transition: var(--transition-fast);
-    }
-
-    .form-control:focus {
-      border-color: var(--gold-primary);
-      box-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
-    }
-
-    .form-control option {
-      background: #11141c;
-      color: #fff;
-    }
-
-    .form-submit-wrap {
-      grid-column: span 2;
-      text-align: center;
-      margin-top: 10px;
-    }
-
-    .form-submit-wrap .btn {
-      width: 100%;
-      padding: 18px;
-      font-size: 1.05rem;
-    }
-
-    .security-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      margin-top: 14px;
-    }
-
-    /* ==========================================
-       PHẦN 11: FOOTER (CHÂN TRANG)
-       ========================================== */
-    .main-footer {
-      background: #050608;
-      border-top: 1px solid var(--border-subtle);
-      padding: 70px 0 35px;
-      color: #9ba1ad;
-      font-size: 0.92rem;
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 40px;
-      margin-bottom: 50px;
-    }
-
-    .footer-brand .logo-main {
-      font-family: var(--font-serif);
-      font-size: 2rem;
-      font-weight: 900;
-      letter-spacing: 3px;
-      color: var(--gold-light);
-      margin-bottom: 12px;
-    }
-
-    .footer-brand p {
-      line-height: 1.65;
-      margin-bottom: 20px;
-      max-width: 380px;
-    }
-
-    .footer-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: #fff;
-      margin-bottom: 20px;
-      position: relative;
-      padding-bottom: 10px;
-    }
-
-    .footer-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 32px;
-      height: 2px;
-      background: var(--gold-primary);
-    }
-
-    .footer-branch-list {
-      list-style: none;
-    }
-
-    .footer-branch-list li {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      margin-bottom: 16px;
-      line-height: 1.5;
-    }
-
-    .footer-branch-list li i {
-      color: var(--gold-primary);
-      margin-top: 4px;
-    }
-
-    .footer-contact-list {
-      list-style: none;
-    }
-
-    .footer-contact-list li {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 14px;
-    }
-
-    .footer-contact-list li i {
-      color: var(--gold-primary);
-      font-size: 1.1rem;
-    }
-
-    .footer-social-link {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      color: #fff;
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 10px 18px;
-      border-radius: 8px;
-      transition: var(--transition-fast);
-      margin-top: 8px;
-    }
-
-    .footer-social-link:hover {
-      background: #1877f2;
-      border-color: #1877f2;
-      color: #fff;
-    }
-
-    .footer-bottom {
-      border-top: 1px solid rgba(255, 255, 255, 0.06);
-      padding-top: 25px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-      font-size: 0.85rem;
-    }
-
-    /* ==========================================
-       FLOATING WIDGETS (MOBILE & DESKTOP)
-       ========================================== */
-    .floating-container {
-      position: fixed;
-      bottom: 30px;
-      right: 25px;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      z-index: 9999;
-    }
-
-    .floating-btn {
-      width: 58px;
-      height: 58px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 1.6rem;
-      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.45);
-      transition: var(--transition-smooth);
-      position: relative;
-    }
-
-    .floating-btn:hover {
-      transform: scale(1.1);
-    }
-
-    .floating-zalo {
-      background: var(--zalo-color);
-      box-shadow: 0 4px 20px rgba(0, 104, 255, 0.6);
-      animation: pulseZalo 2.5s infinite;
-    }
-
-    @keyframes pulseZalo {
-      0% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0.7); }
-      70% { box-shadow: 0 0 0 16px rgba(0, 104, 255, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(0, 104, 255, 0); }
-    }
-
-    .floating-phone {
-      background: linear-gradient(135deg, #ff9800 0%, #e65100 100%);
-      box-shadow: 0 4px 20px rgba(255, 152, 0, 0.6);
-      animation: shakePhone 3s ease infinite;
-    }
-
-    @keyframes shakePhone {
-      0%, 100% { transform: rotate(0deg); }
-      10%, 30%, 50% { transform: rotate(-15deg); }
-      20%, 40% { transform: rotate(15deg); }
-      60% { transform: rotate(0deg); }
-    }
-
-    .floating-label {
-      position: absolute;
-      right: 70px;
-      background: #11141c;
-      color: #fff;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 6px 14px;
-      border-radius: 20px;
-      border: 1px solid var(--border-gold);
-      white-space: nowrap;
-      pointer-events: none;
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-      opacity: 0;
-      transform: translateX(10px);
-      transition: var(--transition-fast);
-    }
-
-    .floating-btn:hover .floating-label {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* LIGHTBOX MODAL */
-    .lightbox-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.92);
-      backdrop-filter: blur(10px);
-      z-index: 10000;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 30px;
-    }
-
-    .lightbox-modal.active {
-      display: flex;
-    }
-
-    .lightbox-content {
-      max-width: 90vw;
-      max-height: 90vh;
-      position: relative;
-    }
-
-    .lightbox-content img {
-      max-width: 100%;
-      max-height: 85vh;
-      border-radius: 12px;
-      border: 1px solid var(--border-gold);
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
-    }
-
-    .lightbox-close {
-      position: absolute;
-      top: -45px;
-      right: 0;
-      color: #fff;
-      font-size: 2rem;
-      cursor: pointer;
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* SUCCESS MODAL */
-    .success-modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 10001;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-
-    .success-modal.active {
-      display: flex;
-    }
-
-    .success-card {
-      background: var(--bg-card);
-      border: 2px solid var(--gold-primary);
-      border-radius: 20px;
-      padding: 40px 30px;
-      max-width: 480px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8), var(--gold-glow);
-    }
-
-    .success-icon {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: rgba(16, 185, 129, 0.2);
-      border: 2px solid #10b981;
-      color: #10b981;
-      font-size: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin: 0 auto 20px;
-    }
-
-    /* RESPONSIVE DESIGN */
-    @media (max-width: 1024px) {
-      .hero-headline {
-        font-size: 2.8rem;
-      }
-      .services-grid,
-      .pain-grid,
-      .showcase-featured,
-      .feedback-grid {
-        grid-template-columns: 1fr;
-      }
-      .why-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .process-timeline {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .showcase-gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .footer-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 768px) {
-      .top-bar {
-        font-size: 0.78rem;
-      }
-      .top-bar-content {
-        gap: 8px;
-      }
-      .nav-wrapper {
-        height: 70px;
-      }
-      .header-contacts .header-hotline {
-        display: none;
-      }
-      .hero-grid {
-        grid-template-columns: 1fr;
-        gap: 40px;
-      }
-      .hero-headline {
-        font-size: 2.25rem;
-      }
-      .hero-commitments {
-        grid-template-columns: 1fr;
-      }
-      .booking-form {
-        grid-template-columns: 1fr;
-      }
-      .form-group.full-width {
-        grid-column: span 1;
-      }
-      .form-submit-wrap {
-        grid-column: span 1;
-      }
-      .process-timeline {
-        grid-template-columns: 1fr;
-      }
-      .why-grid {
-        grid-template-columns: 1fr;
-      }
-      .showcase-gallery-grid {
-        grid-template-columns: 1fr;
-      }
-      .floating-container {
-        bottom: 20px;
-        right: 15px;
-      }
-      .floating-btn {
-        width: 52px;
-        height: 52px;
-        font-size: 1.4rem;
-      }
-      .promo-box {
-        padding: 30px 20px;
-      }
-      .promo-header h2 {
-        font-size: 1.7rem;
-      }
-      .section-title {
-        font-size: 2rem;
-      }
+      animation: spinSparkle 4s linear infinite;
+    }
+    @keyframes spinSparkle {
+      0% { transform: rotate(0deg) scale(1); }
+      50% { transform: rotate(180deg) scale(1.15); }
+      100% { transform: rotate(360deg) scale(1); }
     }
   </style>
 </head>
-<body>
+<body class="text-icus-black font-sans antialiased selection:bg-icus-orange selection:text-white">
 
-  <!-- ==========================================
-       PHẦN 1: THANH ĐẦU TRANG (HEADER & TOP BAR)
-       ========================================== -->
-  <div class="top-bar">
-    <div class="container top-bar-content">
-      <span>🎁 ƯU ĐÃI ĐẶC QUYỀN TUẦN NÀY: VỆ SINH 1 TÚI TẶNG 1 TÚI – TỪ 01/09/2026 ĐẾN HẾT 15/09/2026</span>
-      <div class="top-bar-timer" id="top-timer">
-        <i class="fa-regular fa-clock"></i>
-        <span>Còn lại: <strong id="countdown-display">Đang tải...</strong></span>
-      </div>
+  <!-- ==================== MARQUEE ANNOUNCEMENT BAR ==================== -->
+  <div class="bg-icus-orange text-white py-2.5 overflow-hidden border-b-2 border-icus-black select-none">
+    <div class="flex items-center space-x-8 font-black uppercase text-xs sm:text-sm tracking-widest whitespace-nowrap animate-marquee">
+      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+      <span>✦</span>
+      <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
+      <span>✦</span>
+      <span>GOOD THINGS LAST LONGER</span>
+      <span>✦</span>
+      <span>🛡️ 100% DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+      <span>✦</span>
+      <span>KEEP IT CLEAN. KEEP IT COOL</span>
+      <span>✦</span>
+      <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
+      <span>✦</span>
+      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
     </div>
   </div>
 
-  <header class="main-header">
-    <div class="container nav-wrapper">
-      <a href="#" class="brand-logo">
-        <span class="logo-main">ICUS</span>
-        <span class="logo-tagline">Aesthetic Footwear and Bags</span>
-      </a>
-
-      <div class="header-contacts">
-        <a href="tel:0393190077" class="header-hotline">
-          <div class="icon-circle">
-            <i class="fa-solid fa-phone"></i>
+  <!-- ==================== [PHẦN 0] THANH TIÊU ĐỀ ĐẦU TRANG (HEADER) ==================== -->
+  <header class="sticky top-0 z-50 bg-icus-cream/95 backdrop-blur-md border-b-3 border-icus-black transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 sm:h-24 flex items-center justify-between">
+      
+      <!-- Left: Logo + Slogan -->
+      <div class="flex items-center gap-4">
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm flex items-center justify-center overflow-hidden p-1 group-hover:rotate-3 transition">
+            <img src="assets/logo-symbol.jpg" alt="ICUS Symbol" class="w-full h-full object-contain mix-blend-multiply" />
           </div>
-          <div>
-            <div class="hotline-label">Hotline / Zalo (09:00 - 19:00)</div>
-            <div class="hotline-number">0393.19.00.77</div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-2">
+              <span class="font-serif text-2xl sm:text-3xl font-black tracking-tight text-icus-black">ICUS</span>
+              <span class="text-[10px] font-black uppercase tracking-wider bg-icus-yellow px-2 py-0.5 rounded-full border border-icus-black">SPA</span>
+            </div>
+            <span class="text-[9px] sm:text-[10px] uppercase font-bold tracking-[0.2em] text-stone-600">Aesthetics Footwear & Bags</span>
           </div>
-        </a>
-
-        <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-header-consult">
-          <i class="fa-solid fa-camera"></i>
-          <span>GỬI ẢNH TƯ VẤN NHANH</span>
         </a>
       </div>
+
+      <!-- Center (Desktop only): Slogan Badge -->
+      <div class="hidden lg:flex items-center">
+        <div class="px-4 py-2 bg-icus-yellow rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left font-black text-xs uppercase tracking-wider flex items-center gap-2">
+          <span class="text-icus-orange">⚡</span>
+          <span>ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!!!!!!!!</span>
+        </div>
+      </div>
+
+      <!-- Right: Contact Buttons -->
+      <div class="flex items-center gap-2 sm:gap-4">
+        <a href="tel:0393190077" class="hidden sm:flex items-center gap-2 font-bold text-xs sm:text-sm bg-white px-3 py-2.5 rounded-xl border-2 border-icus-black shadow-brutal-sm hover:bg-stone-50 transition">
+          <i class="fa-solid fa-phone text-icus-orange animate-bounce"></i>
+          <span>0393.19.00.77</span>
+        </a>
+        <a href="https://zalo.me/0393190077" target="_blank" class="sticker-btn bg-icus-orange text-white text-xs sm:text-sm font-black px-4 sm:px-5 py-2.5 sm:py-3 rounded-xl border-2 border-icus-black shadow-brutal flex items-center gap-2">
+          <i class="fa-solid fa-camera"></i>
+          <span>Gửi Ảnh Định Giá Nhanh</span>
+        </a>
+      </div>
+
     </div>
   </header>
 
-  <!-- ==========================================
-       PHẦN 2: MÀN HÌNH ĐẦU TIÊN (HERO SECTION)
-       ========================================== -->
-  <section class="hero-section">
-    <div class="container">
-      <div class="hero-grid">
-        <div class="hero-text-content">
-          <div class="hero-preheadline">CHUYÊN GIA SPA & PHỤC HỒI ĐỒ HIỆU CAO CẤP</div>
-          <h1 class="hero-headline">
-            ĐỒ HIỆU XUỐNG CẤP – <br />
-            <span class="highlight">TỚI ICUS GẤP!!!!!</span>
-          </h1>
-          <p class="hero-subheadline">
-            Giải pháp vệ sinh chuyên sâu, phục hồi form dáng, xử lý trầy xước và custom độc bản cho túi xách, giày dép <strong>Louis Vuitton, Chanel, Gucci, Dior, Hermes, Jordan, Balenciaga...</strong> Bằng hóa chất 100% nhập khẩu chính hãng từ <strong>Pháp (Saphir)</strong> & <strong>Mỹ (Angelus)</strong>.
+  <!-- ==================== [PHẦN 1] HERO SECTION ==================== -->
+  <section class="relative pt-8 pb-16 lg:pt-16 lg:pb-24 overflow-hidden">
+    
+    <!-- Floating Sticker Accents in Background -->
+    <div class="hidden md:block absolute top-12 left-6 z-0 pointer-events-none opacity-80 badge-rotate-left">
+      <span class="px-3 py-1.5 bg-icus-green text-white font-black text-xs uppercase rounded-lg border-2 border-icus-black shadow-brutal-sm">
+        🌱 Keep it Clean. Keep it Cool.
+      </span>
+    </div>
+    <div class="hidden md:block absolute top-20 right-10 z-0 pointer-events-none opacity-90 badge-rotate-right">
+      <span class="px-4 py-1.5 bg-icus-yellow text-icus-black font-black text-xs uppercase rounded-full border-2 border-icus-black shadow-brutal-sm">
+        Good Things Last Longer ✦
+      </span>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        
+        <!-- Left Hero Content -->
+        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+          
+          <!-- Eyebrow Badge -->
+          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-icus-pink text-icus-black border-2 border-icus-black shadow-brutal-sm font-black text-xs uppercase tracking-wider badge-rotate-left">
+            <span>✨</span> DỊCH VỤ SPA & PHỤC HỒI ĐỒ HIỆU CAO CẤP
+          </div>
+
+          <!-- Main Catchy Slogan Headline -->
+          <div class="space-y-2">
+            <h1 class="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] uppercase">
+              <span class="block text-icus-black">ĐỒ HIỆU XUỐNG CẤP</span>
+              <span class="inline-block bg-icus-orange text-white px-3 sm:px-5 py-1 rounded-2xl border-3 border-icus-black shadow-brutal mt-2 badge-rotate-left font-serif">
+                TỚI ICUS GẤP!!!!!!!!
+              </span>
+            </h1>
+          </div>
+
+          <!-- Sub-headline -->
+          <p class="text-stone-700 text-base sm:text-lg font-medium leading-relaxed max-w-2xl mx-auto lg:mx-0">
+            Chuyên sâu <strong class="text-icus-black underline decoration-icus-orange decoration-2">vệ sinh, khử mốc, xử lý ố vàng, phục hồi màu da và custom độc bản</strong> cho túi xách, giày, dép hàng hiệu. Quy trình thủ công tỉ mỉ bằng dưỡng chất chuẩn Châu Âu.
           </p>
 
-          <div class="hero-cta-group">
-            <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
-              <i class="fa-solid fa-camera"></i>
-              <span>GỬI ẢNH THẨM ĐỊNH & NHẬN ƯU ĐÃI (1 TẶNG 1)</span>
+          <!-- Irresistible Offer Box (1 TẶNG 1) -->
+          <div class="p-5 sm:p-6 rounded-2xl bg-white border-3 border-icus-black shadow-brutal text-left max-w-xl mx-auto lg:mx-0 relative overflow-hidden">
+            <div class="absolute -top-3 -right-3 bg-icus-yellow text-icus-black text-[11px] font-black uppercase px-3 py-1 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-right">
+              HOT DEAL 🔥
+            </div>
+            <div class="flex items-start gap-4">
+              <div class="w-14 h-14 rounded-xl bg-icus-orange text-white flex items-center justify-center flex-shrink-0 text-2xl border-2 border-icus-black shadow-brutal-sm">
+                🎁
+              </div>
+              <div class="space-y-1">
+                <h4 class="font-black text-sm sm:text-base text-icus-black uppercase tracking-tight">
+                  1 TẶNG 1 – VỆ SINH ĐỒ HIỆU BẤT KỲ
+                </h4>
+                <p class="text-xs sm:text-sm text-stone-600 leading-snug">
+                  Gửi vệ sinh 1 món đồ (túi xách/giày/ví), <strong class="text-icus-orange font-black">ICUS tặng miễn phí 1 suất vệ sinh</strong> cho món tiếp theo (giá dịch vụ bằng hoặc thấp hơn)!
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-2">
+            <a href="#booking-form" class="sticker-btn bg-icus-orange text-white text-base sm:text-lg font-black px-8 py-4 rounded-2xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-3">
+              <span>👉 NHẬN TƯ VẤN & BÁO GIÁ TRONG 5 PHÚT</span>
             </a>
-            <a href="#before-after" class="btn btn-outline-gold">
-              <i class="fa-solid fa-sparkles"></i>
-              <span>XEM KẾT QUẢ TRƯỚC & SAU</span>
+            <a href="#before-after" class="sticker-btn bg-white hover:bg-stone-50 text-icus-black text-base font-bold px-6 py-4 rounded-2xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2">
+              <i class="fa-solid fa-wand-magic-sparkles text-icus-orange"></i>
+              <span>Xem Trước & Sau (Before - After)</span>
             </a>
           </div>
 
-          <div class="hero-commitments">
-            <div class="commitment-card">
-              <div class="commitment-icon">🛡️</div>
-              <div class="commitment-title">Đền bù 100%</div>
-              <div class="commitment-desc">Cam kết bảo hiểm giá trị nếu phát sinh lỗi hư hại kỹ thuật.</div>
+          <!-- Trust Badges -->
+          <div class="pt-4 grid grid-cols-1 sm:grid-cols-3 gap-3 text-left">
+            <div class="p-3 bg-white/80 rounded-xl border-2 border-icus-black shadow-brutal-sm flex items-center gap-3">
+              <span class="text-2xl">⭐</span>
+              <div>
+                <span class="font-black text-xs block text-icus-black">5.000+ Món Đồ</span>
+                <span class="text-[11px] text-stone-600">Đã phục hồi thành công</span>
+              </div>
             </div>
-            <div class="commitment-card">
-              <div class="commitment-icon">🌿</div>
-              <div class="commitment-title">Dung dịch Organic</div>
-              <div class="commitment-desc">Hóa chất chuyên dụng thế giới, an toàn tuyệt đối không làm chai da.</div>
+            <div class="p-3 bg-white/80 rounded-xl border-2 border-icus-black shadow-brutal-sm flex items-center gap-3">
+              <span class="text-2xl">🛡️</span>
+              <div>
+                <span class="font-black text-xs block text-icus-black">Saphir Pháp</span>
+                <span class="text-[11px] text-stone-600">100% dung dịch nhập khẩu</span>
+              </div>
             </div>
-            <div class="commitment-card">
-              <div class="commitment-icon">🛵</div>
-              <div class="commitment-title">Giao nhận tận nơi</div>
-              <div class="commitment-desc">Đội ngũ nhận & giao hàng 2 chiều tận nhà tại TP.HCM.</div>
+            <div class="p-3 bg-white/80 rounded-xl border-2 border-icus-black shadow-brutal-sm flex items-center gap-3">
+              <span class="text-2xl">🔒</span>
+              <div>
+                <span class="font-black text-xs block text-icus-black">Bảo Hiểm 100%</span>
+                <span class="text-[11px] text-stone-600">Đền bù nếu có lỗi kỹ thuật</span>
+              </div>
             </div>
           </div>
+
         </div>
 
-        <!-- HERO SHOWCASE CARD (PHẦN GIỚI THIỆU) -->
-        <div class="hero-visual-card">
-          <img 
-            id="heroIntroImg"
-            src="./assets/images/1.jpg" 
-            alt="ICUS Spa & Phục Hồi Đồ Hiệu Cao Cấp" 
-            data-fallback-urls="./assets/images/chanel-before-after.jpg,./assets/images/lv-restoration.jpg,./1.jpg,./chanel-before-after.jpg,assets/images/1.jpg,assets/images/chanel-before-after.jpg"
-            onerror="handleImgFallback(this)"
-            onclick="openLightbox(this.src)" 
-          />
-          <div class="hero-visual-badge">
-            <div>
-              <div class="badge-tag">Chăm sóc chuẩn quốc tế</div>
-              <div class="badge-title">Spa & Dưỡng Phục Hồi Đồ Hiệu</div>
+        <!-- Right Hero Visual: The Raccoon Mascot & Sticker Board -->
+        <div class="lg:col-span-5 relative">
+          
+          <div class="relative mx-auto max-w-md">
+            
+            <!-- Funky Badge Pins -->
+            <div class="absolute -top-4 -left-4 z-20 bg-icus-blue text-white font-black text-xs uppercase px-3 py-1.5 rounded-xl border-2 border-icus-black shadow-brutal badge-rotate-left">
+              Bespoke Artisan ✦
             </div>
-            <span class="btn btn-gold" style="padding: 6px 14px; font-size: 0.75rem;">100% THỦ CÔNG</span>
+            <div class="absolute -bottom-4 -right-2 z-20 bg-icus-green text-white font-black text-xs uppercase px-3 py-1.5 rounded-xl border-2 border-icus-black shadow-brutal badge-rotate-right">
+              Shake, Make, Shine! ✨
+            </div>
+
+            <!-- Sticker Art Frame -->
+            <div class="rounded-3xl bg-white border-3 border-icus-black shadow-brutal-lg overflow-hidden p-3 group">
+              <div class="relative rounded-2xl overflow-hidden border-2 border-icus-black bg-[#FAF6EF]">
+                <img 
+                  src="assets/sticker-sheet.jpg" 
+                  alt="ICUS Mascot Raccoon và Bộ nhận diện Sticker Streetwear" 
+                  class="w-full h-auto object-cover group-hover:scale-102 transition duration-300"
+                />
+              </div>
+
+              <!-- Caption Tag Below Mascot -->
+              <div class="mt-3 py-2 px-3 bg-icus-yellowLight rounded-xl border-2 border-icus-black flex items-center justify-between text-xs">
+                <div class="flex items-center gap-2">
+                  <span class="w-3 h-3 rounded-full bg-icus-orange animate-pulse"></span>
+                  <span class="font-bold text-icus-black">Nghệ nhân ICUS: Tỉ mỉ trên từng đường kim</span>
+                </div>
+                <span class="font-serif font-black text-icus-black">EST. 2026</span>
+              </div>
+            </div>
+
           </div>
+
         </div>
+
       </div>
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 3: ĐÁNH TRÚNG NỖI ĐAU KHÁCH HÀNG
-       ========================================== -->
-  <section class="section-padding pain-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Thực trạng đáng báo động</div>
-        <h2 class="section-title">Có Phải Món Đồ Hiệu Yêu Thích Của Bạn Đang Gặp Phải Tình Trạng Này?</h2>
-        <p class="section-subtitle">Chỉ một sơ suất nhỏ trong cách vệ sinh hoặc bảo quản cũng có thể phá hủy giá trị của chiếc túi hay đôi giày đắt đỏ.</p>
+  <!-- ==================== [PHẦN 2] VẤN ĐỀ CỦA KHÁCH HÀNG (PAIN POINTS) ==================== -->
+  <section class="py-20 bg-white border-y-3 border-icus-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-orange text-white text-xs font-black uppercase px-3 py-1 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left">
+          SOS / TÌNH TRẠNG BÁO ĐỘNG
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Có Phải Món Đồ Hiệu Yêu Thích Của Bạn Đang <span class="text-icus-orange underline decoration-wavy">"Kêu Cứu"?</span>
+        </h2>
+        <p class="text-stone-600 text-base">
+          Khí hậu nóng ẩm tại Việt Nam cùng thời gian sử dụng khiến những món đồ giá trị chục triệu, trăm triệu dần mất đi vẻ đẹp ban đầu...
+        </p>
       </div>
 
-      <div class="pain-grid">
-        <div class="pain-card">
-          <div class="pain-num">1</div>
-          <div class="pain-body">
-            <h3>Ẩm mốc, ố vàng, bám mùi khó chịu</h3>
-            <p>Thời tiết nồm ẩm hoặc mồ hôi khiến bề mặt da/vải ngả màu, mốc trắng bám sâu vào chân da làm giảm sút thẩm mỹ và giá trị món đồ hiệu đắt tiền.</p>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Nỗi đau 1: Ẩm mốc -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal hover:-translate-y-1 transition duration-200">
+          <div class="w-14 h-14 rounded-2xl bg-icus-pink text-icus-black border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl mb-5 badge-rotate-left">
+            <i class="fa-solid fa-biohazard text-icus-black"></i>
           </div>
+          <h3 class="text-lg font-black text-icus-black uppercase mb-2">Ẩm Mốc & Mùi Hôi</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Túi xách, giày cất trong tủ lâu ngày bị nấm mốc trắng tấn công, bốc mùi hôi khó xử lý tại nhà. Dùng khăn ướt lau chỉ làm mốc ăn sâu chân da.
+          </p>
         </div>
 
-        <div class="pain-card">
-          <div class="pain-num">2</div>
-          <div class="pain-body">
-            <h3>Trầy xước góc cạnh, bong tróc viền keo</h3>
-            <p>Va quẹt trong quá trình sử dụng làm lộ lớp cốt da bên trong, quai xách sờn rách, viền keo sealing bị nứt gãy khiến tổng thể món đồ mất đi vẻ sang trọng.</p>
+        <!-- Nỗi đau 2: Trầy xước -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal hover:-translate-y-1 transition duration-200">
+          <div class="w-14 h-14 rounded-2xl bg-icus-yellow text-icus-black border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl mb-5 badge-rotate-right">
+            <i class="fa-solid fa-scissors text-icus-black"></i>
           </div>
+          <h3 class="text-lg font-black text-icus-black uppercase mb-2">Trầy Xước & Sờn Góc</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Đế mòn, góc túi xơ rách, màu da loang lổ do va quẹt hoặc tiếp xúc với cồn xịt khuẩn, nước mưa làm cháy bề mặt da đắt tiền.
+          </p>
         </div>
 
-        <div class="pain-card">
-          <div class="pain-num">3</div>
-          <div class="pain-body">
-            <h3>Mất form dáng, da khô ráp cằn cỗi</h3>
-            <p>Thiếu dưỡng chất và độ ẩm chuyên sâu khiến bề mặt da bị cằn nứt, túi bị móp méo sụp góc, mất đi phom dáng nguyên bản sang trọng vốn có.</p>
+        <!-- Nỗi đau 3: Ố vàng -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal hover:-translate-y-1 transition duration-200">
+          <div class="w-14 h-14 rounded-2xl bg-icus-blue text-white border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl mb-5 badge-rotate-left">
+            <i class="fa-solid fa-shoe-prints"></i>
           </div>
+          <h3 class="text-lg font-black text-icus-black uppercase mb-2">Ố Vàng & Bám Bẩn</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Đế giày sneaker cao cấp bị ố vàng do oxy hóa, vải canvas bị lem màu ố bẩn mà nước giặt thông thường không thể làm sạch được.
+          </p>
         </div>
 
-        <div class="pain-card critical">
-          <div class="pain-num"><i class="fa-solid fa-triangle-exclamation"></i></div>
-          <div class="pain-body">
-            <h3>NỖI SỢ LỚN NHẤT: Tự xử lý sai cách & Gửi nhầm tiệm</h3>
-            <p>Tự tẩy rửa tại nhà bằng cồn/xà phòng gây loang màu không thể cứu vãn; hoặc gửi nhầm tiệm giặt ủi bình dân thiếu am hiểu chất liệu da cao cấp dẫn đến cháy da, co rút.</p>
+        <!-- Nỗi đau 4: Sợ tiệm kém uy tín -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal hover:-translate-y-1 transition duration-200">
+          <div class="w-14 h-14 rounded-2xl bg-icus-orange text-white border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl mb-5 badge-rotate-right">
+            <i class="fa-solid fa-triangle-exclamation"></i>
           </div>
+          <h3 class="text-lg font-black text-icus-black uppercase mb-2">Sợ Tiệm Kém Uy Tín</h3>
+          <p class="text-sm text-stone-600 leading-relaxed">
+            Nỗi lo lớn nhất: Thợ thiếu tay nghề dùng hóa chất rẻ tiền làm cứng đơ bề mặt da, bay màu, mất form dáng nguyên bản, làm hỏng cả món đồ tiền triệu.
+          </p>
         </div>
+
       </div>
 
-      <div class="pain-warning-quote">
-        <p>"Đồ hiệu không chỉ là phụ kiện, đó là <strong>phong cách</strong> và <strong>tài sản</strong> của bạn. Đừng mạo hiểm giao chúng cho những nơi không đủ chuyên môn!"</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       PHẦN 4: GIẢI PHÁP CHUYÊN NGHIỆP TẠI ICUS
-       ========================================== -->
-  <section class="section-padding services-section" id="services">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Dịch Vụ Đẳng Cấp</div>
-        <h2 class="section-title">Giải Pháp Chăm Sóc Toàn Diện Chuẩn "Spa Đồ Hiệu"</h2>
-        <p class="section-subtitle">Quy trình chuẩn hóa thế giới dành riêng cho từng dòng da quý: Caviar, Epsom, Togo, Da lộn, Da cừu lambskin...</p>
-      </div>
-
-      <div class="services-grid">
-        <!-- Service 1 -->
-        <div class="service-card">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-pump-soap"></i>
-          </div>
-          <span class="en-tag">Deep Cleaning</span>
-          <h3>1. Vệ Sinh Chuyên Sâu Chuẩn Spa</h3>
-          <p>Làm sạch tỉ mỉ từng đường kim mũi chỉ bằng dung dịch sinh học hữu cơ cao cấp, sấy khử khuẩn tia UV công nghệ cao, khử mùi hôi triệt để và cấp ẩm hồi sinh bề mặt da nguyên bản.</p>
-          <ul class="service-perks">
-            <li><i class="fa-solid fa-check"></i> Làm sạch thủ công 100% không dùng máy giặt công nghiệp</li>
-            <li><i class="fa-solid fa-check"></i> Khử trùng buồng tia UV diệt khuẩn nấm mốc</li>
-          </ul>
-          <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold" style="width: 100%;">
-            <span>Nhận Báo Giá Vệ Sinh</span>
-          </a>
+      <!-- Slogan Break -->
+      <div class="mt-12 p-6 rounded-2xl bg-icus-yellow border-3 border-icus-black shadow-brutal text-center flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-left">
+          <span class="font-black text-lg sm:text-xl uppercase block text-icus-black">Đừng để đồ hiệu tiền triệu phải nằm góc tủ vì xuống cấp!</span>
+          <span class="text-xs sm:text-sm font-semibold text-stone-800">Chỉ cần gửi 1 bức ảnh qua Zalo, chuyên gia ICUS sẽ thẩm định và lên giải pháp ngay.</span>
         </div>
-
-        <!-- Service 2 -->
-        <div class="service-card">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-          </div>
-          <span class="en-tag">Restoration</span>
-          <h3>2. Phục Hồi – Tái Sinh Nguyên Bản</h3>
-          <p>Chữa lành các vết rách, xước, nứt da; pha phối cân chỉnh lại tone màu gốc chuẩn đến 95%; phục hồi form túi gãy sụp; đánh bóng và xi mạ lại khóa kim loại sáng loáng như mới xuất xưởng.</p>
-          <ul class="service-perks">
-            <li><i class="fa-solid fa-check"></i> Khắc phục trầy xước, nứt viền keo, gãy góc túi</li>
-            <li><i class="fa-solid fa-check"></i> Xi mạ vàng 18K/24K, bạc sáng bóng cho phụ kiện kim loại</li>
-          </ul>
-          <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold" style="width: 100%;">
-            <span>Tư Vấn Phục Hồi Da</span>
-          </a>
-        </div>
-
-        <!-- Service 3 -->
-        <div class="service-card">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-palette"></i>
-          </div>
-          <span class="en-tag">Customization</span>
-          <h3>3. Custom Độc Bản – Thể Hiện Cá Tính</h3>
-          <p>Vẽ họa tiết tay nghệ thuật, đổi màu phong thủy, khắc tên/ký tự cá nhân hóa, biến đôi giày hoặc chiếc túi quen thuộc thành phiên bản giới hạn (Limited Edition) độc quyền của riêng bạn.</p>
-          <ul class="service-perks">
-            <li><i class="fa-solid fa-check"></i> Đổi màu toàn phần thẩm thấu sâu, kháng nước tuyệt đối</li>
-            <li><i class="fa-solid fa-check"></i> Vẽ tay nghệ thuật bởi họa sĩ chuyên nghiệp</li>
-          </ul>
-          <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold" style="width: 100%;">
-            <span>Khám Phá Mẫu Custom</span>
-          </a>
-        </div>
-
-        <!-- Service 4 -->
-        <div class="service-card">
-          <div class="service-icon-wrap">
-            <i class="fa-solid fa-shield-halved"></i>
-          </div>
-          <span class="en-tag">Protection</span>
-          <h3>4. Dán Đế Bảo Vệ & Phủ Nano Chống Thấm</h3>
-          <p>Dán đế cao cấp Vibram / Topy chống mòn, chống trơn trượt cho giày da nam, sneaker, cao gót; phủ lớp màng nano siêu vi kháng nước và bụi bẩn tức thì bảo vệ đồ hiệu tối ưu.</p>
-          <ul class="service-perks">
-            <li><i class="fa-solid fa-check"></i> Đế Vibram nhập khẩu Ý & Topy Pháp siêu bám, êm ái</li>
-            <li><i class="fa-solid fa-check"></i> Công nghệ phủ Nano chống bám bẩn và đi mưa an tâm</li>
-          </ul>
-          <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-outline-gold" style="width: 100%;">
-            <span>Dán Đế Vibram / Topy</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       PHẦN 5: MINH CHỨNG THỰC TẾ (BEFORE & AFTER)
-       ========================================== -->
-  <section class="section-padding showcase-section" id="before-after">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Thực Tế Nói Lên Tất Cả</div>
-        <h2 class="section-title">Hơn 5.000+ Món Đồ Hiệu Đã Được ICUS "Hồi Sinh" Ngoạn Mục</h2>
-        <p class="section-subtitle">Mỗi sản phẩm là một tuyệt tác được các nghệ nhân ICUS dồn trọn tâm huyết, hồi sinh giá trị thẩm mỹ đỉnh cao.</p>
-      </div>
-
-      <!-- 2 FEATURED CASES -->
-      <div class="showcase-featured">
-        <!-- Case 1 -->
-        <div class="case-card">
-          <div class="case-media">
-            <img 
-              src="./assets/images/chanel-before-after.jpg" 
-              alt="Phục hồi túi Chanel trắng lem mực ố vàng thành đen sang trọng" 
-              data-fallback-urls="./chanel-before-after.jpg,assets/images/chanel-before-after.jpg"
-              onerror="handleImgFallback(this)"
-              onclick="openLightbox(this.src)" 
-            />
-          </div>
-          <div class="case-info">
-            <span class="case-badge">Ca Xử Lý 1 • Chanel Classic Flap Bag</span>
-            <h3 class="case-title">Túi Chanel trắng lem mực, ố vàng & đổi màu</h3>
-            <p class="case-desc">➔ <strong>Sau xử lý tại ICUS:</strong> Tẩy sạch vết mực loang, xử lý ố vàng chân da và tiến hành đổi màu đen huyền bí chuẩn hãng, giữ nguyên vân hạt Caviar sắc nét và phom túi căng tròn.</p>
-          </div>
-        </div>
-
-        <!-- Case 2 -->
-        <div class="case-card">
-          <div class="case-media">
-            <img 
-              src="./assets/images/ferragamo-before-after.jpg" 
-              alt="Custom giày Ferragamo bạc màu sang đỏ mận sang trọng" 
-              data-fallback-urls="./ferragamo-before-after.jpg,assets/images/ferragamo-before-after.jpg"
-              onerror="handleImgFallback(this)"
-              onclick="openLightbox(this.src)" 
-            />
-          </div>
-          <div class="case-info">
-            <span class="case-badge">Ca Xử Lý 2 • Giày Salvatore Ferragamo</span>
-            <h3 class="case-title">Giày Ferragamo custom bạc màu, ố vàng</h3>
-            <p class="case-desc">➔ <strong>Sau xử lý tại ICUS:</strong> Tái sinh bề mặt da bóng, đánh bóng khóa kim loại vàng và đổi màu đỏ mận rượu vang thời thượng, khoác lên diện mạo mới quyền lực và sang trọng.</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 GALLERY ITEMS -->
-      <div class="showcase-gallery-grid">
-        <div class="gallery-card">
-          <img 
-            src="./assets/images/lv-restoration.jpg" 
-            alt="Phun phục hồi màu túi Louis Vuitton Monogram" 
-            data-fallback-urls="./lv-restoration.jpg,assets/images/lv-restoration.jpg"
-            onerror="handleImgFallback(this)"
-            onclick="openLightbox(this.src)" 
-          />
-          <div class="gallery-caption">
-            <i class="fa-solid fa-spray-can-sparkles" style="color: var(--gold-primary);"></i> Phục hồi túi LV Monogram bằng súng phun cao cấp
-          </div>
-        </div>
-
-        <div class="gallery-card">
-          <img 
-            src="./assets/images/chanel-restoration-2.jpg" 
-            alt="Tái sinh túi Chanel da mềm mại" 
-            data-fallback-urls="./chanel-restoration-2.jpg,assets/images/chanel-restoration-2.jpg"
-            onerror="handleImgFallback(this)"
-            onclick="openLightbox(this.src)" 
-          />
-          <div class="gallery-caption">
-            <i class="fa-solid fa-gem" style="color: var(--gold-primary);"></i> Tái sinh túi Chanel – Đổi màu đen sâu thẳm chuẩn hãng
-          </div>
-        </div>
-
-        <div class="gallery-card">
-          <img 
-            src="./assets/images/artisan-craftsman.jpg" 
-            alt="Nghệ nhân ICUS xử lý đồ da thủ công" 
-            data-fallback-urls="./artisan-craftsman.jpg,assets/images/artisan-craftsman.jpg"
-            onerror="handleImgFallback(this)"
-            onclick="openLightbox(this.src)" 
-          />
-          <div class="gallery-caption">
-            <i class="fa-solid fa-hands-holding" style="color: var(--gold-primary);"></i> Bàn làm việc nghệ nhân ICUS – Tỉ mỉ từng chi tiết
-          </div>
-        </div>
-      </div>
-
-      <div class="showcase-cta">
-        <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="btn btn-gold">
-          <i class="fa-solid fa-images"></i>
-          <span>XEM THÊM ALBUM TÁC PHẨM TRÊN ZALO / FACEBOOK</span>
+        <a href="https://zalo.me/0393190077" target="_blank" class="sticker-btn bg-icus-black text-white font-black text-xs sm:text-sm px-6 py-3 rounded-xl border-2 border-icus-black shadow-brutal whitespace-nowrap flex items-center gap-2">
+          <span>GỬI ẢNH QUA ZALO NGAY ➔</span>
         </a>
       </div>
+
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 6: LỢI ÍCH VƯỢT TRỘI – TẠI SAO CHỌN ICUS?
-       ========================================== -->
-  <section class="section-padding why-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Cam Kết Chất Lượng</div>
-        <h2 class="section-title">Trải Nghiệm Dịch Vụ 5 Sao – Tận Tâm Trong Từng Chi Tiết</h2>
-        <p class="section-subtitle">4 trụ cột then chốt tạo nên uy tín và vị thế dẫn đầu của ICUS trong làng chăm sóc đồ hiệu.</p>
+  <!-- ==================== [PHẦN 3] GIẢI PHÁP TOÀN DIỆN (SERVICES) ==================== -->
+  <section id="services" class="py-20 bg-icus-cream relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-green text-white text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-right">
+          ✦ GIẢI PHÁP THỦ CÔNG CHUYÊN SÂU ✦
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Chúng Tôi Không "Giặt Tẩy",<br />
+          <span class="font-serif italic text-icus-orange">Chúng Tôi Chăm Sóc Bằng Kỹ Thuật Nghệ Nhân</span>
+        </h2>
+        <p class="text-stone-600 text-base">
+          Mỗi chiếc túi, đôi giày tại ICUS đều được áp dụng phác đồ xử lý độc lập theo đặc tính từng dòng da của hãng.
+        </p>
       </div>
 
-      <div class="why-grid">
-        <div class="why-card">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-flask-vial"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Dịch vụ 1 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal relative space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-14 h-14 rounded-2xl bg-icus-blueLight text-icus-blue border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-spray-can-sparkles"></i>
+            </div>
+            <span class="text-xs font-black uppercase bg-icus-blue text-white px-3 py-1 rounded-full border-2 border-icus-black">
+              Deep Clean
+            </span>
           </div>
-          <h3>100% Dược Liệu Quốc Tế</h3>
-          <p>Nhập khẩu chính hãng từ <strong>Saphir (Pháp)</strong> và <strong>Angelus (Mỹ)</strong> – tương thích tuyệt đối với mọi chất liệu da bê, da cừu, da lộn, canvas, da đà điểu, da cá sấu...</p>
+
+          <div>
+            <h3 class="text-xl font-black uppercase text-icus-black">1. Vệ Sinh Chuyên Sâu & Diệt Khuẩn Ozon</h3>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">(Deep Clean & Conditioning)</p>
+          </div>
+
+          <ul class="space-y-2.5 text-sm text-stone-700">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Làm sạch tỉ mỉ từng đường chỉ, kẽ khóa bằng dung dịch hữu cơ chuyên dụng nhập khẩu.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Khử mùi hôi, triệt tiêu 100% bào tử nấm mốc bằng công nghệ buồng chiếu tia UV & Ozon.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Dưỡng ẩm chuyên sâu cho da mềm mại, chống khô nứt nẻ và cố định form dáng ban đầu.</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="why-card">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-user-tie"></i>
+        <!-- Dịch vụ 2 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal relative space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-14 h-14 rounded-2xl bg-icus-orangeLight text-icus-orange border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-palette"></i>
+            </div>
+            <span class="text-xs font-black uppercase bg-icus-orange text-white px-3 py-1 rounded-full border-2 border-icus-black">
+              Restoration
+            </span>
           </div>
-          <h3>Nghệ Nhân > 5 Năm</h3>
-          <p>Từng đường cọ, mũi chỉ được thực hiện thủ công với sự tỉ mỉ, trân trọng món đồ như chính tài sản của mình, am tường từng mã màu và kỹ thuật của các nhà mốt Paris, Milan.</p>
+
+          <div>
+            <h3 class="text-xl font-black uppercase text-icus-black">2. Phục Hồi Màu Da & Xử Lý Trầy Xước</h3>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">(Color Restoration & Edge Repair)</p>
+          </div>
+
+          <ul class="space-y-2.5 text-sm text-stone-700">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Pha màu thủ công chính xác 99% theo màu gốc của hãng (Hermes, Chanel, Gucci, Dior, LV...).</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Xử lý trầy sẹo góc, trám phẳng vết nứt bề mặt da mịn màng tự nhiên như mới mua tại Store.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Phủ bóng bảo vệ chống thấm nước và chống trầy nhẹ sau khi hoàn thiện màu.</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="why-card">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-file-contract"></i>
+        <!-- Dịch vụ 3 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal relative space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-14 h-14 rounded-2xl bg-icus-greenLight text-icus-green border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-shield-halved"></i>
+            </div>
+            <span class="text-xs font-black uppercase bg-icus-green text-white px-3 py-1 rounded-full border-2 border-icus-black">
+              Protection
+            </span>
           </div>
-          <h3>Bảo Hiểm & Đền Bù 100%</h3>
-          <p>Cam kết bảo hành màu sắc từ <strong>3 – 6 tháng</strong>; có biên bản bàn giao minh bạch và sẵn sàng đền bù <strong>100% giá trị</strong> nếu xảy ra bất kỳ sự cố kỹ thuật nào.</p>
+
+          <div>
+            <h3 class="text-xl font-black uppercase text-icus-black">3. Dán Đế Bảo Vệ & Thay Phụ Kiện</h3>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">(Sole Protection & Hardware Care)</p>
+          </div>
+
+          <ul class="space-y-2.5 text-sm text-stone-700">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Dán đế cao su chống trơn, chống mòn cao cấp (Vibram) cho giày Louboutin, Gucci, Dior không lộ mép dán.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Đánh bóng kim loại, loại bỏ vết xước dăm trên khóa kim loại, logo thương hiệu.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Mạ vàng / mạ bạc ổ khóa túi xách, thay thế dây kéo và cúc bấm chính hãng.</span>
+            </li>
+          </ul>
         </div>
 
-        <div class="why-card">
-          <div class="why-icon-box">
-            <i class="fa-solid fa-truck-fast"></i>
+        <!-- Dịch vụ 4 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal relative space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="w-14 h-14 rounded-2xl bg-icus-yellowLight text-icus-black border-2 border-icus-black shadow-brutal-sm flex items-center justify-center text-2xl">
+              <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </div>
+            <span class="text-xs font-black uppercase bg-icus-yellow text-icus-black px-3 py-1 rounded-full border-2 border-icus-black">
+              Custom Art
+            </span>
           </div>
-          <h3>Door-to-Door Tận Nơi</h3>
-          <p>Đội ngũ giao nhận chuyên trách nhận đồ tại nhà/văn phòng và giao trả tận tay sau khi đóng hộp sang trọng, bảo mật và đồng kiểm video rõ ràng.</p>
+
+          <div>
+            <h3 class="text-xl font-black uppercase text-icus-black">4. Dịch Vụ Custom Độc Bản Nghệ Thuật</h3>
+            <p class="text-xs font-bold text-stone-500 uppercase tracking-wider">(Bespoke Artwork & Personalization)</p>
+          </div>
+
+          <ul class="space-y-2.5 text-sm text-stone-700">
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Vẽ tay nghệ thuật, khắc tên cá nhân hóa, phối màu theo cá tính riêng của chủ nhân VIP.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Sử dụng dòng sơn chuyên dụng chịu uốn gấp, không bong tróc, không phai màu theo thời gian.</span>
+            </li>
+            <li class="flex items-start gap-2">
+              <i class="fa-solid fa-check text-icus-green mt-1"></i>
+              <span>Tạo nên những tác phẩm duy nhất trên thế giới chỉ dành riêng cho bạn.</span>
+            </li>
+          </ul>
         </div>
+
       </div>
+
+      <!-- Button CTA -->
+      <div class="mt-12 text-center">
+        <a href="https://zalo.me/0393190077" target="_blank" class="sticker-btn inline-flex items-center gap-3 bg-icus-orange text-white text-base sm:text-lg font-black px-8 py-4 rounded-2xl border-3 border-icus-black shadow-brutal">
+          <i class="fa-solid fa-camera"></i>
+          <span>Gửi Ảnh Đồ Hiệu Cần Spa - Tư Vấn Phương Án Miễn Phí</span>
+        </a>
+      </div>
+
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 7: QUY TRÌNH 5 BƯỚC ĐƠN GIẢN
-       ========================================== -->
-  <section class="section-padding process-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Nhanh Chóng & Minh Bạch</div>
-        <h2 class="section-title">Quy Trình 5 Bước Đơn Giản – Tiện Lợi Tối Đa</h2>
-        <p class="section-subtitle">Chỉ cần 1 chạm gửi ảnh, toàn bộ quy trình chăm sóc chuyên sâu còn lại hãy để ICUS lo.</p>
+  <!-- ==================== [PHẦN 4] LỢI ÍCH & CAM KẾT VÀNG (WHY US) ==================== -->
+  <section class="py-20 bg-white border-y-3 border-icus-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-yellow text-icus-black text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left">
+          ★ AN TÂM TUYỆT ĐỐI ★
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Tại Sao Hơn <span class="text-icus-orange font-serif underline decoration-3">2.000+ Khách Hàng VIP</span> Tin Tưởng ICUS?
+        </h2>
+        <p class="text-stone-600 text-base">
+          4 cam kết vàng khẳng định đẳng cấp nghệ nhân và trách nhiệm cao nhất với tài sản của bạn.
+        </p>
       </div>
 
-      <div class="process-timeline">
-        <div class="process-step">
-          <div class="step-number">1</div>
-          <h4>Gửi Ảnh Thẩm Định</h4>
-          <p>Khách hàng chụp ảnh các góc món đồ gửi qua Zalo 0393.19.00.77 hoặc Fanpage ICUS.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">2</div>
-          <h4>Tư Vấn & Báo Giá</h4>
-          <p>Kỹ thuật viên phân tích chất liệu da, đề xuất phương án xử lý tối ưu và báo giá trọn gói minh bạch.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">3</div>
-          <h4>Tiếp Nhận Sản Phẩm</h4>
-          <p>Khách ghé trực tiếp 1 trong 2 chi nhánh (Q.3 hoặc An Khánh) hoặc nhân viên ICUS đến tận nơi nhận đồ.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">4</div>
-          <h4>Phục Hồi Chuyên Sâu</h4>
-          <p>Tiến hành spa, phục hồi thủ công theo quy chuẩn nghiêm ngặt và hóa chất sinh học chính hãng.</p>
-        </div>
-
-        <div class="process-step">
-          <div class="step-number">5</div>
-          <h4>Nghiệm Thu & Bàn Giao</h4>
-          <p>Gửi video/ảnh nghiệm thu để khách duyệt trước khi đóng hộp sang trọng kèm phiếu bảo hành.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==========================================
-       PHẦN 8: CẢM NHẬN KHÁCH HÀNG (SOCIAL PROOF)
-       ========================================== -->
-  <section class="section-padding feedback-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Khách Hàng Hài Lòng</div>
-        <h2 class="section-title">Khách Hàng Nói Gì Về ICUS?</h2>
-        <p class="section-subtitle">Sự hài lòng và tin tưởng của hàng ngàn tín đồ hàng hiệu là bảo chứng chất lượng vững chắc nhất.</p>
-      </div>
-
-      <div class="feedback-grid">
-        <div class="feedback-card">
-          <div class="feedback-stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        
+        <!-- Cam kết 1 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
+            💎
           </div>
-          <p class="feedback-text">
-            "Chị cứ tưởng phải bỏ cái túi Dior này đi rồi, qua bên ICUS làm xong nhìn mới toanh, không nhận ra luôn! Rất ưng ý cách các bạn tư vấn tỉ mỉ và chu đáo."
+          <h3 class="text-base font-black uppercase text-icus-black">100% Dung Dịch Cao Cấp</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Tuyệt đối không dùng hóa chất tẩy rửa thông thường. Chỉ dùng sản phẩm từ Saphir (Pháp), Tarrago (Tây Ban Nha) an toàn cho da thật.
           </p>
-          <div class="feedback-author">
-            <div class="feedback-avatar">ML</div>
-            <div>
-              <div class="feedback-name">Chị Mai Lan</div>
-              <div class="feedback-location">Quận 1, TP.HCM • Khách phục hồi túi Lady Dior</div>
-            </div>
-            <div class="feedback-verified">
-              <i class="fa-solid fa-circle-check"></i> Đã xác thực
-            </div>
-          </div>
         </div>
 
-        <div class="feedback-card">
-          <div class="feedback-stars">
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
-            <i class="fa-solid fa-star"></i>
+        <!-- Cam kết 2 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
+            👨‍🎨
           </div>
-          <p class="feedback-text">
-            "Đôi McQueen đi mưa dính bùn tưởng hỏng da, spa xong trắng bóc thơm tho. Giao hàng đúng hẹn, đóng gói hộp xịn xò 10 điểm!"
+          <h3 class="text-base font-black uppercase text-icus-black">Thợ Trên 5 Năm Tay Nghề</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Hiểu rõ cấu trúc từng loại da: da bê (Calfskin), da cừu (Lambskin), da cá sấu (Exotic leather), da lộn (Suede), canvas phủ nhựa...
           </p>
-          <div class="feedback-author">
-            <div class="feedback-avatar">HN</div>
+        </div>
+
+        <!-- Cam kết 3 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
+            🛡️
+          </div>
+          <h3 class="text-base font-black uppercase text-icus-black">Bảo Hành & Đền Bù 100%</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Cam kết hoàn tiền hoặc bồi thường thỏa đáng nếu sản phẩm bị hư tổn hay biến dạng kỹ thuật sau khi làm dịch vụ tại ICUS.
+          </p>
+        </div>
+
+        <!-- Cam kết 4 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal text-center space-y-4">
+          <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
+            🚗
+          </div>
+          <h3 class="text-base font-black uppercase text-icus-black">Giao Nhận Tận Nơi 2 Chiều</h3>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Nhân viên nhận và giao đồ tận nhà tại TP.HCM, đóng hộp niêm phong bảo hiểm an toàn tuyệt đối, giữ kín thông tin khách hàng VIP.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== [PHẦN 5] HÌNH ẢNH TRƯỚC VÀ SAU THỰC TẾ (BEFORE - AFTER) ==================== -->
+  <section id="before-after" class="py-20 bg-icus-cream relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-blue text-white text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-right">
+          ✦ NGƯỜI THẬT VIỆC THẬT ✦
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Minh Chứng Thực Tế:<br />
+          <span class="font-serif italic text-icus-orange">Những "Ca Khó" Được Cứu Sống Thành Công</span>
+        </h2>
+        <p class="text-stone-600 text-base">
+          Thấy tận mắt mới tin! Dưới đây là những sản phẩm thực tế được phục hồi tại xưởng nghệ nhân của ICUS.
+        </p>
+      </div>
+
+      <!-- 2 Real Work Showcase (From user's uploaded images) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
+        
+        <!-- Real Work 1: Chanel Classic Flap Bag -->
+        <div class="rounded-3xl bg-white border-3 border-icus-black shadow-brutal overflow-hidden p-4 sm:p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black uppercase bg-stone-900 text-white px-3 py-1 rounded-full border border-icus-black">
+              Túi Xách Chanel Classic Flap Bag
+            </span>
+            <span class="text-xs font-bold text-icus-orange">Caviar Leather • Phục hồi đổi màu</span>
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-icus-black">
+            <img 
+              src="assets/before-after-chanel.jpg" 
+              alt="Chanel Classic Flap Bag Before and After phục hồi màu đen tại ICUS" 
+              class="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div class="p-4 rounded-xl bg-icus-cream border-2 border-icus-black text-xs text-stone-700 space-y-1">
+            <p><strong>Tình trạng ban đầu:</strong> Da Caviar màu trắng bị oxy hóa loang ố vàng nặng, bám bụi bẩn không thể tẩy sạch.</p>
+            <p><strong>Kết quả tại ICUS:</strong> Chuyển sang tone Đen huyền bí (Midnight Black) sang trọng, giữ nguyên từng hạt vân Caviar, phụ kiện logo CC mạ bóng loáng!</p>
+          </div>
+        </div>
+
+        <!-- Real Work 2: Salvatore Ferragamo Shoes -->
+        <div class="rounded-3xl bg-white border-3 border-icus-black shadow-brutal overflow-hidden p-4 sm:p-6 space-y-4">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-black uppercase bg-stone-900 text-white px-3 py-1 rounded-full border border-icus-black">
+              Giày Salvatore Ferragamo Nơ
+            </span>
+            <span class="text-xs font-bold text-icus-green">Patent Leather • Làm màu mới</span>
+          </div>
+
+          <div class="rounded-2xl overflow-hidden border-2 border-icus-black">
+            <img 
+              src="assets/before-after-ferragamo.jpg" 
+              alt="Giày Salvatore Ferragamo Trước và Sau khi làm màu tại ICUS" 
+              class="w-full h-auto object-cover"
+            />
+          </div>
+
+          <div class="p-4 rounded-xl bg-icus-cream border-2 border-icus-black text-xs text-stone-700 space-y-1">
+            <p><strong>Tình trạng ban đầu:</strong> Da màu cam nhạt bị xước bề mặt mũi giày, sờn bạc màu do ma sát sau thời gian dài sử dụng.</p>
+            <p><strong>Kết quả tại ICUS:</strong> Lên màu đỏ rượu vang (Burgundy) bóng bẩy quý phái, đánh bóng khóa kim loại mạ vàng sáng choang như vừa đập hộp!</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Additional Cases in Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <div class="p-5 rounded-2xl bg-white border-3 border-icus-black shadow-brutal flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-icus-yellow text-icus-black flex items-center justify-center font-black text-xl border-2 border-icus-black flex-shrink-0">
+            👠
+          </div>
+          <div>
+            <h4 class="text-sm font-black uppercase text-icus-black">Giày cao gót Christian Louboutin mòn đế đỏ</h4>
+            <p class="text-xs text-stone-600 mt-1">Dán lớp bảo vệ đế Vibram màu đỏ chuẩn nguyên bản, gọt mép siêu khéo không lộ viền dán.</p>
+          </div>
+        </div>
+
+        <div class="p-5 rounded-2xl bg-white border-3 border-icus-black shadow-brutal flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl bg-icus-blue text-white flex items-center justify-center font-black text-xl border-2 border-icus-black flex-shrink-0">
+            👟
+          </div>
+          <div>
+            <h4 class="text-sm font-black uppercase text-icus-black">Sneaker Jordan / Dior ố vàng đế cao su</h4>
+            <p class="text-xs text-stone-600 mt-1">Tẩy ố chuyên sâu bằng dưỡng chất khử oxy hoá độc quyền, trả lại màu trắng tinh nguyên bản.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== [PHẦN 6] QUY TRÌNH 5 BƯỚC CHUẨN 5 SAO ==================== -->
+  <section class="py-20 bg-white border-y-3 border-icus-black relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-green text-white text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left">
+          QUY TRÌNH TINH GỌN
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Chăm Sóc Đồ Hiệu Dễ Dàng Chỉ Với <span class="text-icus-orange underline">5 Bước</span>
+        </h2>
+        <p class="text-stone-600 text-base">
+          Bạn chỉ cần ngồi tại nhà, toàn bộ quy trình giao nhận và thẩm định đều được ICUS phục vụ tận nơi.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
+        
+        <!-- Bước 1 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal relative space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-icus-orange text-white font-black text-lg flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+            01
+          </div>
+          <h4 class="text-base font-black uppercase text-icus-black">Tiếp Nhận Online</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Bạn chỉ cần chụp ảnh tình trạng túi/giày gửi qua Zalo (0393.19.00.77) hoặc Fanpage ICUS.
+          </p>
+        </div>
+
+        <!-- Bước 2 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal relative space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-icus-yellow text-icus-black font-black text-lg flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+            02
+          </div>
+          <h4 class="text-base font-black uppercase text-icus-black">Báo Giá & Phác Đồ</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Chuyên gia thẩm định chất liệu và tư vấn giải pháp tối ưu kèm chi phí rõ ràng trong vòng 5 phút.
+          </p>
+        </div>
+
+        <!-- Bước 3 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal relative space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-icus-blue text-white font-black text-lg flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+            03
+          </div>
+          <h4 class="text-base font-black uppercase text-icus-black">Nhận Hàng Tận Nơi</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Shipper đến tận nhà bạn lấy đồ và niêm phong phiếu bảo quản hàng hóa an toàn tuyệt đối.
+          </p>
+        </div>
+
+        <!-- Bước 4 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal relative space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-icus-pink text-icus-black font-black text-lg flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+            04
+          </div>
+          <h4 class="text-base font-black uppercase text-icus-black">Spa & Phục Hồi</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Món đồ được nghệ nhân chăm sóc thủ công tỉ mỉ từ 2 - 5 ngày tùy tình trạng hư tổn.
+          </p>
+        </div>
+
+        <!-- Bước 5 -->
+        <div class="p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal relative space-y-3">
+          <div class="w-10 h-10 rounded-xl bg-icus-green text-white font-black text-lg flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+            05
+          </div>
+          <h4 class="text-base font-black uppercase text-icus-black">Bàn Giao Hoàn Hảo</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Kiểm tra chất lượng (KCS), đóng gói sang trọng kèm túi chống ẩm và giao tận tay bạn.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== [PHẦN 7] ĐÁNH GIÁ TỪ KHÁCH HÀNG (FEEDBACK) ==================== -->
+  <section class="py-20 bg-icus-cream relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-3xl mx-auto space-y-3 mb-16">
+        <div class="inline-block bg-icus-yellow text-icus-black text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-right">
+          FEEDBACK 5 SAO
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black">
+          Khách Hàng <span class="text-icus-orange font-serif italic">Nói Gì Về ICUS?</span>
+        </h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Feedback 1 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal space-y-4 relative">
+          <div class="flex text-icus-yellow gap-1 text-base">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-stone-700 italic text-sm sm:text-base leading-relaxed">
+            "Chiếc túi Chanel của mình bị đổ cà phê loang màu tưởng phải vứt đi. Nhờ ICUS phục hồi mà màu da đều lại 98%, da vẫn mềm không hề bị cứng. Rất ưng ý dịch vụ giao nhận tận nơi kín đáo!"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t-2 border-icus-black/10">
+            <div class="w-12 h-12 rounded-xl bg-icus-pink text-icus-black font-black text-sm flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+              MP
+            </div>
             <div>
-              <div class="feedback-name">Anh Hoàng Nam</div>
-              <div class="feedback-location">TP. Thủ Đức • Khách spa giày McQueen</div>
-            </div>
-            <div class="feedback-verified">
-              <i class="fa-solid fa-circle-check"></i> Đã xác thực
+              <h5 class="font-black text-sm text-icus-black uppercase">Chị Mai Phương</h5>
+              <p class="text-xs text-stone-500">Doanh nhân – TP.HCM</p>
             </div>
           </div>
         </div>
+
+        <!-- Feedback 2 -->
+        <div class="p-8 rounded-3xl bg-white border-3 border-icus-black shadow-brutal space-y-4 relative">
+          <div class="flex text-icus-yellow gap-1 text-base">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p class="text-stone-700 italic text-sm sm:text-base leading-relaxed">
+            "Dán đế giày cao gót ở đây siêu mượt, thợ gọt mép rất khéo nhìn như đế zin xuất xưởng. Đôi Dior mình gửi đi vệ sinh xong trắng tinh như mới đập hộp. Đã làm ở cả 2 chi nhánh đều rất uy tín!"
+          </p>
+          <div class="flex items-center gap-3 pt-2 border-t-2 border-icus-black/10">
+            <div class="w-12 h-12 rounded-xl bg-icus-blue text-white font-black text-sm flex items-center justify-center border-2 border-icus-black shadow-brutal-sm">
+              QB
+            </div>
+            <div>
+              <h5 class="font-black text-sm text-icus-black uppercase">Anh Quốc Bảo</h5>
+              <p class="text-xs text-stone-500">Tín đồ hàng hiệu – Hà Nội</p>
+            </div>
+          </div>
+        </div>
+
       </div>
+
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 9: CÂU HỎI THƯỜNG GẶP (FAQ)
-       ========================================== -->
-  <section class="section-padding faq-section">
-    <div class="container">
-      <div class="section-header">
-        <div class="section-tag">Giải Đáp Thắc Mắc</div>
-        <h2 class="section-title">Câu Hỏi Thường Gặp (FAQ)</h2>
-        <p class="section-subtitle">Tất cả những điều bạn cần biết trước khi gửi gắm món đồ hiệu yêu thích cho ICUS.</p>
+  <!-- ==================== [PHẦN 8] CÂU HỎI THƯỜNG GẶP (FAQ) ==================== -->
+  <section class="py-20 bg-white border-y-3 border-icus-black relative">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center space-y-3 mb-14">
+        <div class="inline-block bg-icus-yellow text-icus-black text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left">
+          GIẢI ĐÁP BĂN KHOĂN
+        </div>
+        <h2 class="text-3xl sm:text-4xl font-black uppercase text-icus-black">
+          Câu Hỏi Thường Gặp (FAQ)
+        </h2>
       </div>
 
-      <div class="faq-accordion">
-        <div class="faq-item active">
-          <div class="faq-header" onclick="toggleFaq(this)">
-            <h3>Q1: Thời gian spa, phục hồi mất bao lâu?</h3>
-            <div class="faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
-            <strong>Trả lời:</strong> Vệ sinh cơ bản mất từ 1 – 2 ngày. Với dịch vụ phục hồi màu, dán đế hoặc custom vẽ tay mất từ 3 – 5 ngày để đảm bảo các lớp dưỡng, sơn và keo khô tự nhiên từng lớp, đạt độ bền tối đa và bề mặt hoàn hảo nhất.
-          </div>
-        </div>
+      <div class="space-y-4">
+        
+        <!-- FAQ 1 -->
+        <details class="group p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal open:bg-white transition">
+          <summary class="flex justify-between items-center cursor-pointer font-black text-base text-icus-black list-none">
+            <span>Spa và làm sạch có làm phai màu hoặc bay form túi không?</span>
+            <span class="w-8 h-8 rounded-full bg-icus-yellow flex items-center justify-center border border-icus-black group-open:rotate-180 transition text-xs">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </summary>
+          <p class="mt-4 text-sm text-stone-700 leading-relaxed border-t-2 border-icus-black/10 pt-4">
+            <strong>Hoàn toàn không.</strong> Chúng tôi sử dụng phương pháp giặt khô chuyên biệt và dung dịch dưỡng da cao cấp, kết hợp nhét form chuẩn để giữ nguyên dáng túi của bạn.
+          </p>
+        </details>
 
-        <div class="faq-item">
-          <div class="faq-header" onclick="toggleFaq(this)">
-            <h3>Q2: Sơn lại màu có bị phai hay bong tróc khi gặp nước không?</h3>
-            <div class="faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
-            <strong>Trả lời:</strong> ICUS sử dụng màu chuyên dụng Angelus & Saphir thẩm thấu sâu vào thớ da và phủ lớp topcoat bảo vệ khóa màu kháng nước độc quyền. Cam kết không lem dính vào quần áo sáng màu, không bong tróc và được bảo hành màu sắc từ 3 lên đến 6 tháng.
-          </div>
-        </div>
+        <!-- FAQ 2 -->
+        <details class="group p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal open:bg-white transition">
+          <summary class="flex justify-between items-center cursor-pointer font-black text-base text-icus-black list-none">
+            <span>Thời gian xử lý một đôi giày hoặc túi xách mất bao lâu?</span>
+            <span class="w-8 h-8 rounded-full bg-icus-yellow flex items-center justify-center border border-icus-black group-open:rotate-180 transition text-xs">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </summary>
+          <p class="mt-4 text-sm text-stone-700 leading-relaxed border-t-2 border-icus-black/10 pt-4">
+            Thông thường dịch vụ vệ sinh mất từ 2-3 ngày, phục hồi màu hoặc custom mất từ 4-7 ngày để đảm bảo các lớp dưỡng và sơn khô tự nhiên chuẩn kỹ thuật.
+          </p>
+        </details>
 
-        <div class="faq-item">
-          <div class="faq-header" onclick="toggleFaq(this)">
-            <h3>Q3: Tôi ở xa hoặc không tiện ghé cửa hàng thì sao?</h3>
-            <div class="faq-toggle-icon"><i class="fa-solid fa-chevron-down"></i></div>
-          </div>
-          <div class="faq-body">
-            <strong>Trả lời:</strong> ICUS có dịch vụ giao nhận tận nơi nội thành TP.HCM (Door-to-Door). Nếu bạn ở các tỉnh thành khác hoặc đang đi công tác, bạn hoàn toàn có thể gửi chuyển phát nhanh an toàn về 2 chi nhánh của ICUS. Khi nhận hàng, chuyên viên ICUS sẽ quay video khui hộp đồng kiểm và chụp ảnh chi tiết gửi bạn xác nhận.
-          </div>
-        </div>
+        <!-- FAQ 3 -->
+        <details class="group p-6 rounded-2xl bg-icus-cream border-3 border-icus-black shadow-brutal open:bg-white transition">
+          <summary class="flex justify-between items-center cursor-pointer font-black text-base text-icus-black list-none">
+            <span>Tôi ở tỉnh xa thì làm thế nào để gửi đồ?</span>
+            <span class="w-8 h-8 rounded-full bg-icus-yellow flex items-center justify-center border border-icus-black group-open:rotate-180 transition text-xs">
+              <i class="fa-solid fa-chevron-down"></i>
+            </span>
+          </summary>
+          <p class="mt-4 text-sm text-stone-700 leading-relaxed border-t-2 border-icus-black/10 pt-4">
+            Chúng tôi hỗ trợ nhận đồ từ tất cả các tỉnh thành qua chuyển phát nhanh có bảo hiểm giá trị hàng hóa. Khi nhận hàng sẽ có video unbox đối chiếu minh bạch gửi ngay cho bạn.
+          </p>
+        </details>
+
       </div>
+
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 10: KHUNG ƯU ĐÃI & FORM ĐĂNG KÝ (FINAL CTA)
-       ========================================== -->
-  <section class="section-padding cta-section" id="booking">
-    <div class="container">
-      <div class="promo-box">
-        <div class="promo-header">
-          <div class="promo-banner-badge">
-            <i class="fa-solid fa-hourglass-half"></i> DUY NHẤT 20 SUẤT TRONG TUẦN NÀY
+  <!-- ==================== [PHẦN 9] KHỐI KÊU GỌI HÀNH ĐỘNG & FORM (FINAL CTA) ==================== -->
+  <section id="booking-form" class="py-20 bg-icus-cream relative overflow-hidden">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <div class="rounded-3xl bg-white border-3 border-icus-black shadow-brutal-xl p-8 sm:p-12 relative">
+        
+        <!-- Header Promo -->
+        <div class="text-center space-y-4 mb-8">
+          <div class="inline-block bg-icus-orange text-white text-xs font-black uppercase px-4 py-1.5 rounded-full border-2 border-icus-black shadow-brutal-sm badge-rotate-left">
+            🔥 SỐ LƯỢNG CÓ HẠN TRONG TUẦN
           </div>
-          <h2>🎁 TẶNG NGAY GÓI VỆ SINH: VỆ SINH 1 TÚI TẶNG 1 TÚI!</h2>
-          <p>(Áp dụng cho khách hàng đăng ký sớm nhất hôm nay – Chỉ còn lại <strong style="color: var(--gold-light); text-decoration: underline;">3 suất</strong> cuối cùng)</p>
+          <h2 class="text-3xl sm:text-5xl font-black uppercase text-icus-black leading-tight">
+            ĐẶT LỊCH HÔM NAY –<br />
+            <span class="font-serif italic text-icus-orange">NHẬN NGAY ƯU ĐÃI ĐẶC BIỆT!</span>
+          </h2>
+
+          <!-- Offer Highlight Box -->
+          <div class="p-5 rounded-2xl bg-icus-yellowLight border-3 border-icus-black shadow-brutal text-left space-y-2.5 max-w-xl mx-auto">
+            <p class="text-sm sm:text-base font-black text-icus-black flex items-start gap-2">
+              <span class="text-xl">🎁</span>
+              <span><strong>1 TẶNG 1 – VỆ SINH ĐỒ HIỆU BẤT KỲ:</strong> Khi gửi vệ sinh 1 món đồ (túi xách/giày/ví), ICUS sẽ tặng miễn phí 1 suất vệ sinh cho món đồ tiếp theo (giá dịch vụ bằng hoặc trở xuống).</span>
+            </p>
+            <p class="text-xs sm:text-sm text-stone-700 pl-7 flex items-center gap-2">
+              <span>🚚</span> <strong>Miễn phí giao nhận 2 chiều</strong> nội thành (cho đơn từ 2 món trở lên).
+            </p>
+            <p class="text-xs sm:text-sm text-stone-700 pl-7 flex items-center gap-2">
+              <span>🔍</span> <strong>Miễn phí kiểm tra, thẩm định chất liệu</strong> và tư vấn bảo dưỡng trọn đời.
+            </p>
+          </div>
         </div>
 
-        <form class="booking-form" id="consultation-form" onsubmit="handleFormSubmit(event)">
-          <div class="form-group">
-            <label for="full_name"><i class="fa-regular fa-user"></i> Họ và tên của bạn: *</label>
-            <input type="text" id="full_name" class="form-control" placeholder="Ví dụ: Nguyễn Mai Lan" required />
+        <!-- Form đăng ký -->
+        <form onsubmit="handleFormSubmit(event)" class="space-y-4 max-w-xl mx-auto">
+          <div>
+            <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
+              Họ và tên của bạn <span class="text-icus-orange">*</span>
+            </label>
+            <input 
+              type="text" 
+              required 
+              placeholder="Ví dụ: Chị Phương Thảo" 
+              class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black"
+            />
           </div>
 
-          <div class="form-group">
-            <label for="phone_number"><i class="fa-solid fa-phone"></i> Số điện thoại / Zalo: *</label>
-            <input type="tel" id="phone_number" class="form-control" placeholder="Ví dụ: 0903123456" required />
+          <div>
+            <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
+              Số điện thoại (kết nối Zalo) <span class="text-icus-orange">*</span>
+            </label>
+            <input 
+              type="tel" 
+              required 
+              placeholder="Ví dụ: 0912 345 678" 
+              class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black"
+            />
           </div>
 
-          <div class="form-group full-width">
-            <label for="item_category"><i class="fa-solid fa-bag-shopping"></i> Món đồ cần chăm sóc: *</label>
-            <select id="item_category" class="form-control" required>
-              <option value="" disabled selected>-- Chọn món đồ hiệu cần thẩm định --</option>
-              <option value="Túi xách cao cấp">Túi xách (Chanel, LV, Dior, Hermes, Gucci...)</option>
-              <option value="Giày Sneaker">Giày Sneaker (Jordan, McQueen, Balenciaga, Gucci...)</option>
-              <option value="Giày Da / Cao Gót">Giày Da / Cao Gót (Ferragamo, Louboutin, Dior...)</option>
-              <option value="Dép / Phụ Kiện Khác">Dép / Ví / Dây nịt / Phụ kiện khác</option>
+          <div>
+            <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
+              Món đồ cần phục hồi
+            </label>
+            <select class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black">
+              <option value="tui-xach">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
+              <option value="giay-sneaker">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
+              <option value="giay-cao-got">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
+              <option value="dep-da">Dép da / Ví da / Thắt lưng hàng hiệu</option>
+              <option value="custom">Custom vẽ tay độc bản theo yêu cầu</option>
             </select>
           </div>
 
-          <div class="form-group full-width">
-            <label for="condition_detail"><i class="fa-solid fa-notes-medical"></i> Tình trạng hiện tại của món đồ:</label>
-            <input type="text" id="condition_detail" class="form-control" placeholder="Ví dụ: Ố vàng, trầy xước góc da, móp mất form, muốn đổi màu phong thủy..." />
-          </div>
-
-          <div class="form-submit-wrap">
-            <button type="submit" class="btn btn-gold">
-              👉 [ ĐĂNG KÝ NHẬN ƯU ĐÃI (1 TẶNG 1) & BÁO GIÁ NGAY ]
-            </button>
-            <div class="security-badge">
-              <i class="fa-solid fa-lock"></i>
-              <span>Bảo mật thông tin 100% – ICUS liên hệ tư vấn giải pháp, không làm phiền.</span>
+          <div>
+            <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
+              Chi nhánh ICUS gần bạn nhất
+            </label>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-icus-cream border-2 border-icus-black cursor-pointer font-bold">
+                <input type="radio" name="branch" value="cn1" checked class="accent-icus-orange" />
+                <span>CN 1: Nguyễn Đình Chiểu, Q.3</span>
+              </label>
+              <label class="flex items-center gap-2 p-3 rounded-xl bg-icus-cream border-2 border-icus-black cursor-pointer font-bold">
+                <input type="radio" name="branch" value="cn2" class="accent-icus-orange" />
+                <span>CN 2: Trần Não, TP. Thủ Đức</span>
+              </label>
             </div>
           </div>
+
+          <button type="submit" class="w-full sticker-btn bg-icus-orange text-white text-base font-black py-4 rounded-xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2 mt-4">
+            <span>👉 GỬI YÊU CẦU – NHẬN BÁO GIÁ & VOUCHER 1 TẶNG 1 NGAY</span>
+          </button>
+
+          <p class="text-center text-[11px] text-stone-500 italic pt-1">
+            🔒 Thông tin của bạn được bảo mật tuyệt đối 100%. Chuyên viên ICUS sẽ liên hệ Zalo sau 5 phút.
+          </p>
         </form>
+
       </div>
+
     </div>
   </section>
 
-  <!-- ==========================================
-       PHẦN 11: CHÂN TRANG (FOOTER)
-       ========================================== -->
-  <footer class="main-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <!-- Col 1 -->
-        <div class="footer-brand">
-          <div class="logo-main">ICUS</div>
-          <p><strong>Aesthetic Footwear and Bags (ICUS Spa Hàng Hiệu)</strong> – Điểm tựa tin cậy phục hồi và nâng tầm giá trị cho những tuyệt phẩm thời trang của bạn.</p>
-          <a href="https://www.facebook.com/icusspahanghieu" target="_blank" rel="noopener noreferrer" class="footer-social-link">
-            <i class="fa-brands fa-facebook"></i> Fanpage ICUS Spa Hàng Hiệu
-          </a>
+  <!-- ==================== [PHẦN 10] CHÂN TRANG (FOOTER) ==================== -->
+  <footer class="bg-white border-t-3 border-icus-black py-16 text-icus-black">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        
+        <!-- Col 1: Brand Info -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-12 h-12 rounded-xl bg-white border-2 border-icus-black shadow-brutal-sm p-1 flex items-center justify-center">
+              <img src="assets/logo-symbol.jpg" alt="Logo ICUS" class="w-full h-full object-contain mix-blend-multiply" />
+            </div>
+            <div>
+              <span class="font-serif text-2xl font-black text-icus-black block leading-none">ICUS</span>
+              <span class="text-[9px] uppercase font-bold tracking-[0.2em] text-stone-500">Aesthetics Footwear & Bags</span>
+            </div>
+          </div>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            Trung tâm chăm sóc, phục hồi da và tùy biến đồ hiệu chuẩn nghệ nhân thủ công hàng đầu tại TP.HCM.
+          </p>
+          <div class="inline-block px-3 py-1 bg-icus-yellow text-icus-black font-black text-xs uppercase rounded-lg border-2 border-icus-black shadow-brutal-sm">
+            "ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!"
+          </div>
         </div>
 
-        <!-- Col 2: Chi nhánh -->
-        <div>
-          <h4 class="footer-title">Hệ Thống Chi Nhánh</h4>
-          <ul class="footer-branch-list">
-            <li>
-              <i class="fa-solid fa-location-dot"></i>
-              <div>
-                <strong>Chi nhánh 1 (Quận 3):</strong><br />
-                586 Nguyễn Đình Chiểu, Phường Bàn Cờ, Quận 3, TP.HCM
-              </div>
+        <!-- Col 2: Chi Nhánh -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Hệ Thống Chi Nhánh</h4>
+          <div class="space-y-2 text-xs text-stone-700">
+            <div class="p-3 rounded-xl bg-icus-cream border-2 border-icus-black">
+              <strong class="text-icus-orange block mb-1">📍 Chi Nhánh 1:</strong>
+              586 Nguyễn Đình Chiểu, Phường Bàn Cờ, TP.HCM
+            </div>
+            <div class="p-3 rounded-xl bg-icus-cream border-2 border-icus-black">
+              <strong class="text-icus-blue block mb-1">📍 Chi Nhánh 2:</strong>
+              12 Đường 12 Trần Não, Phường An Khánh, TP. Thủ Đức, TP.HCM
+            </div>
+          </div>
+        </div>
+
+        <!-- Col 3: Giờ Mở Cửa & Hotline -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Thông Tin Phục Vụ</h4>
+          <ul class="space-y-2 text-xs text-stone-700 font-semibold">
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-phone text-icus-orange"></i>
+              <span>Hotline / Zalo: <strong class="text-icus-black text-sm">0393.19.00.77</strong></span>
             </li>
-            <li>
-              <i class="fa-solid fa-location-dot"></i>
-              <div>
-                <strong>Chi nhánh 2 (TP. Thủ Đức):</strong><br />
-                12 Đường 12 Trần Não, Phường An Khánh, TP. Thủ Đức, TP.HCM
-              </div>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-clock text-icus-green"></i>
+              <span>Giờ mở cửa: <strong>09:00 - 19:00</strong> (Tất cả các ngày)</span>
+            </li>
+            <li class="flex items-center gap-2">
+              <i class="fa-solid fa-truck text-icus-blue"></i>
+              <span>Giao nhận tận nơi 2 chiều nội thành TP.HCM</span>
             </li>
           </ul>
         </div>
 
-        <!-- Col 3: Liên hệ -->
-        <div>
-          <h4 class="footer-title">Thông Tin Liên Hệ</h4>
-          <ul class="footer-contact-list">
-            <li>
-              <i class="fa-solid fa-phone-volume"></i>
-              <div>
-                <strong>Hotline / Zalo tiếp nhận:</strong><br />
-                <a href="tel:0393190077" style="color: var(--gold-light); font-weight: 700; font-size: 1.1rem;">0393.19.00.77</a>
-              </div>
-            </li>
-            <li>
-              <i class="fa-regular fa-clock"></i>
-              <div>
-                <strong>Giờ mở cửa:</strong><br />
-                09:00 – 19:00 (Tất cả các ngày trong tuần)
-              </div>
-            </li>
-          </ul>
+        <!-- Col 4: Cam Kết -->
+        <div class="space-y-3">
+          <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Cam Kết Từ ICUS</h4>
+          <p class="text-xs text-stone-600 leading-relaxed">
+            100% dung dịch hữu cơ nhập khẩu Saphir Pháp. Cam kết bảo hiểm và bồi thường 100% nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
+          </p>
         </div>
+
       </div>
 
-      <div class="footer-bottom">
-        <div>© 2026 ICUS Spa Hàng Hiệu. All rights reserved.</div>
-        <div>Cam kết hóa chất 100% Saphir (Pháp) & Angelus (Mỹ)</div>
+      <div class="border-t-2 border-icus-black/10 mt-12 pt-6 text-center text-xs font-bold text-stone-500">
+        © 2026 ICUS – Aesthetics Footwear & Bags. Thiết kế chuẩn nhận diện Retro Streetwear Sticker Art.
       </div>
+
     </div>
   </footer>
 
-  <!-- ==========================================
-       GỢI Ý CÀI ĐẶT: 2 NÚT BẤM NỔI (FLOATING WIDGETS)
-       ========================================== -->
-  <div class="floating-container">
-    <!-- Nút 1: Biểu tượng Zalo (Màu xanh Zalo) -->
-    <a href="https://zalo.me/0393190077" target="_blank" rel="noopener noreferrer" class="floating-btn floating-zalo" title="Chat Zalo Tư Vấn Nhanh">
-      <span class="floating-label">Chat Zalo Nhận Ưu Đãi 1 Tặng 1</span>
-      <i class="fa-solid fa-comment-dots"></i>
+  <!-- ==================== FLOATING WIDGETS (STICKER STYLE) ==================== -->
+  <div class="fixed bottom-6 right-6 z-50 flex flex-col gap-3">
+    <!-- Zalo Button -->
+    <a href="https://zalo.me/0393190077" target="_blank" class="sticker-btn w-14 h-14 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-2xl border-3 border-icus-black shadow-brutal" title="Chat Zalo định giá ngay">
+      <span class="font-black text-sm tracking-tighter">Zalo</span>
     </a>
-
-    <!-- Nút 2: Biểu tượng Điện thoại (Màu vàng/cam rung lắc) -->
-    <a href="tel:0393190077" class="floating-btn floating-phone" title="Gọi Hotline ICUS">
-      <span class="floating-label">Gọi Hotline: 0393.19.00.77</span>
-      <i class="fa-solid fa-phone"></i>
+    <!-- Phone Call Button -->
+    <a href="tel:0393190077" class="sticker-btn w-14 h-14 rounded-2xl bg-icus-orange text-white flex items-center justify-center text-xl border-3 border-icus-black shadow-brutal" title="Gọi Hotline tư vấn VIP">
+      <i class="fa-solid fa-phone animate-bounce"></i>
     </a>
   </div>
 
-  <!-- LIGHTBOX MODAL CHO XEM ẢNH -->
-  <div class="lightbox-modal" id="lightboxModal" onclick="closeLightbox()">
-    <div class="lightbox-content" onclick="event.stopPropagation()">
-      <div class="lightbox-close" onclick="closeLightbox()">&times;</div>
-      <img id="lightboxImg" src="" alt="ICUS Showcase Detail" />
-    </div>
-  </div>
-
-  <!-- MODAL XÁC NHẬN ĐĂNG KÝ -->
-  <div class="success-modal" id="successModal">
-    <div class="success-card">
-      <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-      <h3 style="font-size: 1.5rem; color: #fff; margin-bottom: 12px; font-family: var(--font-serif);">Đăng Ký Thành Công!</h3>
-      <p style="color: #cbd5e1; font-size: 0.95rem; line-height: 1.6; margin-bottom: 24px;" id="successModalMessage">
-        Cảm ơn bạn! ICUS đã lưu suất ưu đãi <strong>"Vệ Sinh 1 Tặng 1"</strong> của bạn. Chuyên viên kỹ thuật sẽ liên hệ qua Zalo trong ít phút để thẩm định ảnh món đồ.
-      </p>
-      <a id="zaloDirectBtn" href="https://zalo.me/0393190077" target="_blank" class="btn btn-gold" style="width: 100%; margin-bottom: 10px;">
-        <i class="fa-solid fa-camera"></i> MỞ ZALO GỬI ẢNH NGAY
-      </a>
-      <button type="button" class="btn btn-outline-gold" style="width: 100%;" onclick="closeSuccessModal()">Đóng Cửa Sổ</button>
-    </div>
-  </div>
-
-  <!-- SCRIPT -->
+  <!-- JavaScript xử lý form -->
   <script>
-    // 0. HÀM XỬ LÝ DỰ PHÒNG ĐƯỜNG DẪN ẢNH (CHỐNG LỖI 404 TRÊN LINK LIVE)
-    function handleImgFallback(img) {
-      if (!img) return;
-      const fallbackList = (img.getAttribute('data-fallback-urls') || '').split(',').map(u => u.trim()).filter(Boolean);
-      let nextIndex = parseInt(img.getAttribute('data-fallback-index') || '0', 10);
-      if (nextIndex < fallbackList.length) {
-        img.setAttribute('data-fallback-index', nextIndex + 1);
-        img.src = fallbackList[nextIndex];
-      }
-    }
-
-    // 1. COUNTDOWN TIMER ĐẾN 15/09/2026 23:59:59
-    function updateCountdown() {
-      const targetDate = new Date('2026-09-15T23:59:59+07:00').getTime();
-      const now = new Date().getTime();
-      const diff = targetDate - now;
-
-      const displayEl = document.getElementById('countdown-display');
-      if (!displayEl) return;
-
-      if (diff <= 0) {
-        displayEl.innerText = "Đã kết thúc tuần ưu đãi";
-        return;
-      }
-
-      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
-
-      displayEl.innerText = `${days} ngày ${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    }
-
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
-
-    // 2. FAQ ACCORDION
-    function toggleFaq(headerEl) {
-      const item = headerEl.parentElement;
-      const allItems = document.querySelectorAll('.faq-item');
-      
-      allItems.forEach(el => {
-        if (el !== item) el.classList.remove('active');
-      });
-
-      item.classList.toggle('active');
-    }
-
-    // 3. LIGHTBOX CHO ẢNH
-    function openLightbox(src) {
-      const modal = document.getElementById('lightboxModal');
-      const img = document.getElementById('lightboxImg');
-      img.src = src;
-      modal.classList.add('active');
-    }
-
-    function closeLightbox() {
-      const modal = document.getElementById('lightboxModal');
-      modal.classList.remove('active');
-    }
-
-    // 4. FORM SUBMISSION HANDLER
     function handleFormSubmit(e) {
       e.preventDefault();
-      const name = document.getElementById('full_name').value.trim();
-      const phone = document.getElementById('phone_number').value.trim();
-      const category = document.getElementById('item_category').value;
-      const condition = document.getElementById('condition_detail').value.trim() || 'Cần spa tổng quát';
-
-      // Build personalized message
-      const message = `Chào ICUS, tôi tên là ${name} (SĐT: ${phone}). Tôi muốn đăng ký suất ƯU ĐÃI (1 TẶNG 1) cho [${category}]. Tình trạng hiện tại: ${condition}.`;
-      
-      const encodedMsg = encodeURIComponent(message);
-      const zaloUrl = `https://zalo.me/0393190077?text=${encodedMsg}`;
-      
-      const zaloBtn = document.getElementById('zaloDirectBtn');
-      zaloBtn.href = zaloUrl;
-
-      document.getElementById('successModalMessage').innerHTML = `
-        Chào <strong>${name}</strong>! ICUS đã giữ thành công suất ưu đãi <strong>"Vệ Sinh 1 Túi Tặng 1 Túi"</strong> cho số điện thoại <strong>${phone}</strong>.<br/><br/>
-        Để nhận báo giá chính xác nhất trong 5 phút, bạn hãy bấm nút bên dưới để gửi ảnh qua Zalo ngay!
-      `;
-
-      document.getElementById('successModal').classList.add('active');
-      e.target.reset();
+      alert("🎉 Chúc mừng Quý khách! ICUS đã nhận được yêu cầu và kích hoạt thành công ƯU ĐÃI 1 TẶNG 1 VỆ SINH ĐỒ HIỆU. Chuyên viên kỹ thuật sẽ kết nối qua Zalo trong vòng 5 phút!");
     }
-
-    function closeSuccessModal() {
-      document.getElementById('successModal').classList.remove('active');
-    }
-
-    // Close modal on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        closeLightbox();
-        closeSuccessModal();
-      }
-    });
   </script>
 </body>
 </html>
