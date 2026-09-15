@@ -102,7 +102,7 @@
       <span>✦</span>
       <span>GOOD THINGS LAST LONGER</span>
       <span>✦</span>
-      <span>🛡️ 100% DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+      <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
       <span>✦</span>
       <span>KEEP IT CLEAN. KEEP IT COOL</span>
       <span>✦</span>
@@ -246,7 +246,7 @@
             <div class="p-3 bg-white/80 rounded-xl border-2 border-icus-black shadow-brutal-sm flex items-center gap-3">
               <span class="text-2xl">🔒</span>
               <div>
-                <span class="font-black text-xs block text-icus-black">Bảo Hiểm 100%</span>
+                <span class="font-black text-xs block text-icus-black">Bảo Hiểm</span>
                 <span class="text-[11px] text-stone-600">Đền bù nếu có lỗi kỹ thuật</span>
               </div>
             </div>
@@ -415,7 +415,7 @@
             </li>
             <li class="flex items-start gap-2">
               <i class="fa-solid fa-check text-icus-green mt-1"></i>
-              <span>Khử mùi hôi, triệt tiêu 100% bào tử nấm mốc bằng công nghệ buồng chiếu tia UV & Ozon.</span>
+              <span>Khử mùi hôi, triệt tiêu bào tử nấm mốc bằng công nghệ buồng chiếu tia UV & Ozon.</span>
             </li>
             <li class="flex items-start gap-2">
               <i class="fa-solid fa-check text-icus-green mt-1"></i>
@@ -556,7 +556,7 @@
           <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
             💎
           </div>
-          <h3 class="text-base font-black uppercase text-icus-black">100% Dung Dịch Cao Cấp</h3>
+          <h3 class="text-base font-black uppercase text-icus-black"> Dung Dịch Cao Cấp</h3>
           <p class="text-xs text-stone-600 leading-relaxed">
             Tuyệt đối không dùng hóa chất tẩy rửa thông thường. Chỉ dùng sản phẩm từ Saphir (Pháp), Tarrago (Tây Ban Nha) an toàn cho da thật.
           </p>
@@ -578,7 +578,7 @@
           <div class="w-16 h-16 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm mx-auto flex items-center justify-center text-3xl">
             🛡️
           </div>
-          <h3 class="text-base font-black uppercase text-icus-black">Bảo Hành & Đền Bù 100%</h3>
+          <h3 class="text-base font-black uppercase text-icus-black">Bảo Hành & Đền Bù </h3>
           <p class="text-xs text-stone-600 leading-relaxed">
             Cam kết hoàn tiền hoặc bồi thường thỏa đáng nếu sản phẩm bị hư tổn hay biến dạng kỹ thuật sau khi làm dịch vụ tại ICUS.
           </p>
@@ -923,13 +923,23 @@
         </div>
 
         <!-- Form đăng ký -->
-        <form onsubmit="handleFormSubmit(event)" class="space-y-4 max-w-xl mx-auto">
+        <form
+          name="icus-booking"
+          method="POST"
+          action="/?submitted=1#booking-form"
+          data-netlify="true"
+
+          class="space-y-4 max-w-xl mx-auto"
+        >
+          <input type="hidden" name="form-name" value="icus-booking" />
+          
           <div>
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
               Họ và tên của bạn <span class="text-icus-orange">*</span>
             </label>
             <input 
-              type="text" 
+              type="text"
+              name="customer_name"
               required 
               placeholder="Ví dụ: Chị Phương Thảo" 
               class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black"
@@ -941,7 +951,8 @@
               Số điện thoại (kết nối Zalo) <span class="text-icus-orange">*</span>
             </label>
             <input 
-              type="tel" 
+              type="tel"
+              name="phone"
               required 
               placeholder="Ví dụ: 0912 345 678" 
               class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black"
@@ -952,7 +963,7 @@
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
               Món đồ cần phục hồi
             </label>
-            <select class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black">
+            <select name="service" class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black">
               <option value="tui-xach">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
               <option value="giay-sneaker">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
               <option value="giay-cao-got">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
@@ -967,11 +978,11 @@
             </label>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <label class="flex items-center gap-2 p-3 rounded-xl bg-icus-cream border-2 border-icus-black cursor-pointer font-bold">
-                <input type="radio" name="branch" value="cn1" checked class="accent-icus-orange" />
+                <input type="radio" name="branch" value="CN 1 - 586 Nguyễn Đình Chiểu, Phường Bàn Cờ, TP.HCM" checked class="accent-icus-orange" />
                 <span>CN 1: Nguyễn Đình Chiểu, Q.3</span>
               </label>
               <label class="flex items-center gap-2 p-3 rounded-xl bg-icus-cream border-2 border-icus-black cursor-pointer font-bold">
-                <input type="radio" name="branch" value="cn2" class="accent-icus-orange" />
+                <input type="radio" name="branch" value="CN 2 - 12 Đường 12 Trần Não, Phường An Khánh, TP. Thủ Đức, TP.HCM" class="accent-icus-orange" />
                 <span>CN 2: Trần Não, TP. Thủ Đức</span>
               </label>
             </div>
@@ -1054,7 +1065,7 @@
         <div class="space-y-3">
           <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Cam Kết Từ ICUS</h4>
           <p class="text-xs text-stone-600 leading-relaxed">
-            100% dung dịch hữu cơ nhập khẩu Saphir Pháp. Cam kết bảo hiểm và bồi thường 100% nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
+            Có các dung dịch hữu cơ nhập khẩu Saphire từ PHáp. Cam kết bảo hiểm bồi thường nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
           </p>
         </div>
 
@@ -1079,12 +1090,19 @@
     </a>
   </div>
 
-  <!-- JavaScript xử lý form -->
+  <!-- JavaScript: chỉ hiện thông báo sau khi Netlify đã nhận form -->
   <script>
-    function handleFormSubmit(e) {
-      e.preventDefault();
-      alert("🎉 Chúc mừng Quý khách! ICUS đã nhận được yêu cầu và kích hoạt thành công ƯU ĐÃI 1 TẶNG 1 VỆ SINH ĐỒ HIỆU. Chuyên viên kỹ thuật sẽ kết nối qua Zalo trong vòng 5 phút!");
-    }
+    document.addEventListener("DOMContentLoaded", function () {
+      const params = new URLSearchParams(window.location.search);
+
+      if (params.get("submitted") === "1") {
+        alert("🎉 ICUS đã nhận được yêu cầu của Quý khách thành công! Chuyên viên kỹ thuật sẽ liên hệ qua Zalo trong vòng 5 phút.");
+
+        // Xóa ?submitted=1 khỏi URL để refresh trang không hiện lại thông báo.
+        const cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, document.title, cleanUrl);
+      }
+    });
   </script>
 </body>
 </html>
