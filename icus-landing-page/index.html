@@ -1105,5 +1105,44 @@
       }
     });
   </script>
+<script>
+  const icusForm = document.querySelector('form[name="icus-booking"]');
+
+  if (icusForm) {
+    icusForm.addEventListener("submit", function () {
+
+      const googleData = new FormData();
+
+      googleData.append(
+        "customer_name",
+        icusForm.querySelector('[name="customer_name"]').value
+      );
+
+      googleData.append(
+        "phone",
+        icusForm.querySelector('[name="phone"]').value
+      );
+
+      googleData.append(
+        "service",
+        icusForm.querySelector('[name="service"]').value
+      );
+
+      googleData.append(
+        "branch",
+        icusForm.querySelector('[name="branch"]:checked').value
+      );
+
+      fetch("https://script.google.com/macros/s/AKfycbzt2xXwAEj8z1QNyvDLZoN8gy9hhl3mSBL_or5uFrsvuHewjrgYhnnDmjh9OPZqIBLY/exec", {
+        method: "POST",
+        body: googleData,
+        mode: "no-cors",
+        keepalive: true
+      });
+
+    });
+  }
+</script>
+
 </body>
 </html>
