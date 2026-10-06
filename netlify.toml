@@ -1,0 +1,28 @@
+# Cấu hình triển khai Netlify cho ICUS Landing Page
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+# Điều hướng Webhook SePay tới Serverless Function
+[[redirects]]
+  from = "/api/sepay-webhook"
+  to = "/.netlify/functions/sepay-webhook"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/webhook/sepay"
+  to = "/.netlify/functions/sepay-webhook"
+  status = 200
+  force = true
+
+# Hỗ trợ đường dẫn thân thiện cho trang quản trị CRM
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200
+
+[[redirects]]
+  from = "/admin/"
+  to = "/admin.html"
+  status = 200

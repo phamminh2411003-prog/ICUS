@@ -1,0 +1,34 @@
+[NGÀY 10/30: TỰ ĐỘNG HÓA THANH TOÁN VỚI SEPAY & XÂY DỰNG CRM TRONG SECOND BRAIN] 🚀
+
+Hôm nay là một cột mốc cực kỳ hào hứng trong hành trình tự tay build hệ thống vận hành cho dự án: biến website tĩnh từ chỗ chỉ để xem thành một cỗ máy bán hàng có thể nhận tiền và quản trị đơn tự động 100%!
+
+Dưới đây là những gì mình đã hoàn thành trọn vẹn trong Ngày 10:
+
+1. Tích hợp thanh toán tự động qua VietQR & SePay:
+Khách chỉ cần điền thông tin và bấm đặt đơn, màn hình sẽ tự sinh mã VietQR động. Khách mở bất kỳ app ngân hàng nào lên quét là mọi thông tin về số tiền và nội dung chuyển khoản đã được điền sẵn chính xác từng ký tự, không lo chuyển nhầm.
+
+2. Luồng xử lý đơn hàng thời gian thực (Real-time Flow):
+- Khi khách bấm tạo đơn: Hệ thống ghi nhận đơn ở trạng thái PENDING.
+- Ngay khi khách chuyển khoản xong, SePay bắt biến động số dư ngân hàng và bắn Webhook xác thực giao dịch tức thì.
+- Website tự động lắng nghe (polling mỗi 3s): Tiền vừa vào tài khoản là màn hình web tự động nhảy từ PENDING sang "SUCCESS • Thanh toán thành công" trong tích tắc mà không cần F5 tải lại trang.
+
+3. Xây dựng CRM mini ngay trong Second Brain (brain.db):
+Thay vì phụ thuộc vào các dịch vụ SaaS cồng kềnh, mình thiết kế luôn hệ thống quản trị dữ liệu tinh gọn với 3 bảng:
+- Products: Quản lý danh mục sản phẩm/dịch vụ, giá bán và phân loại rõ ràng (Vật lý, Dịch vụ, Kỹ thuật số).
+- Customers: Lưu trữ thông tin và lịch sử liên hệ của khách hàng.
+- Orders: Theo dõi trạng thái đơn hàng và mã giao dịch ngân hàng đối soát.
+
+4. Trang Quản trị (/admin) thông minh & tự động trừ kho:
+Mình dựng luôn một trang Admin Dashboard 3 tab trực quan với đầy đủ tính năng CRUD (Xem - Thêm - Sửa - Xóa) và cài cắm logic nghiệp vụ thực tế:
+- Khi đơn hàng là "Hàng vật lý" chuyển sang SUCCESS: Hệ thống tự động trừ đúng 1 tồn kho.
+- Với "Dịch vụ" hay "Sản phẩm số": Giữ nguyên tồn kho, không trừ.
+- Cơ chế bảo vệ: Đơn hàng đã success thì không bao giờ bị trừ kho lần thứ hai.
+
+5. Bài học lớn nhất hôm nay: Bảo mật & Kiến trúc tinh gọn (Lean Architecture)
+Toàn bộ API token, secret bảo mật đều được cô lập tuyệt đối ở tầng backend trung gian, không để lộ một ký tự nhạy cảm nào ra trình duyệt phía client. Không cần dựng server phức tạp, hệ thống vẫn chạy mượt mà, ổn định và hoàn toàn miễn phí chi phí vận hành ban đầu.
+
+Cảm giác tự tay test quét mã QR trên điện thoại và nhìn màn hình máy tính tự động nhảy "Thanh toán thành công" thật sự rất phê! 🔥
+
+Anh em đang làm solo hoặc startup tinh gọn có đang tự động hóa khâu thanh toán này chưa? Cùng chia sẻ kinh nghiệm nhé! 👇
+
+#30DayChallenge #IndieHacker #SecondBrain #SePay #VietQR #Automation #BuildInPublic #CRM

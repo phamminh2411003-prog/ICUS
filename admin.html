@@ -1,0 +1,1048 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ICUS CRM - Trang Quản Trị Hệ Thống</title>
+
+  <!-- Fonts & Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            icus: {
+              cream: '#FAF6EF',
+              black: '#171717',
+              orange: '#FF5722',
+              green: '#1B8755',
+              blue: '#1E60D5',
+              yellow: '#FFC727',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8FAFC;
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #CBD5E1;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body class="font-sans text-slate-800 antialiased min-h-screen flex flex-col">
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="bg-white border-b border-slate-200 sticky top-0 z-30 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+
+      <!-- Brand & Mode -->
+      <div class="flex items-center gap-3">
+        <a href="/" class="flex items-center gap-2 group">
+          <div class="w-10 h-10 rounded-xl bg-icus-orange text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition">
+            I
+          </div>
+          <div>
+            <h1 class="font-extrabold text-base text-slate-900 leading-none">ICUS CRM</h1>
+            <span class="text-[11px] font-semibold text-slate-500">Quản Trị Hệ Thống & Bán Hàng</span>
+          </div>
+        </a>
+        <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+          Demo Mode
+        </span>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="flex items-center gap-3">
+        <a href="/" target="_blank" class="text-xs font-bold text-slate-600 hover:text-icus-orange flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 transition">
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+          <span>Xem Website Khách</span>
+        </a>
+        <button onclick="refreshCurrentTab()" class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Tải lại dữ liệu">
+          <i class="fa-solid fa-rotate"></i>
+          <span class="hidden sm:inline">Làm Mới</span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Navigation Tabs -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 border-t border-slate-100">
+      <button onclick="switchTab('products')" id="tab-btn-products" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+        <i class="fa-solid fa-boxes-stacked"></i>
+        <span>Sản Phẩm & Dịch Vụ</span>
+        <span id="badge-count-products" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+      </button>
+
+      <button onclick="switchTab('customers')" id="tab-btn-customers" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+        <i class="fa-solid fa-users"></i>
+        <span>Khách Hàng</span>
+        <span id="badge-count-customers" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+      </button>
+
+      <button onclick="switchTab('orders')" id="tab-btn-orders" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+        <i class="fa-solid fa-receipt"></i>
+        <span>Đơn Hàng & Thanh Toán</span>
+        <span id="badge-count-orders" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT CONTAINER ==================== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
+
+    <!-- Toast Notification Popup -->
+    <div id="toast" class="fixed top-20 right-6 z-50 transform translate-x-full transition-all duration-300 opacity-0 pointer-events-none">
+      <div id="toast-body" class="bg-white rounded-xl shadow-xl border border-slate-200 p-4 flex items-center gap-3 min-w-[280px]">
+        <div id="toast-icon" class="text-lg"></div>
+        <div>
+          <div id="toast-title" class="font-bold text-xs text-slate-900"></div>
+          <div id="toast-msg" class="text-xs text-slate-500"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TAB 1: PRODUCTS ==================== -->
+    <section id="tab-content-products" class="tab-content hidden space-y-6">
+      <!-- Toolbar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 flex-1 max-w-md">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-products" placeholder="Tìm kiếm tên sản phẩm..." oninput="filterProducts()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+          </div>
+          <select id="filter-product-type" onchange="filterProducts()" class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
+            <option value="all">Tất cả loại</option>
+            <option value="physical">Hàng Vật Lý</option>
+            <option value="service">Dịch Vụ</option>
+            <option value="digital">Kỹ Thuật Số</option>
+          </select>
+        </div>
+        <button onclick="openProductModal()" class="px-4 py-2.5 bg-icus-orange text-white text-xs font-bold rounded-xl shadow hover:bg-orange-600 transition flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-plus"></i>
+          <span>Thêm Sản Phẩm Mới</span>
+        </button>
+      </div>
+
+      <!-- Table Container -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="px-6 py-3.5">ID</th>
+                <th class="px-6 py-3.5">Tên Sản Phẩm / Dịch Vụ</th>
+                <th class="px-6 py-3.5">Phân Loại</th>
+                <th class="px-6 py-3.5">Giá Niêm Yết</th>
+                <th class="px-6 py-3.5">Tồn Kho (Stock)</th>
+                <th class="px-6 py-3.5">Ngày Tạo</th>
+                <th class="px-6 py-3.5 text-right">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-products" class="divide-y divide-slate-100 font-medium">
+              <!-- Render by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="empty-products" class="hidden p-12 text-center text-slate-400 text-xs">
+          <i class="fa-solid fa-box-open text-3xl mb-2 text-slate-300 block"></i>
+          Chưa có sản phẩm nào. Hãy bấm nút "Thêm Sản Phẩm Mới" ở trên!
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: CUSTOMERS ==================== -->
+    <section id="tab-content-customers" class="tab-content hidden space-y-6">
+      <!-- Toolbar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 flex-1 max-w-md">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-customers" placeholder="Tìm theo tên, số điện thoại, email..." oninput="filterCustomers()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+          </div>
+        </div>
+        <button onclick="openCustomerModal()" class="px-4 py-2.5 bg-icus-blue text-white text-xs font-bold rounded-xl shadow hover:bg-blue-700 transition flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-user-plus"></i>
+          <span>Thêm Khách Hàng Mới</span>
+        </button>
+      </div>
+
+      <!-- Table Container -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="px-6 py-3.5">ID</th>
+                <th class="px-6 py-3.5">Họ Và Tên</th>
+                <th class="px-6 py-3.5">Số Điện Thoại</th>
+                <th class="px-6 py-3.5">Email</th>
+                <th class="px-6 py-3.5">Ngày Đăng Ký</th>
+                <th class="px-6 py-3.5 text-right">Thao Tác</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-customers" class="divide-y divide-slate-100 font-medium">
+              <!-- Render by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="empty-customers" class="hidden p-12 text-center text-slate-400 text-xs">
+          <i class="fa-solid fa-user-slash text-3xl mb-2 text-slate-300 block"></i>
+          Chưa có khách hàng nào trong hệ thống CRM.
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: ORDERS ==================== -->
+    <section id="tab-content-orders" class="tab-content hidden space-y-6">
+      <!-- Toolbar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+        <div class="flex items-center gap-3 flex-1 max-w-md">
+          <div class="relative w-full">
+            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-orders" placeholder="Tìm theo mã đơn, tên khách, mã GD..." oninput="filterOrders()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+          </div>
+          <select id="filter-order-status" onchange="filterOrders()" class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
+            <option value="all">Tất cả trạng thái</option>
+            <option value="pending">Chờ thanh toán (Pending)</option>
+            <option value="success">Thành công (Success)</option>
+            <option value="cancelled">Đã hủy (Cancelled)</option>
+          </select>
+        </div>
+        <button onclick="openOrderModal()" class="px-4 py-2.5 bg-icus-green text-white text-xs font-bold rounded-xl shadow hover:bg-emerald-700 transition flex items-center justify-center gap-2 cursor-pointer">
+          <i class="fa-solid fa-cart-plus"></i>
+          <span>Tạo Đơn Hàng Mới</span>
+        </button>
+      </div>
+
+      <!-- Table Container -->
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
+        <div class="overflow-x-auto custom-scroll">
+          <table class="w-full text-left text-xs text-slate-600">
+            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+              <tr>
+                <th class="px-6 py-3.5">ID</th>
+                <th class="px-6 py-3.5">Mã Đơn Hàng</th>
+                <th class="px-6 py-3.5">Khách Hàng</th>
+                <th class="px-6 py-3.5">Sản Phẩm / Dịch Vụ</th>
+                <th class="px-6 py-3.5">Số Tiền (VNĐ)</th>
+                <th class="px-6 py-3.5">Trạng Thái</th>
+                <th class="px-6 py-3.5">Mã GD Ngân Hàng</th>
+                <th class="px-6 py-3.5">Thời Gian</th>
+                <th class="px-6 py-3.5 text-right">Hành Động</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-orders" class="divide-y divide-slate-100 font-medium">
+              <!-- Render by JS -->
+            </tbody>
+          </table>
+        </div>
+        <div id="empty-orders" class="hidden p-12 text-center text-slate-400 text-xs">
+          <i class="fa-solid fa-receipt text-3xl mb-2 text-slate-300 block"></i>
+          Chưa có đơn hàng nào trong hệ thống CRM.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== MODALS ==================== -->
+
+  <!-- 1. Product Modal (Add / Edit) -->
+  <div id="modal-product" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <h3 id="modal-product-title" class="font-extrabold text-sm text-slate-900">Thêm Sản Phẩm Mới</h3>
+        <button onclick="closeProductModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form id="form-product" onsubmit="saveProduct(event)" class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="prod-id" />
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Tên Sản Phẩm / Dịch Vụ *</label>
+          <input type="text" id="prod-name" required placeholder="Ví dụ: Dán đế Vibram hoặc Kem dưỡng da" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Phân Loại Sản Phẩm *</label>
+          <select id="prod-type" required onchange="toggleStockField()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium bg-white">
+            <option value="physical">Hàng Vật Lý (Physical - Trừ kho khi thanh toán)</option>
+            <option value="service">Dịch Vụ (Service - Không trừ kho)</option>
+            <option value="digital">Kỹ Thuật Số (Digital - Không trừ kho)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Giá Bán (VNĐ) *</label>
+          <input type="number" id="prod-price" required min="0" step="1000" placeholder="Ví dụ: 350000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
+        </div>
+
+        <div id="group-prod-stock">
+          <label class="block font-bold text-slate-700 mb-1">Số Lượng Tồn Kho (Stock)</label>
+          <input type="number" id="prod-stock" min="0" value="10" placeholder="Ví dụ: 25" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
+          <span class="text-[10px] text-slate-500 mt-1 block">Tự động trừ 1 khi đơn hàng physical chuyển sang <code>success</code>.</span>
+        </div>
+
+        <div class="pt-3 flex gap-2 justify-end">
+          <button type="button" onclick="closeProductModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-orange hover:bg-orange-600 transition shadow">Lưu Sản Phẩm</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 2. Customer Modal (Add / Edit) -->
+  <div id="modal-customer" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <h3 id="modal-customer-title" class="font-extrabold text-sm text-slate-900">Thêm Khách Hàng Mới</h3>
+        <button onclick="closeCustomerModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form id="form-customer" onsubmit="saveCustomer(event)" class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="cust-id" />
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Họ Và Tên *</label>
+          <input type="text" id="cust-name" required placeholder="Ví dụ: Nguyễn Thị Hoa" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Số Điện Thoại / Zalo</label>
+          <input type="tel" id="cust-phone" placeholder="Ví dụ: 0987654321" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Email</label>
+          <input type="email" id="cust-email" placeholder="Ví dụ: hoa.nguyen@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+        </div>
+
+        <div class="pt-3 flex gap-2 justify-end">
+          <button type="button" onclick="closeCustomerModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-blue hover:bg-blue-700 transition shadow">Lưu Khách Hàng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 3. Order Modal (Add / Edit) -->
+  <div id="modal-order" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+        <h3 id="modal-order-title" class="font-extrabold text-sm text-slate-900">Tạo Đơn Hàng Mới</h3>
+        <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+      </div>
+      <form id="form-order" onsubmit="saveOrder(event)" class="p-6 space-y-4 text-xs">
+        <input type="hidden" id="ord-id" />
+
+        <div>
+          <div class="flex items-center justify-between mb-1">
+            <label class="font-bold text-slate-700">Mã Đơn Hàng *</label>
+            <button type="button" onclick="generateOrderCode()" class="text-[10px] text-icus-blue font-bold hover:underline">Tạo mã mới</button>
+          </div>
+          <input type="text" id="ord-code" required placeholder="Ví dụ: ICUS948215" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold uppercase" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Khách Hàng</label>
+            <select id="ord-customer" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+              <option value="">-- Chọn khách hàng --</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Sản Phẩm / Dịch Vụ</label>
+            <select id="ord-product" onchange="onOrderProductChange()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+              <option value="">-- Chọn sản phẩm --</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Số Tiền (VNĐ) *</label>
+            <input type="number" id="ord-amount" required min="0" step="1000" placeholder="Ví dụ: 250000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-slate-700 mb-1">Trạng Thái Thanh Toán *</label>
+            <select id="ord-status" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+              <option value="pending">pending (Chờ thanh toán)</option>
+              <option value="success">success (Thành công)</option>
+              <option value="cancelled">cancelled (Đã hủy)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-slate-700 mb-1">Mã Giao Dịch Ngân Hàng / SePay</label>
+          <input type="text" id="ord-bank-tx" placeholder="Để trống nếu chưa có" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono" />
+        </div>
+
+        <div class="pt-3 flex gap-2 justify-end">
+          <button type="button" onclick="closeOrderModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-green hover:bg-emerald-700 transition shadow">Lưu Đơn Hàng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== FRONTEND JAVASCRIPT ==================== -->
+  <script>
+    // State storage
+    let productsList = [];
+    let customersList = [];
+    let ordersList = [];
+    let currentTab = 'products';
+
+    document.addEventListener('DOMContentLoaded', () => {
+      switchTab('products');
+    });
+
+    // -------------------------------------------------------------
+    // TOAST NOTIFICATION
+    // -------------------------------------------------------------
+    function showToast(title, message, isError = false) {
+      const toast = document.getElementById('toast');
+      const icon = document.getElementById('toast-icon');
+      const tTitle = document.getElementById('toast-title');
+      const tMsg = document.getElementById('toast-msg');
+
+      icon.innerHTML = isError
+        ? '<i class="fa-solid fa-circle-exclamation text-red-500"></i>'
+        : '<i class="fa-solid fa-circle-check text-emerald-500"></i>';
+      tTitle.textContent = title;
+      tMsg.textContent = message;
+
+      toast.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+      setTimeout(() => {
+        toast.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+      }, 3500);
+    }
+
+    // -------------------------------------------------------------
+    // TAB MANAGEMENT
+    // -------------------------------------------------------------
+    function switchTab(tab) {
+      currentTab = tab;
+
+      // Update UI buttons
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('border-icus-orange', 'text-icus-orange', 'text-slate-900');
+        btn.classList.add('border-transparent', 'text-slate-500');
+      });
+      const activeBtn = document.getElementById(`tab-btn-${tab}`);
+      if (activeBtn) {
+        activeBtn.classList.remove('border-transparent', 'text-slate-500');
+        activeBtn.classList.add('border-icus-orange', 'text-slate-900');
+      }
+
+      // Show tab content
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
+      const activeContent = document.getElementById(`tab-content-${tab}`);
+      if (activeContent) activeContent.classList.remove('hidden');
+
+      // Load data
+      if (tab === 'products') loadProducts();
+      else if (tab === 'customers') loadCustomers();
+      else if (tab === 'orders') loadOrders();
+    }
+
+    function refreshCurrentTab() {
+      switchTab(currentTab);
+    }
+
+    // =============================================================
+    // 1. PRODUCTS LOGIC
+    // =============================================================
+    async function loadProducts() {
+      try {
+        const res = await fetch('/api/products');
+        const json = await res.json();
+        if (json.success) {
+          productsList = json.data || [];
+          document.getElementById('badge-count-products').textContent = productsList.length;
+          renderProducts(productsList);
+        }
+      } catch (err) {
+        showToast('Lỗi tải sản phẩm', err.message, true);
+      }
+    }
+
+    function renderProducts(list) {
+      const tbody = document.getElementById('tbody-products');
+      const empty = document.getElementById('empty-products');
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition';
+
+        let typeBadge = '';
+        if (item.type === 'physical') {
+          typeBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">Physical (Hàng vật lý)</span>';
+        } else if (item.type === 'service') {
+          typeBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">Service (Dịch vụ)</span>';
+        } else {
+          typeBadge = '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200">Digital (Kỹ thuật số)</span>';
+        }
+
+        const stockText = item.type === 'physical'
+          ? `<span class="font-mono font-bold ${item.stock <= 3 ? 'text-red-600' : 'text-slate-800'}">${item.stock}</span>`
+          : '<span class="text-slate-400 italic">Không áp dụng</span>';
+
+        tr.innerHTML = `
+          <td class="px-6 py-4 font-mono font-semibold text-slate-400">#${item.id}</td>
+          <td class="px-6 py-4 font-bold text-slate-900">${escapeHtml(item.name)}</td>
+          <td class="px-6 py-4">${typeBadge}</td>
+          <td class="px-6 py-4 font-mono font-bold text-slate-800">${Number(item.price).toLocaleString('vi-VN')} đ</td>
+          <td class="px-6 py-4">${stockText}</td>
+          <td class="px-6 py-4 text-slate-400 text-[11px]">${item.created_at || '--'}</td>
+          <td class="px-6 py-4 text-right space-x-2">
+            <button onclick="editProduct(${item.id})" class="text-slate-500 hover:text-icus-blue font-bold px-2 py-1 rounded hover:bg-blue-50 transition" title="Sửa">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onclick="deleteProduct(${item.id})" class="text-slate-400 hover:text-red-600 font-bold px-2 py-1 rounded hover:bg-red-50 transition" title="Xóa">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterProducts() {
+      const q = document.getElementById('search-products').value.toLowerCase().trim();
+      const type = document.getElementById('filter-product-type').value;
+
+      const filtered = productsList.filter(p => {
+        const matchName = p.name.toLowerCase().includes(q);
+        const matchType = type === 'all' || p.type === type;
+        return matchName && matchType;
+      });
+      renderProducts(filtered);
+    }
+
+    function openProductModal(item = null) {
+      const modal = document.getElementById('modal-product');
+      const title = document.getElementById('modal-product-title');
+      const idInput = document.getElementById('prod-id');
+      const nameInput = document.getElementById('prod-name');
+      const typeInput = document.getElementById('prod-type');
+      const priceInput = document.getElementById('prod-price');
+      const stockInput = document.getElementById('prod-stock');
+
+      if (item) {
+        title.textContent = 'Chỉnh Sửa Sản Phẩm';
+        idInput.value = item.id;
+        nameInput.value = item.name;
+        typeInput.value = item.type;
+        priceInput.value = item.price;
+        stockInput.value = item.stock;
+      } else {
+        title.textContent = 'Thêm Sản Phẩm Mới';
+        idInput.value = '';
+        nameInput.value = '';
+        typeInput.value = 'physical';
+        priceInput.value = '';
+        stockInput.value = 10;
+      }
+      toggleStockField();
+      modal.classList.remove('hidden');
+    }
+
+    function closeProductModal() {
+      document.getElementById('modal-product').classList.add('hidden');
+    }
+
+    function toggleStockField() {
+      const type = document.getElementById('prod-type').value;
+      const stockGroup = document.getElementById('group-prod-stock');
+      if (type === 'physical') {
+        stockGroup.classList.remove('hidden');
+      } else {
+        stockGroup.classList.add('hidden');
+      }
+    }
+
+    async function saveProduct(e) {
+      e.preventDefault();
+      const id = document.getElementById('prod-id').value;
+      const name = document.getElementById('prod-name').value.trim();
+      const type = document.getElementById('prod-type').value;
+      const price = parseFloat(document.getElementById('prod-price').value) || 0;
+      const stock = parseInt(document.getElementById('prod-stock').value) || 0;
+
+      const payload = { name, type, price, stock };
+      const url = id ? `/api/products/${id}` : '/api/products';
+      const method = id ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Thành công', json.message || 'Đã lưu sản phẩm');
+          closeProductModal();
+          loadProducts();
+        } else {
+          showToast('Lỗi', json.message || 'Không thể lưu sản phẩm', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    function editProduct(id) {
+      const item = productsList.find(p => p.id === id);
+      if (item) openProductModal(item);
+    }
+
+    async function deleteProduct(id) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa sản phẩm #${id}?`)) return;
+      try {
+        const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Đã xóa', json.message);
+          loadProducts();
+        } else {
+          showToast('Lỗi', json.message, true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    // =============================================================
+    // 2. CUSTOMERS LOGIC
+    // =============================================================
+    async function loadCustomers() {
+      try {
+        const res = await fetch('/api/customers');
+        const json = await res.json();
+        if (json.success) {
+          customersList = json.data || [];
+          document.getElementById('badge-count-customers').textContent = customersList.length;
+          renderCustomers(customersList);
+        }
+      } catch (err) {
+        showToast('Lỗi tải khách hàng', err.message, true);
+      }
+    }
+
+    function renderCustomers(list) {
+      const tbody = document.getElementById('tbody-customers');
+      const empty = document.getElementById('empty-customers');
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition';
+        tr.innerHTML = `
+          <td class="px-6 py-4 font-mono font-semibold text-slate-400">#${item.id}</td>
+          <td class="px-6 py-4 font-bold text-slate-900">${escapeHtml(item.name)}</td>
+          <td class="px-6 py-4 font-mono text-slate-700">${item.phone || '<span class="text-slate-300">--</span>'}</td>
+          <td class="px-6 py-4 text-slate-600">${item.email || '<span class="text-slate-300">--</span>'}</td>
+          <td class="px-6 py-4 text-slate-400 text-[11px]">${item.created_at || '--'}</td>
+          <td class="px-6 py-4 text-right space-x-2">
+            <button onclick="editCustomer(${item.id})" class="text-slate-500 hover:text-icus-blue font-bold px-2 py-1 rounded hover:bg-blue-50 transition" title="Sửa">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onclick="deleteCustomer(${item.id})" class="text-slate-400 hover:text-red-600 font-bold px-2 py-1 rounded hover:bg-red-50 transition" title="Xóa">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterCustomers() {
+      const q = document.getElementById('search-customers').value.toLowerCase().trim();
+      const filtered = customersList.filter(c => {
+        return (c.name || '').toLowerCase().includes(q) ||
+               (c.phone || '').toLowerCase().includes(q) ||
+               (c.email || '').toLowerCase().includes(q);
+      });
+      renderCustomers(filtered);
+    }
+
+    function openCustomerModal(item = null) {
+      const modal = document.getElementById('modal-customer');
+      const title = document.getElementById('modal-customer-title');
+      const idInput = document.getElementById('cust-id');
+      const nameInput = document.getElementById('cust-name');
+      const phoneInput = document.getElementById('cust-phone');
+      const emailInput = document.getElementById('cust-email');
+
+      if (item) {
+        title.textContent = 'Chỉnh Sửa Khách Hàng';
+        idInput.value = item.id;
+        nameInput.value = item.name;
+        phoneInput.value = item.phone || '';
+        emailInput.value = item.email || '';
+      } else {
+        title.textContent = 'Thêm Khách Hàng Mới';
+        idInput.value = '';
+        nameInput.value = '';
+        phoneInput.value = '';
+        emailInput.value = '';
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeCustomerModal() {
+      document.getElementById('modal-customer').classList.add('hidden');
+    }
+
+    async function saveCustomer(e) {
+      e.preventDefault();
+      const id = document.getElementById('cust-id').value;
+      const name = document.getElementById('cust-name').value.trim();
+      const phone = document.getElementById('cust-phone').value.trim();
+      const email = document.getElementById('cust-email').value.trim();
+
+      const payload = { name, phone, email };
+      const url = id ? `/api/customers/${id}` : '/api/customers';
+      const method = id ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Thành công', json.message || 'Đã lưu khách hàng');
+          closeCustomerModal();
+          loadCustomers();
+        } else {
+          showToast('Lỗi', json.message || 'Không thể lưu khách hàng', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    function editCustomer(id) {
+      const item = customersList.find(c => c.id === id);
+      if (item) openCustomerModal(item);
+    }
+
+    async function deleteCustomer(id) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa khách hàng #${id}?`)) return;
+      try {
+        const res = await fetch(`/api/customers/${id}`, { method: 'DELETE' });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Đã xóa', json.message);
+          loadCustomers();
+        } else {
+          showToast('Lỗi', json.message, true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    // =============================================================
+    // 3. ORDERS LOGIC & STOCK DEDUCTION
+    // =============================================================
+    async function loadOrders() {
+      try {
+        // Fetch products and customers too for modal select options
+        await Promise.all([
+          fetch('/api/products').then(r => r.json()).then(j => productsList = j.data || []),
+          fetch('/api/customers').then(r => r.json()).then(j => customersList = j.data || [])
+        ]);
+
+        const res = await fetch('/api/orders');
+        const json = await res.json();
+        if (json.success) {
+          ordersList = json.data || [];
+          document.getElementById('badge-count-orders').textContent = ordersList.length;
+          renderOrders(ordersList);
+        }
+      } catch (err) {
+        showToast('Lỗi tải đơn hàng', err.message, true);
+      }
+    }
+
+    function renderOrders(list) {
+      const tbody = document.getElementById('tbody-orders');
+      const empty = document.getElementById('empty-orders');
+      tbody.innerHTML = '';
+
+      if (!list || list.length === 0) {
+        empty.classList.remove('hidden');
+        return;
+      }
+      empty.classList.add('hidden');
+
+      list.forEach(item => {
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-50/80 transition';
+
+        // Payment status badge
+        let statusBadge = '';
+        if (item.payment_status === 'success') {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-emerald-100 text-emerald-800 border border-emerald-300 uppercase">success</span>';
+        } else if (item.payment_status === 'pending') {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-300 uppercase">pending</span>';
+        } else {
+          statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-slate-100 text-slate-700 border border-slate-300 uppercase">' + item.payment_status + '</span>';
+        }
+
+        // Product type indicator
+        let prodInfo = '<span class="text-slate-400 italic">Không có sản phẩm</span>';
+        if (item.product_name) {
+          let typeTag = item.product_type === 'physical'
+            ? '<span class="text-[9px] bg-amber-50 text-amber-700 border border-amber-200 px-1 py-0.2 rounded font-bold ml-1">Kho: ' + item.product_stock + '</span>'
+            : '<span class="text-[9px] bg-slate-100 text-slate-500 px-1 py-0.2 rounded font-bold ml-1">' + item.product_type + '</span>';
+          prodInfo = `<span class="font-bold text-slate-800">${escapeHtml(item.product_name)}</span>${typeTag}`;
+        }
+
+        // Quick success button
+        let successBtn = '';
+        if (item.payment_status !== 'success') {
+          successBtn = `
+            <button onclick="markOrderSuccess(${item.id})" class="text-xs bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-2.5 py-1 rounded-lg shadow-sm transition" title="Duyệt đơn sang success">
+              <i class="fa-solid fa-check mr-1"></i>Duyệt Success
+            </button>
+          `;
+        }
+
+        tr.innerHTML = `
+          <td class="px-6 py-4 font-mono font-semibold text-slate-400">#${item.id}</td>
+          <td class="px-6 py-4 font-mono font-extrabold text-icus-blue">${escapeHtml(item.order_code)}</td>
+          <td class="px-6 py-4 font-semibold text-slate-900">${escapeHtml(item.customer_name || 'Khách vãng lai')}</td>
+          <td class="px-6 py-4">${prodInfo}</td>
+          <td class="px-6 py-4 font-mono font-bold text-icus-orange">${Number(item.amount).toLocaleString('vi-VN')} đ</td>
+          <td class="px-6 py-4">${statusBadge}</td>
+          <td class="px-6 py-4 font-mono text-[11px] text-slate-500">${item.bank_transaction_id || '<span class="text-slate-300">--</span>'}</td>
+          <td class="px-6 py-4 text-slate-400 text-[11px]">${item.created_at || '--'}</td>
+          <td class="px-6 py-4 text-right space-x-1 whitespace-nowrap">
+            ${successBtn}
+            <button onclick="editOrder(${item.id})" class="text-slate-500 hover:text-icus-blue font-bold px-2 py-1 rounded hover:bg-blue-50 transition" title="Sửa">
+              <i class="fa-solid fa-pen-to-square"></i>
+            </button>
+            <button onclick="deleteOrder(${item.id})" class="text-slate-400 hover:text-red-600 font-bold px-2 py-1 rounded hover:bg-red-50 transition" title="Xóa">
+              <i class="fa-solid fa-trash"></i>
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function filterOrders() {
+      const q = document.getElementById('search-orders').value.toLowerCase().trim();
+      const status = document.getElementById('filter-order-status').value;
+
+      const filtered = ordersList.filter(o => {
+        const matchQ = (o.order_code || '').toLowerCase().includes(q) ||
+                       (o.customer_name || '').toLowerCase().includes(q) ||
+                       (o.bank_transaction_id || '').toLowerCase().includes(q);
+        const matchStatus = status === 'all' || o.payment_status === status;
+        return matchQ && matchStatus;
+      });
+      renderOrders(filtered);
+    }
+
+    // Toggle Order modal
+    function openOrderModal(item = null) {
+      const modal = document.getElementById('modal-order');
+      const title = document.getElementById('modal-order-title');
+      const idInput = document.getElementById('ord-id');
+      const codeInput = document.getElementById('ord-code');
+      const custSelect = document.getElementById('ord-customer');
+      const prodSelect = document.getElementById('ord-product');
+      const amountInput = document.getElementById('ord-amount');
+      const statusSelect = document.getElementById('ord-status');
+      const bankTxInput = document.getElementById('ord-bank-tx');
+
+      // Populate customers select
+      custSelect.innerHTML = '<option value="">-- Chọn khách hàng --</option>';
+      customersList.forEach(c => {
+        custSelect.innerHTML += `<option value="${c.id}">${escapeHtml(c.name)} (${c.phone || 'Không có SĐT'})</option>`;
+      });
+
+      // Populate products select
+      prodSelect.innerHTML = '<option value="">-- Chọn sản phẩm --</option>';
+      productsList.forEach(p => {
+        prodSelect.innerHTML += `<option value="${p.id}" data-price="${p.price}">${escapeHtml(p.name)} [${p.type}] - ${Number(p.price).toLocaleString('vi-VN')}đ</option>`;
+      });
+
+      if (item) {
+        title.textContent = 'Chỉnh Sửa Đơn Hàng';
+        idInput.value = item.id;
+        codeInput.value = item.order_code;
+        codeInput.readOnly = true;
+        custSelect.value = item.customer_id || '';
+        prodSelect.value = item.product_id || '';
+        amountInput.value = item.amount;
+        statusSelect.value = item.payment_status || 'pending';
+        bankTxInput.value = item.bank_transaction_id || '';
+      } else {
+        title.textContent = 'Tạo Đơn Hàng Mới';
+        idInput.value = '';
+        generateOrderCode();
+        codeInput.readOnly = false;
+        custSelect.value = '';
+        prodSelect.value = '';
+        amountInput.value = '';
+        statusSelect.value = 'pending';
+        bankTxInput.value = '';
+      }
+      modal.classList.remove('hidden');
+    }
+
+    function closeOrderModal() {
+      document.getElementById('modal-order').classList.add('hidden');
+    }
+
+    function generateOrderCode() {
+      const random = Math.floor(100000 + Math.random() * 900000);
+      document.getElementById('ord-code').value = 'ICUS' + random;
+    }
+
+    function onOrderProductChange() {
+      const prodSelect = document.getElementById('ord-product');
+      const selectedOption = prodSelect.options[prodSelect.selectedIndex];
+      const price = selectedOption.getAttribute('data-price');
+      if (price) {
+        document.getElementById('ord-amount').value = price;
+      }
+    }
+
+    async function saveOrder(e) {
+      e.preventDefault();
+      const id = document.getElementById('ord-id').value;
+      const order_code = document.getElementById('ord-code').value.trim().toUpperCase();
+      const customer_id = document.getElementById('ord-customer').value || null;
+      const product_id = document.getElementById('ord-product').value || null;
+      const amount = parseFloat(document.getElementById('ord-amount').value) || 0;
+      const payment_status = document.getElementById('ord-status').value;
+      const bank_transaction_id = document.getElementById('ord-bank-tx').value.trim();
+
+      const payload = {
+        order_code,
+        customer_id: customer_id ? parseInt(customer_id) : null,
+        product_id: product_id ? parseInt(product_id) : null,
+        amount,
+        payment_status,
+        bank_transaction_id
+      };
+
+      const url = id ? `/api/orders/${id}` : '/api/orders';
+      const method = id ? 'PUT' : 'POST';
+
+      try {
+        const res = await fetch(url, {
+          method,
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Thành công', json.message || 'Đã lưu đơn hàng');
+          closeOrderModal();
+          loadOrders();
+        } else {
+          showToast('Lỗi', json.message || 'Không thể lưu đơn hàng', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    // Đổi thủ công đơn hàng sang success & trừ tồn kho với physical
+    async function markOrderSuccess(orderId) {
+      if (!confirm(`Xác nhận duyệt đơn hàng #${orderId} sang trạng thái SUCCESS?\n(Nếu là sản phẩm physical, hệ thống sẽ tự động trừ 1 tồn kho).`)) return;
+
+      try {
+        const res = await fetch(`/api/orders/${orderId}/mark-success`, { method: 'POST' });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Duyệt Thành Công!', json.message);
+          loadOrders();
+        } else {
+          showToast('Lỗi duyệt đơn', json.message || 'Thất bại', true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    function editOrder(id) {
+      const item = ordersList.find(o => o.id === id);
+      if (item) openOrderModal(item);
+    }
+
+    async function deleteOrder(id) {
+      if (!confirm(`Bạn có chắc chắn muốn xóa đơn hàng #${id}?`)) return;
+      try {
+        const res = await fetch(`/api/orders/${id}`, { method: 'DELETE' });
+        const json = await res.json();
+        if (json.success) {
+          showToast('Đã xóa', json.message);
+          loadOrders();
+        } else {
+          showToast('Lỗi', json.message, true);
+        }
+      } catch (err) {
+        showToast('Lỗi kết nối', err.message, true);
+      }
+    }
+
+    // -------------------------------------------------------------
+    // UTILS
+    // -------------------------------------------------------------
+    function escapeHtml(text) {
+      if (!text) return '';
+      return String(text)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+  </script>
+</body>
+</html>
