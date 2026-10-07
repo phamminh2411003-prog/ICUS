@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="vi">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,7 +9,8 @@
   <!-- Fonts & Icons -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
   <!-- Tailwind CSS CDN -->
@@ -39,16 +41,19 @@
     body {
       background-color: #F8FAFC;
     }
+
     .custom-scroll::-webkit-scrollbar {
       width: 6px;
       height: 6px;
     }
+
     .custom-scroll::-webkit-scrollbar-thumb {
       background: #CBD5E1;
       border-radius: 4px;
     }
   </style>
 </head>
+
 <body class="font-sans text-slate-800 antialiased min-h-screen flex flex-col">
 
   <!-- ==================== HEADER ==================== -->
@@ -58,7 +63,8 @@
       <!-- Brand & Mode -->
       <div class="flex items-center gap-3">
         <a href="/" class="flex items-center gap-2 group">
-          <div class="w-10 h-10 rounded-xl bg-icus-orange text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition">
+          <div
+            class="w-10 h-10 rounded-xl bg-icus-orange text-white flex items-center justify-center font-black text-lg shadow-sm group-hover:scale-105 transition">
             I
           </div>
           <div>
@@ -66,20 +72,30 @@
             <span class="text-[11px] font-semibold text-slate-500">Quản Trị Hệ Thống & Bán Hàng</span>
           </div>
         </a>
-        <span class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
+        <span
+          class="hidden sm:inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-amber-100 text-amber-800 border border-amber-300">
           Demo Mode
         </span>
       </div>
 
       <!-- Quick Actions -->
       <div class="flex items-center gap-3">
-        <a href="/" target="_blank" class="text-xs font-bold text-slate-600 hover:text-icus-orange flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 transition">
+        <a href="/" target="_blank"
+          class="text-xs font-bold text-slate-600 hover:text-icus-orange flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-slate-200 hover:border-slate-300 transition">
           <i class="fa-solid fa-arrow-up-right-from-square"></i>
           <span>Xem Website Khách</span>
         </a>
-        <button onclick="refreshCurrentTab()" class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5" title="Tải lại dữ liệu">
+        <button onclick="refreshCurrentTab()"
+          class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5"
+          title="Tải lại dữ liệu">
           <i class="fa-solid fa-rotate"></i>
           <span class="hidden sm:inline">Làm Mới</span>
+        </button>
+        <button onclick="handleKeyLockClick()" id="btn-header-auth"
+          class="text-xs font-bold text-slate-700 bg-slate-100 hover:bg-slate-200 px-3 py-1.5 rounded-lg transition flex items-center gap-1.5 cursor-pointer"
+          title="Khóa / Đăng xuất quản trị">
+          <i class="fa-solid fa-lock text-icus-orange" id="header-lock-icon"></i>
+          <span class="hidden sm:inline" id="header-lock-text">Khóa Admin</span>
         </button>
       </div>
 
@@ -87,22 +103,28 @@
 
     <!-- Navigation Tabs -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex space-x-1 border-t border-slate-100">
-      <button onclick="switchTab('products')" id="tab-btn-products" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+      <button onclick="switchTab('products')" id="tab-btn-products"
+        class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
         <i class="fa-solid fa-boxes-stacked"></i>
         <span>Sản Phẩm & Dịch Vụ</span>
-        <span id="badge-count-products" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+        <span id="badge-count-products"
+          class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
       </button>
 
-      <button onclick="switchTab('customers')" id="tab-btn-customers" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+      <button onclick="switchTab('customers')" id="tab-btn-customers"
+        class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
         <i class="fa-solid fa-users"></i>
         <span>Khách Hàng</span>
-        <span id="badge-count-customers" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+        <span id="badge-count-customers"
+          class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
       </button>
 
-      <button onclick="switchTab('orders')" id="tab-btn-orders" class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
+      <button onclick="switchTab('orders')" id="tab-btn-orders"
+        class="tab-btn py-3 px-4 font-bold text-xs border-b-2 border-transparent text-slate-500 hover:text-slate-900 flex items-center gap-2 transition">
         <i class="fa-solid fa-receipt"></i>
         <span>Đơn Hàng & Thanh Toán</span>
-        <span id="badge-count-orders" class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
+        <span id="badge-count-orders"
+          class="px-2 py-0.5 rounded-full text-[10px] bg-slate-100 text-slate-600 font-extrabold">0</span>
       </button>
     </div>
   </header>
@@ -111,8 +133,10 @@
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-1 w-full">
 
     <!-- Toast Notification Popup -->
-    <div id="toast" class="fixed top-20 right-6 z-50 transform translate-x-full transition-all duration-300 opacity-0 pointer-events-none">
-      <div id="toast-body" class="bg-white rounded-xl shadow-xl border border-slate-200 p-4 flex items-center gap-3 min-w-[280px]">
+    <div id="toast"
+      class="fixed top-20 right-6 z-50 transform translate-x-full transition-all duration-300 opacity-0 pointer-events-none">
+      <div id="toast-body"
+        class="bg-white rounded-xl shadow-xl border border-slate-200 p-4 flex items-center gap-3 min-w-[280px]">
         <div id="toast-icon" class="text-lg"></div>
         <div>
           <div id="toast-title" class="font-bold text-xs text-slate-900"></div>
@@ -124,20 +148,25 @@
     <!-- ==================== TAB 1: PRODUCTS ==================== -->
     <section id="tab-content-products" class="tab-content hidden space-y-6">
       <!-- Toolbar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div class="flex items-center gap-3 flex-1 max-w-md">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-            <input type="text" id="search-products" placeholder="Tìm kiếm tên sản phẩm..." oninput="filterProducts()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-products" placeholder="Tìm kiếm tên sản phẩm..." oninput="filterProducts()"
+              class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
           </div>
-          <select id="filter-product-type" onchange="filterProducts()" class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
+          <select id="filter-product-type" onchange="filterProducts()"
+            class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
             <option value="all">Tất cả loại</option>
             <option value="physical">Hàng Vật Lý</option>
             <option value="service">Dịch Vụ</option>
             <option value="digital">Kỹ Thuật Số</option>
           </select>
         </div>
-        <button onclick="openProductModal()" class="px-4 py-2.5 bg-icus-orange text-white text-xs font-bold rounded-xl shadow hover:bg-orange-600 transition flex items-center justify-center gap-2 cursor-pointer">
+        <button onclick="openProductModal()"
+          class="px-4 py-2.5 bg-icus-orange text-white text-xs font-bold rounded-xl shadow hover:bg-orange-600 transition flex items-center justify-center gap-2 cursor-pointer">
           <i class="fa-solid fa-plus"></i>
           <span>Thêm Sản Phẩm Mới</span>
         </button>
@@ -147,7 +176,8 @@
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto custom-scroll">
           <table class="w-full text-left text-xs text-slate-600">
-            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+            <thead
+              class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
               <tr>
                 <th class="px-6 py-3.5">ID</th>
                 <th class="px-6 py-3.5">Tên Sản Phẩm / Dịch Vụ</th>
@@ -173,14 +203,19 @@
     <!-- ==================== TAB 2: CUSTOMERS ==================== -->
     <section id="tab-content-customers" class="tab-content hidden space-y-6">
       <!-- Toolbar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div class="flex items-center gap-3 flex-1 max-w-md">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-            <input type="text" id="search-customers" placeholder="Tìm theo tên, số điện thoại, email..." oninput="filterCustomers()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-customers" placeholder="Tìm theo tên, số điện thoại, email..."
+              oninput="filterCustomers()"
+              class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
           </div>
         </div>
-        <button onclick="openCustomerModal()" class="px-4 py-2.5 bg-icus-blue text-white text-xs font-bold rounded-xl shadow hover:bg-blue-700 transition flex items-center justify-center gap-2 cursor-pointer">
+        <button onclick="openCustomerModal()"
+          class="px-4 py-2.5 bg-icus-blue text-white text-xs font-bold rounded-xl shadow hover:bg-blue-700 transition flex items-center justify-center gap-2 cursor-pointer">
           <i class="fa-solid fa-user-plus"></i>
           <span>Thêm Khách Hàng Mới</span>
         </button>
@@ -190,7 +225,8 @@
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto custom-scroll">
           <table class="w-full text-left text-xs text-slate-600">
-            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+            <thead
+              class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
               <tr>
                 <th class="px-6 py-3.5">ID</th>
                 <th class="px-6 py-3.5">Họ Và Tên</th>
@@ -215,20 +251,26 @@
     <!-- ==================== TAB 3: ORDERS ==================== -->
     <section id="tab-content-orders" class="tab-content hidden space-y-6">
       <!-- Toolbar -->
-      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+      <div
+        class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
         <div class="flex items-center gap-3 flex-1 max-w-md">
           <div class="relative w-full">
-            <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
-            <input type="text" id="search-orders" placeholder="Tìm theo mã đơn, tên khách, mã GD..." oninput="filterOrders()" class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
+            <i
+              class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+            <input type="text" id="search-orders" placeholder="Tìm theo mã đơn, tên khách, mã GD..."
+              oninput="filterOrders()"
+              class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50/50">
           </div>
-          <select id="filter-order-status" onchange="filterOrders()" class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
+          <select id="filter-order-status" onchange="filterOrders()"
+            class="text-xs px-3 py-2 rounded-xl border border-slate-200 bg-white font-medium focus:outline-none focus:border-icus-orange">
             <option value="all">Tất cả trạng thái</option>
             <option value="pending">Chờ thanh toán (Pending)</option>
             <option value="success">Thành công (Success)</option>
             <option value="cancelled">Đã hủy (Cancelled)</option>
           </select>
         </div>
-        <button onclick="openOrderModal()" class="px-4 py-2.5 bg-icus-green text-white text-xs font-bold rounded-xl shadow hover:bg-emerald-700 transition flex items-center justify-center gap-2 cursor-pointer">
+        <button onclick="openOrderModal()"
+          class="px-4 py-2.5 bg-icus-green text-white text-xs font-bold rounded-xl shadow hover:bg-emerald-700 transition flex items-center justify-center gap-2 cursor-pointer">
           <i class="fa-solid fa-cart-plus"></i>
           <span>Tạo Đơn Hàng Mới</span>
         </button>
@@ -238,7 +280,8 @@
       <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden">
         <div class="overflow-x-auto custom-scroll">
           <table class="w-full text-left text-xs text-slate-600">
-            <thead class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
+            <thead
+              class="bg-slate-50 text-[11px] font-bold text-slate-500 uppercase tracking-wider border-b border-slate-200">
               <tr>
                 <th class="px-6 py-3.5">ID</th>
                 <th class="px-6 py-3.5">Mã Đơn Hàng</th>
@@ -268,23 +311,28 @@
   <!-- ==================== MODALS ==================== -->
 
   <!-- 1. Product Modal (Add / Edit) -->
-  <div id="modal-product" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+  <div id="modal-product"
+    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div
+      class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <h3 id="modal-product-title" class="font-extrabold text-sm text-slate-900">Thêm Sản Phẩm Mới</h3>
-        <button onclick="closeProductModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="closeProductModal()" class="text-slate-400 hover:text-slate-600"><i
+            class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <form id="form-product" onsubmit="saveProduct(event)" class="p-6 space-y-4 text-xs">
         <input type="hidden" id="prod-id" />
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Tên Sản Phẩm / Dịch Vụ *</label>
-          <input type="text" id="prod-name" required placeholder="Ví dụ: Dán đế Vibram hoặc Kem dưỡng da" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium" />
+          <input type="text" id="prod-name" required placeholder="Ví dụ: Dán đế Vibram hoặc Kem dưỡng da"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium" />
         </div>
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Phân Loại Sản Phẩm *</label>
-          <select id="prod-type" required onchange="toggleStockField()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium bg-white">
+          <select id="prod-type" required onchange="toggleStockField()"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium bg-white">
             <option value="physical">Hàng Vật Lý (Physical - Trừ kho khi thanh toán)</option>
             <option value="service">Dịch Vụ (Service - Không trừ kho)</option>
             <option value="digital">Kỹ Thuật Số (Digital - Không trừ kho)</option>
@@ -293,62 +341,80 @@
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Giá Bán (VNĐ) *</label>
-          <input type="number" id="prod-price" required min="0" step="1000" placeholder="Ví dụ: 350000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
+          <input type="number" id="prod-price" required min="0" step="1000" placeholder="Ví dụ: 350000"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
         </div>
 
         <div id="group-prod-stock">
           <label class="block font-bold text-slate-700 mb-1">Số Lượng Tồn Kho (Stock)</label>
-          <input type="number" id="prod-stock" min="0" value="10" placeholder="Ví dụ: 25" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
-          <span class="text-[10px] text-slate-500 mt-1 block">Tự động trừ 1 khi đơn hàng physical chuyển sang <code>success</code>.</span>
+          <input type="number" id="prod-stock" min="0" value="10" placeholder="Ví dụ: 25"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange font-medium font-mono" />
+          <span class="text-[10px] text-slate-500 mt-1 block">Tự động trừ 1 khi đơn hàng physical chuyển sang
+            <code>success</code>.</span>
         </div>
 
         <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeProductModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
-          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-orange hover:bg-orange-600 transition shadow">Lưu Sản Phẩm</button>
+          <button type="button" onclick="closeProductModal()"
+            class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit"
+            class="px-5 py-2 font-bold rounded-xl text-white bg-icus-orange hover:bg-orange-600 transition shadow">Lưu
+            Sản Phẩm</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- 2. Customer Modal (Add / Edit) -->
-  <div id="modal-customer" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+  <div id="modal-customer"
+    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div
+      class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <h3 id="modal-customer-title" class="font-extrabold text-sm text-slate-900">Thêm Khách Hàng Mới</h3>
-        <button onclick="closeCustomerModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="closeCustomerModal()" class="text-slate-400 hover:text-slate-600"><i
+            class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <form id="form-customer" onsubmit="saveCustomer(event)" class="p-6 space-y-4 text-xs">
         <input type="hidden" id="cust-id" />
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Họ Và Tên *</label>
-          <input type="text" id="cust-name" required placeholder="Ví dụ: Nguyễn Thị Hoa" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+          <input type="text" id="cust-name" required placeholder="Ví dụ: Nguyễn Thị Hoa"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
         </div>
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Số Điện Thoại / Zalo</label>
-          <input type="tel" id="cust-phone" placeholder="Ví dụ: 0987654321" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+          <input type="tel" id="cust-phone" placeholder="Ví dụ: 0987654321"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
         </div>
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Email</label>
-          <input type="email" id="cust-email" placeholder="Ví dụ: hoa.nguyen@gmail.com" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
+          <input type="email" id="cust-email" placeholder="Ví dụ: hoa.nguyen@gmail.com"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-blue font-medium" />
         </div>
 
         <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeCustomerModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
-          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-blue hover:bg-blue-700 transition shadow">Lưu Khách Hàng</button>
+          <button type="button" onclick="closeCustomerModal()"
+            class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit"
+            class="px-5 py-2 font-bold rounded-xl text-white bg-icus-blue hover:bg-blue-700 transition shadow">Lưu Khách
+            Hàng</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- 3. Order Modal (Add / Edit) -->
-  <div id="modal-order" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
+  <div id="modal-order"
+    class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+    <div
+      class="bg-white rounded-3xl max-w-lg w-full shadow-2xl border border-slate-100 overflow-hidden transform transition-all">
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
         <h3 id="modal-order-title" class="font-extrabold text-sm text-slate-900">Tạo Đơn Hàng Mới</h3>
-        <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <button onclick="closeOrderModal()" class="text-slate-400 hover:text-slate-600"><i
+            class="fa-solid fa-xmark text-lg"></i></button>
       </div>
       <form id="form-order" onsubmit="saveOrder(event)" class="p-6 space-y-4 text-xs">
         <input type="hidden" id="ord-id" />
@@ -356,22 +422,26 @@
         <div>
           <div class="flex items-center justify-between mb-1">
             <label class="font-bold text-slate-700">Mã Đơn Hàng *</label>
-            <button type="button" onclick="generateOrderCode()" class="text-[10px] text-icus-blue font-bold hover:underline">Tạo mã mới</button>
+            <button type="button" onclick="generateOrderCode()"
+              class="text-[10px] text-icus-blue font-bold hover:underline">Tạo mã mới</button>
           </div>
-          <input type="text" id="ord-code" required placeholder="Ví dụ: ICUS948215" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold uppercase" />
+          <input type="text" id="ord-code" required placeholder="Ví dụ: ICUS948215"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold uppercase" />
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Khách Hàng</label>
-            <select id="ord-customer" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+            <select id="ord-customer"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
               <option value="">-- Chọn khách hàng --</option>
             </select>
           </div>
 
           <div>
             <label class="block font-bold text-slate-700 mb-1">Sản Phẩm / Dịch Vụ</label>
-            <select id="ord-product" onchange="onOrderProductChange()" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+            <select id="ord-product" onchange="onOrderProductChange()"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
               <option value="">-- Chọn sản phẩm --</option>
             </select>
           </div>
@@ -380,12 +450,14 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label class="block font-bold text-slate-700 mb-1">Số Tiền (VNĐ) *</label>
-            <input type="number" id="ord-amount" required min="0" step="1000" placeholder="Ví dụ: 250000" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold" />
+            <input type="number" id="ord-amount" required min="0" step="1000" placeholder="Ví dụ: 250000"
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono font-bold" />
           </div>
 
           <div>
             <label class="block font-bold text-slate-700 mb-1">Trạng Thái Thanh Toán *</label>
-            <select id="ord-status" required class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
+            <select id="ord-status" required
+              class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-medium bg-white">
               <option value="pending">pending (Chờ thanh toán)</option>
               <option value="success">success (Thành công)</option>
               <option value="cancelled">cancelled (Đã hủy)</option>
@@ -395,12 +467,71 @@
 
         <div>
           <label class="block font-bold text-slate-700 mb-1">Mã Giao Dịch Ngân Hàng / SePay</label>
-          <input type="text" id="ord-bank-tx" placeholder="Để trống nếu chưa có" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono" />
+          <input type="text" id="ord-bank-tx" placeholder="Để trống nếu chưa có"
+            class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 focus:outline-none focus:border-icus-green font-mono" />
         </div>
 
         <div class="pt-3 flex gap-2 justify-end">
-          <button type="button" onclick="closeOrderModal()" class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
-          <button type="submit" class="px-5 py-2 font-bold rounded-xl text-white bg-icus-green hover:bg-emerald-700 transition shadow">Lưu Đơn Hàng</button>
+          <button type="button" onclick="closeOrderModal()"
+            class="px-4 py-2 font-bold rounded-xl text-slate-600 bg-slate-100 hover:bg-slate-200 transition">Hủy</button>
+          <button type="submit"
+            class="px-5 py-2 font-bold rounded-xl text-white bg-icus-green hover:bg-emerald-700 transition shadow">Lưu
+            Đơn Hàng</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Auth Modal (Nhập Khóa Quản Trị CRM_ADMIN_KEY) -->
+  <div id="modal-auth"
+    class="fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 transition-all">
+    <div
+      class="bg-white rounded-3xl max-w-md w-full shadow-2xl border border-slate-100 overflow-hidden p-6 sm:p-7 space-y-5">
+      <div class="flex items-center gap-3.5">
+        <div
+          class="w-12 h-12 rounded-2xl bg-orange-100 text-icus-orange flex items-center justify-center text-xl shrink-0 shadow-sm">
+          <i class="fa-solid fa-shield-halved"></i>
+        </div>
+        <div>
+          <h3 class="text-base font-extrabold text-slate-900 leading-tight">Xác Thực Quản Trị Hệ Thống</h3>
+          <p class="text-xs text-slate-500 mt-0.5">Nhập mã bảo mật CRM_ADMIN_KEY để truy cập</p>
+        </div>
+      </div>
+
+      <div id="auth-error-banner"
+        class="hidden p-3 rounded-xl bg-red-50 border border-red-200 text-xs text-red-600 font-semibold flex items-center gap-2">
+        <i class="fa-solid fa-triangle-exclamation text-sm shrink-0"></i>
+        <span id="auth-error-text">Khóa quản trị không hợp lệ.</span>
+      </div>
+
+      <form id="form-auth" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center justify-between">
+            <span>Khóa Quản Trị (Admin Key) <span class="text-red-500">*</span></span>
+            <span class="text-[10px] text-slate-400 font-normal">Chỉ lưu trong sessionStorage</span>
+          </label>
+          <div class="relative">
+            <input type="password" id="input-admin-key" required placeholder="Nhập CRM_ADMIN_KEY..."
+              class="w-full pl-3.5 pr-10 py-2.5 text-xs font-mono rounded-xl border border-slate-200 focus:outline-none focus:border-icus-orange focus:ring-1 focus:ring-icus-orange bg-slate-50 transition"
+              autocomplete="off" />
+            <button type="button" onclick="toggleKeyVisibility()"
+              class="absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs cursor-pointer"
+              title="Hiện/Ẩn mật khẩu">
+              <i id="eye-icon" class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+          <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">
+            * Khóa được bảo vệ trong bộ nhớ phiên làm việc, tự động hủy khi đóng trình duyệt và không lưu vào
+            localStorage.
+          </p>
+        </div>
+
+        <div class="pt-1">
+          <button type="submit" id="btn-auth-submit"
+            class="w-full py-3 px-4 bg-icus-orange hover:bg-orange-600 active:scale-[0.99] text-white font-bold text-xs rounded-xl shadow transition flex items-center justify-center gap-2 cursor-pointer">
+            <i class="fa-solid fa-key"></i>
+            <span>Xác Thực & Mở Khóa CRM</span>
+          </button>
         </div>
       </form>
     </div>
@@ -408,6 +539,10 @@
 
   <!-- ==================== FRONTEND JAVASCRIPT ==================== -->
   <script>
+    // Cấu hình kết nối Google Apps Script & Session Key
+    const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxgENpxTE71byOBt7lIrVL9ZKnlppTWC0KK-vezI6dZ4806CVcaX-_wL3tDmrtNUn5mmA/exec";
+    const AUTH_STORAGE_KEY = "ICUS_CRM_ADMIN_KEY";
+
     // State storage
     let productsList = [];
     let customersList = [];
@@ -415,8 +550,174 @@
     let currentTab = 'products';
 
     document.addEventListener('DOMContentLoaded', () => {
-      switchTab('products');
+      const storedKey = sessionStorage.getItem(AUTH_STORAGE_KEY);
+      updateAuthStatusUI(Boolean(storedKey));
+
+      if (storedKey) {
+        closeAuthModal();
+        switchTab('products');
+      } else {
+        openAuthModal();
+      }
     });
+
+    // -------------------------------------------------------------
+    // QUẢN LÝ XÁC THỰC PHÍA CLIENT (SESSION STORAGE)
+    // -------------------------------------------------------------
+    function openAuthModal(errorMessage = '') {
+      const modal = document.getElementById('modal-auth');
+      const errBanner = document.getElementById('auth-error-banner');
+      const errText = document.getElementById('auth-error-text');
+      const input = document.getElementById('input-admin-key');
+
+      if (errorMessage) {
+        errText.textContent = errorMessage;
+        errBanner.classList.remove('hidden');
+      } else {
+        errBanner.classList.add('hidden');
+      }
+
+      modal.classList.remove('hidden');
+      setTimeout(() => input.focus(), 100);
+      updateAuthStatusUI(false);
+    }
+
+    function closeAuthModal() {
+      document.getElementById('modal-auth').classList.add('hidden');
+      document.getElementById('auth-error-banner').classList.add('hidden');
+      updateAuthStatusUI(Boolean(sessionStorage.getItem(AUTH_STORAGE_KEY)));
+    }
+
+    function toggleKeyVisibility() {
+      const input = document.getElementById('input-admin-key');
+      const icon = document.getElementById('eye-icon');
+      if (input.type === 'password') {
+        input.type = 'text';
+        icon.className = 'fa-solid fa-eye-slash';
+      } else {
+        input.type = 'password';
+        icon.className = 'fa-solid fa-eye';
+      }
+    }
+
+    function updateAuthStatusUI(isAuthorized) {
+      const lockIcon = document.getElementById('header-lock-icon');
+      const lockText = document.getElementById('header-lock-text');
+      if (lockIcon && lockText) {
+        if (isAuthorized) {
+          lockIcon.className = 'fa-solid fa-lock-open text-emerald-600';
+          lockText.textContent = 'Đã Mở Khóa';
+        } else {
+          lockIcon.className = 'fa-solid fa-lock text-icus-orange';
+          lockText.textContent = 'Khóa Admin';
+        }
+      }
+    }
+
+    function handleKeyLockClick() {
+      const currentToken = sessionStorage.getItem(AUTH_STORAGE_KEY);
+      if (currentToken) {
+        if (confirm('Bạn muốn đăng xuất phiên làm việc của quản trị viên?')) {
+          logoutAdmin();
+        }
+      } else {
+        openAuthModal();
+      }
+    }
+
+    function logoutAdmin() {
+      sessionStorage.removeItem(AUTH_STORAGE_KEY);
+      showToast('Đã Đăng Xuất', 'Phiên làm việc đã kết thúc.');
+      openAuthModal('Vui lòng nhập lại khóa quản trị để tiếp tục.');
+    }
+
+    async function handleAuthSubmit(e) {
+      e.preventDefault();
+      const input = document.getElementById('input-admin-key');
+      const key = (input.value || '').trim();
+      if (!key) return;
+
+      const btn = document.getElementById('btn-auth-submit');
+      const originalText = btn.innerHTML;
+      btn.disabled = true;
+      btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Đang xác thực...</span>';
+
+      // Lưu tạm vào sessionStorage để kiểm tra request thử
+      sessionStorage.setItem(AUTH_STORAGE_KEY, key);
+
+      try {
+        const json = await crmApiRequest('get_products');
+        if (json && json.success) {
+          showToast('Thành Công', 'Đã xác thực quản trị viên thành công!');
+          closeAuthModal();
+          productsList = json.data || [];
+          document.getElementById('badge-count-products').textContent = productsList.length;
+          renderProducts(productsList);
+        } else {
+          throw new Error((json && json.message) || 'Khóa quản trị không hợp lệ');
+        }
+      } catch (err) {
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        const errBanner = document.getElementById('auth-error-banner');
+        const errText = document.getElementById('auth-error-text');
+        errText.textContent = err.message || 'Khóa quản trị không đúng hoặc chưa được cấu hình!';
+        errBanner.classList.remove('hidden');
+        input.select();
+      } finally {
+        btn.disabled = false;
+        btn.innerHTML = originalText;
+      }
+    }
+
+    // -------------------------------------------------------------
+    // HÀM GỌI API CRM TẬP TRUNG (TỰ ĐỘNG GỬI TOKEN & BẮT LỖI 401)
+    // -------------------------------------------------------------
+    async function crmApiRequest(action, payload = null) {
+      const token = sessionStorage.getItem(AUTH_STORAGE_KEY) || '';
+      if (!token) {
+        openAuthModal('Vui lòng nhập khóa quản trị để tiếp tục.');
+        throw new Error('Chưa có khóa quản trị');
+      }
+
+      const isPost = payload !== null;
+      let url = APPS_SCRIPT_URL;
+      let options = {};
+
+      if (!isPost) {
+        const sep = url.includes('?') ? '&' : '?';
+        url += `${sep}action=${encodeURIComponent(action)}&admin_token=${encodeURIComponent(token)}`;
+        options = { method: 'GET' };
+      } else {
+        const bodyData = {
+          action: action,
+          admin_token: token,
+          ...payload
+        };
+        options = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          },
+          body: JSON.stringify(bodyData)
+        };
+      }
+
+      const res = await fetch(url, options);
+      const json = await res.json();
+
+      // Kiểm tra nếu Backend từ chối quyền (401 Unauthorized)
+      if (
+        res.status === 401 ||
+        json.error_code === 401 ||
+        (json.message && json.message.toLowerCase().includes('unauthorized'))
+      ) {
+        sessionStorage.removeItem(AUTH_STORAGE_KEY);
+        openAuthModal('Khóa quản trị không chính xác hoặc đã hết hạn. Vui lòng nhập lại.');
+        throw new Error(json.message || 'Unauthorized');
+      }
+
+      return json;
+    }
 
     // -------------------------------------------------------------
     // TOAST NOTIFICATION
@@ -476,15 +777,16 @@
     // =============================================================
     async function loadProducts() {
       try {
-        const res = await fetch('/api/products');
-        const json = await res.json();
+        const json = await crmApiRequest('get_products');
         if (json.success) {
           productsList = json.data || [];
           document.getElementById('badge-count-products').textContent = productsList.length;
           renderProducts(productsList);
         }
       } catch (err) {
-        showToast('Lỗi tải sản phẩm', err.message, true);
+        if (!err.message.includes('Unauthorized') && !err.message.includes('Chưa có khóa')) {
+          showToast('Lỗi tải sản phẩm', err.message, true);
+        }
       }
     }
 
@@ -541,7 +843,7 @@
       const type = document.getElementById('filter-product-type').value;
 
       const filtered = productsList.filter(p => {
-        const matchName = p.name.toLowerCase().includes(q);
+        const matchName = (p.name || '').toLowerCase().includes(q);
         const matchType = type === 'all' || p.type === type;
         return matchName && matchType;
       });
@@ -598,17 +900,16 @@
       const price = parseFloat(document.getElementById('prod-price').value) || 0;
       const stock = parseInt(document.getElementById('prod-stock').value) || 0;
 
-      const payload = { name, type, price, stock };
-      const url = id ? `/api/products/${id}` : '/api/products';
-      const method = id ? 'PUT' : 'POST';
+      const payload = {
+        id: id ? Number(id) : 0,
+        name,
+        type,
+        price,
+        stock
+      };
 
       try {
-        const res = await fetch(url, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const json = await res.json();
+        const json = await crmApiRequest('save_product', payload);
         if (json.success) {
           showToast('Thành công', json.message || 'Đã lưu sản phẩm');
           closeProductModal();
@@ -629,8 +930,7 @@
     async function deleteProduct(id) {
       if (!confirm(`Bạn có chắc chắn muốn xóa sản phẩm #${id}?`)) return;
       try {
-        const res = await fetch(`/api/products/${id}`, { method: 'DELETE' });
-        const json = await res.json();
+        const json = await crmApiRequest('delete_product', { id: Number(id) });
         if (json.success) {
           showToast('Đã xóa', json.message);
           loadProducts();
@@ -647,15 +947,16 @@
     // =============================================================
     async function loadCustomers() {
       try {
-        const res = await fetch('/api/customers');
-        const json = await res.json();
+        const json = await crmApiRequest('get_customers');
         if (json.success) {
           customersList = json.data || [];
           document.getElementById('badge-count-customers').textContent = customersList.length;
           renderCustomers(customersList);
         }
       } catch (err) {
-        showToast('Lỗi tải khách hàng', err.message, true);
+        if (!err.message.includes('Unauthorized') && !err.message.includes('Chưa có khóa')) {
+          showToast('Lỗi tải khách hàng', err.message, true);
+        }
       }
     }
 
@@ -696,8 +997,8 @@
       const q = document.getElementById('search-customers').value.toLowerCase().trim();
       const filtered = customersList.filter(c => {
         return (c.name || '').toLowerCase().includes(q) ||
-               (c.phone || '').toLowerCase().includes(q) ||
-               (c.email || '').toLowerCase().includes(q);
+          (c.phone || '').toLowerCase().includes(q) ||
+          (c.email || '').toLowerCase().includes(q);
       });
       renderCustomers(filtered);
     }
@@ -737,17 +1038,15 @@
       const phone = document.getElementById('cust-phone').value.trim();
       const email = document.getElementById('cust-email').value.trim();
 
-      const payload = { name, phone, email };
-      const url = id ? `/api/customers/${id}` : '/api/customers';
-      const method = id ? 'PUT' : 'POST';
+      const payload = {
+        id: id ? Number(id) : 0,
+        name,
+        phone,
+        email
+      };
 
       try {
-        const res = await fetch(url, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const json = await res.json();
+        const json = await crmApiRequest('save_customer', payload);
         if (json.success) {
           showToast('Thành công', json.message || 'Đã lưu khách hàng');
           closeCustomerModal();
@@ -768,8 +1067,7 @@
     async function deleteCustomer(id) {
       if (!confirm(`Bạn có chắc chắn muốn xóa khách hàng #${id}?`)) return;
       try {
-        const res = await fetch(`/api/customers/${id}`, { method: 'DELETE' });
-        const json = await res.json();
+        const json = await crmApiRequest('delete_customer', { id: Number(id) });
         if (json.success) {
           showToast('Đã xóa', json.message);
           loadCustomers();
@@ -786,21 +1084,23 @@
     // =============================================================
     async function loadOrders() {
       try {
-        // Fetch products and customers too for modal select options
-        await Promise.all([
-          fetch('/api/products').then(r => r.json()).then(j => productsList = j.data || []),
-          fetch('/api/customers').then(r => r.json()).then(j => customersList = j.data || [])
+        const [prodRes, custRes, ordRes] = await Promise.all([
+          crmApiRequest('get_products'),
+          crmApiRequest('get_customers'),
+          crmApiRequest('get_orders')
         ]);
 
-        const res = await fetch('/api/orders');
-        const json = await res.json();
-        if (json.success) {
-          ordersList = json.data || [];
+        if (prodRes && prodRes.success) productsList = prodRes.data || [];
+        if (custRes && custRes.success) customersList = custRes.data || [];
+        if (ordRes && ordRes.success) {
+          ordersList = ordRes.data || [];
           document.getElementById('badge-count-orders').textContent = ordersList.length;
           renderOrders(ordersList);
         }
       } catch (err) {
-        showToast('Lỗi tải đơn hàng', err.message, true);
+        if (!err.message.includes('Unauthorized') && !err.message.includes('Chưa có khóa')) {
+          showToast('Lỗi tải đơn hàng', err.message, true);
+        }
       }
     }
 
@@ -829,11 +1129,11 @@
           statusBadge = '<span class="px-2.5 py-0.5 rounded-full text-[10px] font-black bg-slate-100 text-slate-700 border border-slate-300 uppercase">' + item.payment_status + '</span>';
         }
 
-        // Product type indicator
+        // Product info tag
         let prodInfo = '<span class="text-slate-400 italic">Không có sản phẩm</span>';
         if (item.product_name) {
           let typeTag = item.product_type === 'physical'
-            ? '<span class="text-[9px] bg-amber-50 text-amber-700 border border-amber-200 px-1 py-0.2 rounded font-bold ml-1">Kho: ' + item.product_stock + '</span>'
+            ? '<span class="text-[9px] bg-amber-50 text-amber-700 border border-amber-200 px-1 py-0.2 rounded font-bold ml-1">Kho: ' + (item.product_stock !== undefined ? item.product_stock : '-') + '</span>'
             : '<span class="text-[9px] bg-slate-100 text-slate-500 px-1 py-0.2 rounded font-bold ml-1">' + item.product_type + '</span>';
           prodInfo = `<span class="font-bold text-slate-800">${escapeHtml(item.product_name)}</span>${typeTag}`;
         }
@@ -877,15 +1177,14 @@
 
       const filtered = ordersList.filter(o => {
         const matchQ = (o.order_code || '').toLowerCase().includes(q) ||
-                       (o.customer_name || '').toLowerCase().includes(q) ||
-                       (o.bank_transaction_id || '').toLowerCase().includes(q);
+          (o.customer_name || '').toLowerCase().includes(q) ||
+          (o.bank_transaction_id || '').toLowerCase().includes(q);
         const matchStatus = status === 'all' || o.payment_status === status;
         return matchQ && matchStatus;
       });
       renderOrders(filtered);
     }
 
-    // Toggle Order modal
     function openOrderModal(item = null) {
       const modal = document.getElementById('modal-order');
       const title = document.getElementById('modal-order-title');
@@ -897,13 +1196,11 @@
       const statusSelect = document.getElementById('ord-status');
       const bankTxInput = document.getElementById('ord-bank-tx');
 
-      // Populate customers select
       custSelect.innerHTML = '<option value="">-- Chọn khách hàng --</option>';
       customersList.forEach(c => {
         custSelect.innerHTML += `<option value="${c.id}">${escapeHtml(c.name)} (${c.phone || 'Không có SĐT'})</option>`;
       });
 
-      // Populate products select
       prodSelect.innerHTML = '<option value="">-- Chọn sản phẩm --</option>';
       productsList.forEach(p => {
         prodSelect.innerHTML += `<option value="${p.id}" data-price="${p.price}">${escapeHtml(p.name)} [${p.type}] - ${Number(p.price).toLocaleString('vi-VN')}đ</option>`;
@@ -914,8 +1211,15 @@
         idInput.value = item.id;
         codeInput.value = item.order_code;
         codeInput.readOnly = true;
-        custSelect.value = item.customer_id || '';
-        prodSelect.value = item.product_id || '';
+
+        // Match customer by id or name
+        const matchCust = customersList.find(c => c.name === item.customer_name || c.id === item.customer_id);
+        custSelect.value = matchCust ? matchCust.id : '';
+
+        // Match product by id or name
+        const matchProd = productsList.find(p => p.name === item.product_name || p.id === item.product_id);
+        prodSelect.value = matchProd ? matchProd.id : '';
+
         amountInput.value = item.amount;
         statusSelect.value = item.payment_status || 'pending';
         bankTxInput.value = item.bank_transaction_id || '';
@@ -955,31 +1259,31 @@
       e.preventDefault();
       const id = document.getElementById('ord-id').value;
       const order_code = document.getElementById('ord-code').value.trim().toUpperCase();
-      const customer_id = document.getElementById('ord-customer').value || null;
-      const product_id = document.getElementById('ord-product').value || null;
+      const custSelect = document.getElementById('ord-customer');
+      const prodSelect = document.getElementById('ord-product');
+      const customer_id = custSelect.value || null;
+      const product_id = prodSelect.value || null;
       const amount = parseFloat(document.getElementById('ord-amount').value) || 0;
       const payment_status = document.getElementById('ord-status').value;
       const bank_transaction_id = document.getElementById('ord-bank-tx').value.trim();
 
+      const selectedCust = customersList.find(c => String(c.id) === String(customer_id));
+      const selectedProd = productsList.find(p => String(p.id) === String(product_id));
+
       const payload = {
+        id: id ? Number(id) : 0,
         order_code,
-        customer_id: customer_id ? parseInt(customer_id) : null,
-        product_id: product_id ? parseInt(product_id) : null,
+        customer_name: selectedCust ? selectedCust.name : (custSelect.selectedIndex > 0 ? custSelect.options[custSelect.selectedIndex].text : ''),
+        customer_phone: selectedCust ? selectedCust.phone : '',
+        product_name: selectedProd ? selectedProd.name : (prodSelect.selectedIndex > 0 ? prodSelect.options[prodSelect.selectedIndex].text : ''),
+        product_type: selectedProd ? selectedProd.type : 'service',
         amount,
         payment_status,
         bank_transaction_id
       };
 
-      const url = id ? `/api/orders/${id}` : '/api/orders';
-      const method = id ? 'PUT' : 'POST';
-
       try {
-        const res = await fetch(url, {
-          method,
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
-        });
-        const json = await res.json();
+        const json = await crmApiRequest('save_order', payload);
         if (json.success) {
           showToast('Thành công', json.message || 'Đã lưu đơn hàng');
           closeOrderModal();
@@ -992,13 +1296,11 @@
       }
     }
 
-    // Đổi thủ công đơn hàng sang success & trừ tồn kho với physical
     async function markOrderSuccess(orderId) {
       if (!confirm(`Xác nhận duyệt đơn hàng #${orderId} sang trạng thái SUCCESS?\n(Nếu là sản phẩm physical, hệ thống sẽ tự động trừ 1 tồn kho).`)) return;
 
       try {
-        const res = await fetch(`/api/orders/${orderId}/mark-success`, { method: 'POST' });
-        const json = await res.json();
+        const json = await crmApiRequest('mark_order_success', { id: Number(orderId) });
         if (json.success) {
           showToast('Duyệt Thành Công!', json.message);
           loadOrders();
@@ -1018,8 +1320,7 @@
     async function deleteOrder(id) {
       if (!confirm(`Bạn có chắc chắn muốn xóa đơn hàng #${id}?`)) return;
       try {
-        const res = await fetch(`/api/orders/${id}`, { method: 'DELETE' });
-        const json = await res.json();
+        const json = await crmApiRequest('delete_order', { id: Number(id) });
         if (json.success) {
           showToast('Đã xóa', json.message);
           loadOrders();
@@ -1045,4 +1346,5 @@
     }
   </script>
 </body>
+
 </html>
