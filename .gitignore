@@ -1,0 +1,5 @@
+# Không đưa log và file chạy thử cục bộ lên Git (tunnel.log từng làm lộ IP mạng nội bộ)
+tunnel.log
+*.log
+cloudflared.exe
+node_modules/
