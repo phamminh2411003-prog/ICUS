@@ -1269,12 +1269,14 @@
 
       const selectedCust = customersList.find(c => String(c.id) === String(customer_id));
       const selectedProd = productsList.find(p => String(p.id) === String(product_id));
+      const customer_email = selectedCust ? (selectedCust.email || '').trim() : '';
 
       const payload = {
         id: id ? Number(id) : 0,
         order_code,
         customer_name: selectedCust ? selectedCust.name : (custSelect.selectedIndex > 0 ? custSelect.options[custSelect.selectedIndex].text : ''),
         customer_phone: selectedCust ? selectedCust.phone : '',
+        customer_email: customer_email,
         product_name: selectedProd ? selectedProd.name : (prodSelect.selectedIndex > 0 ? prodSelect.options[prodSelect.selectedIndex].text : ''),
         product_type: selectedProd ? selectedProd.type : 'service',
         amount,
