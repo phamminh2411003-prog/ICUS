@@ -50,6 +50,35 @@ Chỉ sửa trong `icus-landing-page/index.html`, phần `SOP_RESPONSES` (dòng 
 
 **Giới hạn còn lại:** chatbot vẫn là bot dò từ khóa với khoảng 18 câu trả lời viết sẵn, không phải AI. Nó không hiểu ngữ cảnh, không nhớ câu trước, và câu hỏi nằm ngoài kịch bản sẽ được hướng sang gửi ảnh/Zalo. Muốn bot hiểu như người thì cần chuyển sang chatbot AI (cần tài khoản API, có phí theo lượt chat).
 
+## Đợt 4: SEO cho tên miền icusspa.com
+
+Mọi chỗ sửa trong code có ghi chú `[SEO]` hoặc `[Tốc độ]`.
+
+| # | Vị trí | Trước | Sau |
+|---|---|---|---|
+| 1 | `<title>` | "ICUS - Aesthetics Footwear & Bags \| Đồ Hiệu Xuống Cấp - Tới ICUS Gấp" (toàn slogan) | "Spa Giày & Túi Hàng Hiệu TP.HCM – Vệ Sinh, Phục Hồi Màu \| ICUS" (62 ký tự, chứa từ khóa khách hay tìm) |
+| 2 | `meta description` | Chưa có các cụm khách hay tìm | 155 ký tự, có: spa giày, túi xách hàng hiệu, TP.HCM, vệ sinh, khử mốc, tẩy ố, phục hồi màu, dán đế Vibram, hotline |
+| 3 | H1 | "ĐỒ HIỆU XUỐNG CẤP TỚI ICUS GẤP!!!!!!!!" (không có từ khóa) | H1 = huy hiệu hồng phía trên: "Spa & phục hồi giày, túi hàng hiệu tại TP.HCM". Slogan lớn **giữ nguyên hình thức**, chỉ đổi thẻ thành `<p>` |
+| 4 | `<head>` | Không có canonical, favicon, Open Graph | Thêm canonical `https://icusspa.com/`, favicon + icon điện thoại (tạo từ logo), thẻ Open Graph kèm ảnh `assets/og-image.jpg` 1200×630, để chia sẻ qua Facebook/Zalo hiện ảnh và tiêu đề |
+| 5 | Dữ liệu cấu trúc (JSON-LD) | Không có | Khai báo Organization + 2 chi nhánh (LocalBusiness): địa chỉ, giờ mở cửa 9:00–19:00 hằng ngày, điện thoại, khoảng giá. **Không** khai báo tọa độ hay điểm đánh giá vì chưa có số liệu thật |
+| 6 | Ảnh | `sticker-sheet.jpg` 441KB, ảnh trước/sau 300–376KB, logo 19KB, không có kích thước | Thêm bản WebP: 121KB / 60–82KB / logo 1,2KB (giảm 70–90%). Trình duyệt cũ vẫn dùng ảnh JPG gốc. Thêm width/height chống giật bố cục; ảnh trước/sau tải trễ (khi cuộn tới) |
+| 7 | Tailwind | `cdn.tailwindcss.com` dịch CSS ngay trên trình duyệt khách (chậm, Tailwind khuyến cáo không dùng cho web thật) | File CSS dịch sẵn `assets/css/tailwind.css` (22KB). Cấu hình ở `tailwind.config.js`. **Sau khi thêm/sửa class trong HTML phải chạy `npm install` rồi `npm run build:css`**, nếu không class mới sẽ không có tác dụng |
+| 8 | `robots.txt`, `sitemap.xml` (mới) | Không có | Cho phép Google đọc toàn trang, chỉ đường tới sitemap |
+| 9 | `netlify.toml` (mới) | Thư mục deploy phụ thuộc cài đặt tay trên Netlify | Cố định Publish directory = `icus-landing-page`. Chuyển hướng 301 hai trang trùng `index.html.html`, `index_netlify_form_fixed.html` về trang chủ. Đánh dấu không lập chỉ mục cho file xác minh Zalo và file `.ps1`. Cho trình duyệt lưu ảnh/CSS 7 ngày |
+| 10 | Liên kết mở tab mới | Thiếu `rel="noopener"` | Đã thêm |
+
+Lưu ý: vì `netlify.toml` cố định thư mục `icus-landing-page`, file `index.html` ở thư mục gốc (bản cũ, không có chatbot) **sẽ không còn được hiển thị** trên web.
+
+### Việc chủ tiệm cần làm để SEO có hiệu quả
+
+1. **Netlify → Domain management:** đặt `icusspa.com` làm **Primary domain**, bật HTTPS. Kiểm tra link `.netlify.app` cũ có tự chuyển về `icusspa.com` không.
+2. **Google Search Console** (search.google.com/search-console): thêm `icusspa.com`, xác minh bằng bản ghi DNS, vào mục Sitemaps gửi `https://icusspa.com/sitemap.xml`, rồi dùng "Kiểm tra URL" để yêu cầu lập chỉ mục trang chủ.
+3. **Google Business Profile** (business.google.com): tạo hồ sơ cho **từng chi nhánh**, ghi tên, địa chỉ, số điện thoại **giống hệt** trên web, gắn link `icusspa.com`, đăng ảnh thật của tiệm và ảnh trước/sau. Đây là việc ảnh hưởng nhiều nhất tới tìm kiếm "spa giày gần đây", "vệ sinh túi quận 3".
+4. **Xin đánh giá Google** từ khách thật sau mỗi đơn (gửi link đánh giá qua Zalo).
+5. **Kiểm tra lại sau khi deploy:** dán link vào https://search.google.com/test/rich-results (dữ liệu cấu trúc), https://developers.facebook.com/tools/debug/ (ảnh chia sẻ), và https://pagespeed.web.dev (tốc độ).
+6. **Thống nhất các thông tin đang mâu thuẫn** (xem mục dưới). Google đánh giá cả độ tin cậy của nội dung.
+7. **Về lâu dài:** viết thêm trang hoặc bài riêng cho từng dịch vụ (vd "Giá vệ sinh túi Chanel", "Dán đế Vibram cho Louboutin") để có thêm từ khóa lên Google.
+
 ---
 
 ## Chưa sửa: cần chủ tiệm xác nhận

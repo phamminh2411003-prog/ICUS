@@ -2,3 +2,4 @@
 tunnel.log
 *.log
 cloudflared.exe
+node_modules/
