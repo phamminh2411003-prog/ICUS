@@ -924,14 +924,18 @@
 
         <!-- Form đăng ký -->
         <form
+          id="icus-booking-form"
           name="icus-booking"
           method="POST"
           action="/?submitted=1#booking-form"
           data-netlify="true"
-
+          netlify-honeypot="bot-field"
           class="space-y-4 max-w-xl mx-auto"
         >
           <input type="hidden" name="form-name" value="icus-booking" />
+          <p class="hidden">
+            <label>Không điền ô này: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           
           <div>
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
@@ -988,13 +992,15 @@
             </div>
           </div>
 
-          <button type="submit" class="w-full sticker-btn bg-icus-orange text-white text-base font-black py-4 rounded-xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2 mt-4">
+          <button type="submit" id="icus-booking-submit" class="w-full sticker-btn bg-icus-orange text-white text-base font-black py-4 rounded-xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2 mt-4">
             <span>👉 GỬI YÊU CẦU – NHẬN BÁO GIÁ & VOUCHER 1 TẶNG 1 NGAY</span>
           </button>
 
           <p class="text-center text-[11px] text-stone-500 italic pt-1">
             🔒 Thông tin của bạn được bảo mật tuyệt đối 100%. Chuyên viên ICUS sẽ liên hệ Zalo sau 5 phút.
           </p>
+          <div id="icus-booking-status" class="hidden p-4 rounded-xl border-2 border-icus-black text-sm font-bold" role="status" aria-live="polite"></div>
+
         </form>
 
       </div>
@@ -1103,6 +1109,80 @@
         window.history.replaceState({}, document.title, cleanUrl);
       }
     });
+  </script>
+
+  <!-- ==================== GỬI FORM ĐẶT LỊCH (NETLIFY + GOOGLE SHEETS/GMAIL DỰ PHÒNG) ==================== -->
+  <script>
+    // Dán link Web App Google Apps Script (file Code.gs) vào đây để nhận thêm mail qua Gmail + lưu Google Sheets.
+    // Để trống "" nếu chỉ dùng Netlify Forms.
+    const ICUS_GOOGLE_SCRIPT_URL = "";
+    const ICUS_ZALO = "0987940077";
+
+    (function () {
+      const form = document.getElementById("icus-booking-form");
+      if (!form) return;
+      const btn = document.getElementById("icus-booking-submit");
+      const statusBox = document.getElementById("icus-booking-status");
+      const btnHtml = btn.innerHTML;
+
+      function showStatus(ok, html) {
+        statusBox.className = "p-4 rounded-xl border-2 border-icus-black text-sm font-bold " +
+          (ok ? "bg-icus-greenLight text-icus-green" : "bg-icus-orangeLight text-icus-black");
+        statusBox.innerHTML = html;
+      }
+
+      async function sendNetlify(body) {
+        try {
+          const res = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body
+          });
+          return res.ok;
+        } catch (err) {
+          return false;
+        }
+      }
+
+      async function sendGoogle(body) {
+        if (!ICUS_GOOGLE_SCRIPT_URL) return false;
+        try {
+          const res = await fetch(ICUS_GOOGLE_SCRIPT_URL, { method: "POST", body: body });
+          const data = await res.json();
+          return data.result === "success";
+        } catch (err) {
+          return false;
+        }
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        if (data.get("bot-field")) return;
+
+        const body = new URLSearchParams(data).toString();
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>ĐANG GỬI YÊU CẦU...</span>';
+
+        const results = await Promise.all([sendNetlify(body), sendGoogle(body)]);
+        btn.disabled = false;
+        btn.innerHTML = btnHtml;
+
+        if (results[0] || results[1]) {
+          form.reset();
+          showStatus(true, "🎉 ICUS đã nhận được yêu cầu của Quý khách! Chuyên viên kỹ thuật sẽ liên hệ qua Zalo trong vòng 5 phút.");
+        } else {
+          const msg = "Chào ICUS, mình là " + (data.get("customer_name") || "") + " - SĐT " + (data.get("phone") || "") +
+            ". Mình cần tư vấn: " + (data.get("service") || "") + " (" + (data.get("branch") || "") + ")";
+          showStatus(false, "⚠️ Chưa gửi được yêu cầu do lỗi kết nối. Quý khách vui lòng thử lại hoặc " +
+            '<a class="underline text-icus-orange" target="_blank" href="https://zalo.me/' + ICUS_ZALO + '">nhắn Zalo ' +
+            ICUS_ZALO + "</a> với nội dung: <br/><em>" + msg.replace(/[&<>"']/g, function (s) {
+              return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[s];
+            }) + "</em>");
+        }
+        statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    })();
   </script>
 </body>
 </html>
