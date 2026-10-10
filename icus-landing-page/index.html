@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICUS - Aesthetics Footwear & Bags | Đồ Hiệu Xuống Cấp - Tới ICUS Gấp</title>
-  <meta name="description" content="Chuyên sâu spa, phục hồi màu da, khử mốc, dán đế Vibram và custom độc bản cho túi xách, giày dép hàng hiệu tại TP.HCM. Hotline: 0987.940.0077" />
+  <meta name="description" content="Chuyên sâu spa, phục hồi màu da, khử mốc, dán đế Vibram và custom độc bản cho túi xách, giày dép hàng hiệu tại TP.HCM. Hotline: 0987.940.077" />
   
   <!-- Google Fonts: DM Serif Display + Plus Jakarta Sans + Caveat (Handwriting) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,15 @@
             serif: ['"DM Serif Display"', 'serif'],
             hand: ['"Caveat"', 'cursive'],
           },
+          // [Sửa lỗi] Tailwind mặc định không có border-3, decoration-3, scale-102 -> khai báo thêm để viền dày 3px hiển thị đúng
+          borderWidth: { 3: '3px' },
+          textDecorationThickness: { 3: '3px' },
+          scale: { 102: '1.02' },
+          // [Sửa lỗi] Hiệu ứng chạy chữ cho thanh thông báo đầu trang (trước đây chưa được định nghĩa nên chữ đứng yên)
+          keyframes: {
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+          },
+          animation: { marquee: 'marquee 40s linear infinite' },
           boxShadow: {
             'brutal-sm': '3px 3px 0px #171717',
             'brutal': '5px 5px 0px #171717',
@@ -95,20 +104,36 @@
 
   <!-- ==================== MARQUEE ANNOUNCEMENT BAR ==================== -->
   <div class="bg-icus-orange text-white py-2.5 overflow-hidden border-b-2 border-icus-black select-none">
-    <div class="flex items-center space-x-8 font-black uppercase text-xs sm:text-sm tracking-widest whitespace-nowrap animate-marquee">
-      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
-      <span>✦</span>
-      <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
-      <span>✦</span>
-      <span>GOOD THINGS LAST LONGER</span>
-      <span>✦</span>
-      <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
-      <span>✦</span>
-      <span>KEEP IT CLEAN. KEEP IT COOL</span>
-      <span>✦</span>
-      <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
-      <span>✦</span>
-      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+    <!-- [Sửa lỗi] Dãy chữ được nhân đôi để chạy vòng liên tục không bị giật; tự dừng nếu thiết bị bật "giảm chuyển động" -->
+    <div class="flex w-max font-black uppercase text-xs sm:text-sm tracking-widest whitespace-nowrap animate-marquee motion-reduce:animate-none">
+      <div class="flex items-center gap-8 pr-8 shrink-0">
+        <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+        <span>✦</span>
+        <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
+        <span>✦</span>
+        <span>GOOD THINGS LAST LONGER</span>
+        <span>✦</span>
+        <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+        <span>✦</span>
+        <span>KEEP IT CLEAN. KEEP IT COOL</span>
+        <span>✦</span>
+        <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
+        <span>✦</span>
+      </div>
+      <div class="flex items-center gap-8 pr-8 shrink-0" aria-hidden="true">
+        <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+        <span>✦</span>
+        <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
+        <span>✦</span>
+        <span>GOOD THINGS LAST LONGER</span>
+        <span>✦</span>
+        <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+        <span>✦</span>
+        <span>KEEP IT CLEAN. KEEP IT COOL</span>
+        <span>✦</span>
+        <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
+        <span>✦</span>
+      </div>
     </div>
   </div>
 
@@ -967,12 +992,13 @@
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
               Món đồ cần phục hồi
             </label>
+            <!-- [Sửa lỗi] value của từng lựa chọn đổi từ mã (tui-xach...) sang chữ dễ đọc để mail báo đơn hiển thị rõ -->
             <select name="service" class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black">
-              <option value="tui-xach">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
-              <option value="giay-sneaker">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
-              <option value="giay-cao-got">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
-              <option value="dep-da">Dép da / Ví da / Thắt lưng hàng hiệu</option>
-              <option value="custom">Custom vẽ tay độc bản theo yêu cầu</option>
+              <option value="Túi xách hàng hiệu">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
+              <option value="Giày sneaker cao cấp">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
+              <option value="Giày cao gót / Giày da công sở">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
+              <option value="Dép da / Ví da / Thắt lưng">Dép da / Ví da / Thắt lưng hàng hiệu</option>
+              <option value="Custom vẽ tay độc bản">Custom vẽ tay độc bản theo yêu cầu</option>
             </select>
           </div>
 
@@ -1071,7 +1097,7 @@
         <div class="space-y-3">
           <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Cam Kết Từ ICUS</h4>
           <p class="text-xs text-stone-600 leading-relaxed">
-            Có các dung dịch hữu cơ nhập khẩu Saphire từ PHáp. Cam kết bảo hiểm bồi thường nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
+            Có các dung dịch hữu cơ nhập khẩu Saphir từ Pháp. Cam kết bảo hiểm bồi thường nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
           </p>
         </div>
 
@@ -1266,57 +1292,49 @@
           .trim();
       }
 
+      // [Sửa lỗi] Tách câu thành từng từ (bỏ dấu câu) để so khớp NGUYÊN TỪ.
+      // Trước đây dùng includes() nên "gia" khớp nhầm "giày"/"giao", "ban" khớp nhầm "bạn", "tinh" khớp nhầm "tình trạng".
+      function toWords(str) {
+        return " " + str.replace(/[^\p{L}\p{N}]+/gu, " ").trim() + " ";
+      }
+
+      // Từ khóa CÓ DẤU (vd "bẩn", "giá") chỉ khớp khi khách gõ có dấu -> tránh nhầm "bẩn" với "bạn".
+      // Từ khóa KHÔNG DẤU khớp cả khi khách gõ có dấu hoặc không dấu.
+      function matchAny(accented, plain, keywords) {
+        return keywords.some(function (kw) {
+          const hasDiacritics = kw !== cleanText(kw);
+          return (hasDiacritics ? accented : plain).includes(" " + kw + " ");
+        });
+      }
+
+      // Thứ tự kiểm tra = thứ tự ưu tiên khi câu hỏi khớp nhiều chủ đề
+      const INTENT_RULES = [
+        ["objection_suy_nghi", ["suy nghi", "tinh sau", "de minh xem", "can nhac", "de suy nghi"]],
+        ["objection_gia_cao", ["giá cao", "đắt quá", "đắt thế", "mắc quá", "rẻ hơn", "chỗ khác rẻ", "gia cao qua", "dat qua", "mac qua", "re hon"]],
+        ["objection_chua_chac", ["chua chac", "phan van", "dan do", "khong biet co nen", "co nen lam"]],
+        ["uu_dai", ["1 tang 1", "uu dai", "khuyen mai", "voucher", "deal", "giam gia"]],
+        ["thoi_gian", ["thoi gian", "bao lau", "may ngay", "khi nao xong", "lay gap", "can gap", "su kien"]],
+        ["giao_nhan", ["giao nhan", "ship", "shipper", "van chuyen", "o xa", "tỉnh", "tinh xa", "bao hanh", "bao hiem", "den bu", "boi thuong", "mat do"]],
+        ["tu_van", ["dia chi", "o dau", "chi nhanh", "tu van", "dat lich", "gui do", "hotline", "lien he", "so dien thoai", "zalo"]],
+        ["sua_chua", ["sua chua", "sua", "thay got", "boc got", "lot giay", "ma khoa", "xi ma", "that lung", "cat ngan", "duc lo", "phu kien", "khoa keo"]],
+        ["dan_de", ["dan de", "vibram", "louboutin", "mon de", "cao got", "tron truot", "sole shield"]],
+        ["sneaker_tay_o", ["ố vàng", "o vang", "tay o", "de vang", "jordan", "sneaker", "giay the thao"]],
+        ["dung_dich", ["dung dich", "hoa chat", "saphir", "an toan", "duong da"]],
+        ["gia", ["giá", "bao nhieu", "bao nhieu tien", "chi phi", "bang gia", "bao gia", "gia ca", "gia bao nhieu", "het bao nhieu"]],
+        ["phuc_hoi", ["phuc hoi", "doi mau", "sơn", "nhuom", "trầy", "xước", "tray xuoc", "bay mau", "phai mau", "len mau"]],
+        ["ve_sinh", ["ve sinh", "giat", "lam sach", "mốc", "am moc", "nam moc", "khu mui", "mui hoi", "bẩn", "ố", "do ban", "bi ban"]]
+      ];
+
       // Xử lý intent
       function parseUserIntent(raw) {
-        const t = cleanText(raw);
-
-        // 1. Phản bác từ chối
-        if (t.includes("suy nghi") || t.includes("tinh sau") || t.includes("de xem") || t.includes("can nhac")) {
-          return SOP_RESPONSES.objection_suy_nghi;
+        const accented = toWords((raw || "").toLowerCase().normalize("NFC"));
+        const plain = toWords(cleanText(raw));
+        for (let i = 0; i < INTENT_RULES.length; i++) {
+          if (matchAny(accented, plain, INTENT_RULES[i][1])) {
+            return SOP_RESPONSES[INTENT_RULES[i][0]];
+          }
         }
-        if (t.includes("gia cao") || t.includes("dat qua") || t.includes("dat the") || t.includes("mac qua") || t.includes("re hon") || t.includes("cho khac re")) {
-          return SOP_RESPONSES.objection_gia_cao;
-        }
-        if (t.includes("chua chac") || t.includes("phan van") || t.includes("dan do") || t.includes("khong biet co nen") || t.includes("co nen lam")) {
-          return SOP_RESPONSES.objection_chua_chac;
-        }
-
-        // 2. Dịch vụ cụ thể
-        if (t.includes("1 tang 1") || t.includes("uu dai") || t.includes("khuyen mai") || t.includes("voucher") || t.includes("deal") || t.includes("giam gia")) {
-          return SOP_RESPONSES.uu_dai;
-        }
-        if (t.includes("sua chua") || t.includes("thay got") || t.includes("boc got") || t.includes("lot giay") || t.includes("ma khoa") || t.includes("that lung") || t.includes("cat ngan") || t.includes("duc lo") || t.includes("phu kien")) {
-          return SOP_RESPONSES.sua_chua;
-        }
-        if (t.includes("dan de") || t.includes("vibram") || t.includes("louboutin") || t.includes("mon de") || t.includes("cao got") || t.includes("tron truot") || t.includes("sole shield")) {
-          return SOP_RESPONSES.dan_de;
-        }
-        if (t.includes("o vang") || t.includes("tay o") || t.includes("de vang") || t.includes("jordan") || t.includes("dior") || t.includes("sneaker")) {
-          return SOP_RESPONSES.sneaker_tay_o;
-        }
-        if (t.includes("dung dich") || t.includes("hoa chat") || t.includes("saphir") || t.includes("an toan") || t.includes("duong da")) {
-          return SOP_RESPONSES.dung_dich;
-        }
-        if (t.includes("phuc hoi") || t.includes("doi mau") || t.includes("son") || t.includes("nhuom") || t.includes("tray") || t.includes("xuoc") || t.includes("bay mau") || t.includes("son goc")) {
-          return SOP_RESPONSES.phuc_hoi;
-        }
-        if (t.includes("ve sinh") || t.includes("giat") || t.includes("lam sach") || t.includes("moc") || t.includes("am moc") || t.includes("khu mui") || t.includes("ban")) {
-          return SOP_RESPONSES.ve_sinh;
-        }
-        if (t.includes("thoi gian") || t.includes("bao lau") || t.includes("may ngay") || t.includes("khi nao xong") || t.includes("lay gap") || t.includes("su kien")) {
-          return SOP_RESPONSES.thoi_gian;
-        }
-        if (t.includes("gia") || t.includes("bao nhieu") || t.includes("chi phi") || t.includes("bang gia") || t.includes("ton bao nhieu")) {
-          return SOP_RESPONSES.gia;
-        }
-        if (t.includes("giao nhan") || t.includes("ship") || t.includes("o xa") || t.includes("tinh") || t.includes("bao hanh") || t.includes("bao hiem") || t.includes("den bu") || t.includes("mat do") || t.includes("trao do")) {
-          return SOP_RESPONSES.giao_nhan;
-        }
-        if (t.includes("dia chi") || t.includes("o dau") || t.includes("chi nhanh") || t.includes("tu van") || t.includes("dat lich") || t.includes("gui do") || t.includes("hotline") || t.includes("lien he")) {
-          return SOP_RESPONSES.tu_van;
-        }
-
-        // 3. Fallback theo chuẩn SOP
+        // Fallback theo chuẩn SOP
         return SOP_RESPONSES.fallback;
       }
 
