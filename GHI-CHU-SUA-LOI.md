@@ -35,6 +35,21 @@ Mọi chỗ sửa trong code đều có ghi chú `[Sửa lỗi]` ngay tại vị
 | 7 | `index.html` thư mục gốc (ảnh ở dòng 148, 299, 659, 682, 1047) | Trỏ ảnh tới `assets/` nhưng ảnh nằm trong `icus-landing-page/assets/` nên **cả 5 ảnh hỏng** khi deploy từ thư mục gốc | Sửa đường dẫn thành `icus-landing-page/assets/...` |
 | 8 | `icus-landing-page/tunnel.log` | File log để **lộ IP mạng nội bộ và IPv6** của máy chạy thử | Xoá file, thêm `.gitignore` để log và `cloudflared.exe` không bị đưa lên Git nữa |
 
+## Đợt 3: Chatbot trả lời lạc đề
+
+Chỉ sửa trong `icus-landing-page/index.html`, phần `SOP_RESPONSES` (dòng ~1223–1300) và `INTENT_RULES` / `parseUserIntent` (dòng ~1325–1380).
+
+| # | Lỗi cũ | Đã sửa |
+|---|---|---|
+| 1 | Khách gõ "vệ sinh giày", bot mở đầu "Hoàn toàn không bạn nha..." (đoạn này vốn để trả lời câu "có bị phai màu không?") và chỉ nói về túi, không có giá giày. Các câu phục hồi màu, dán đế, tẩy ố sneaker cũng bị mở đầu kiểu đáp câu hỏi khác | Viết lại 4 câu trả lời theo kiểu đi thẳng vào dịch vụ: **giá, cách làm, thời gian**. Toàn bộ giá, thời gian, quy trình **giữ nguyên số liệu trong kịch bản cũ**, không thêm thông tin mới |
+| 2 | Vệ sinh giày và vệ sinh túi dùng chung một câu | Tách thành `ve_sinh_giay` (giá giày sneaker, tẩy ố, giày da, dép Hermès) và `ve_sinh_tui` (giá túi xách). Câu chỉ nói tình trạng ("giày bị bẩn", "túi bị mốc") cũng ra đúng loại đồ |
+| 3 | Câu lo lắng "giặt có bay form không?", "phục hồi màu có bị cứng không?" không có câu trả lời riêng | Thêm chủ đề `lo_hu_hong`: trấn an + cam kết bồi thường (lấy từ kịch bản cũ). Chỉ kích hoạt khi khách **hỏi** ("có... không"). "Túi bị phai màu" (khách kể tình trạng) vẫn ra phục hồi màu |
+| 4 | "Xin chào", "hi" bị trả lời "Trường hợp này ICUS cần kiểm tra tình trạng..." | Thêm chủ đề `chao` đáp lời chào. Chỉ dùng khi câu không hỏi gì khác, nên "Shop ơi cho hỏi giá" vẫn ra bảng giá |
+
+Đã thử 38 câu hỏi mẫu, đều ra đúng chủ đề.
+
+**Giới hạn còn lại:** chatbot vẫn là bot dò từ khóa với khoảng 18 câu trả lời viết sẵn, không phải AI. Nó không hiểu ngữ cảnh, không nhớ câu trước, và câu hỏi nằm ngoài kịch bản sẽ được hướng sang gửi ảnh/Zalo. Muốn bot hiểu như người thì cần chuyển sang chatbot AI (cần tài khoản API, có phí theo lượt chat).
+
 ---
 
 ## Chưa sửa: cần chủ tiệm xác nhận
