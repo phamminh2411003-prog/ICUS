@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ICUS - Aesthetics Footwear & Bags | Đồ Hiệu Xuống Cấp - Tới ICUS Gấp</title>
-  <meta name="description" content="Chuyên sâu spa, phục hồi màu da, khử mốc, dán đế Vibram và custom độc bản cho túi xách, giày dép hàng hiệu tại TP.HCM. Hotline: 0987.940.0077" />
+  <meta name="description" content="Chuyên sâu spa, phục hồi màu da, khử mốc, dán đế Vibram và custom độc bản cho túi xách, giày dép hàng hiệu tại TP.HCM. Hotline: 0987.940.077" />
   
   <!-- Google Fonts: DM Serif Display + Plus Jakarta Sans + Caveat (Handwriting) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,6 +42,15 @@
             serif: ['"DM Serif Display"', 'serif'],
             hand: ['"Caveat"', 'cursive'],
           },
+          // [Sửa lỗi] Tailwind mặc định không có border-3, decoration-3, scale-102 -> khai báo thêm để viền dày 3px hiển thị đúng
+          borderWidth: { 3: '3px' },
+          textDecorationThickness: { 3: '3px' },
+          scale: { 102: '1.02' },
+          // [Sửa lỗi] Hiệu ứng chạy chữ cho thanh thông báo đầu trang (trước đây chưa được định nghĩa nên chữ đứng yên)
+          keyframes: {
+            marquee: { '0%': { transform: 'translateX(0)' }, '100%': { transform: 'translateX(-50%)' } }
+          },
+          animation: { marquee: 'marquee 40s linear infinite' },
           boxShadow: {
             'brutal-sm': '3px 3px 0px #171717',
             'brutal': '5px 5px 0px #171717',
@@ -95,20 +104,36 @@
 
   <!-- ==================== MARQUEE ANNOUNCEMENT BAR ==================== -->
   <div class="bg-icus-orange text-white py-2.5 overflow-hidden border-b-2 border-icus-black select-none">
-    <div class="flex items-center space-x-8 font-black uppercase text-xs sm:text-sm tracking-widest whitespace-nowrap animate-marquee">
-      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
-      <span>✦</span>
-      <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
-      <span>✦</span>
-      <span>GOOD THINGS LAST LONGER</span>
-      <span>✦</span>
-      <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
-      <span>✦</span>
-      <span>KEEP IT CLEAN. KEEP IT COOL</span>
-      <span>✦</span>
-      <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
-      <span>✦</span>
-      <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+    <!-- [Sửa lỗi] Dãy chữ được nhân đôi để chạy vòng liên tục không bị giật; tự dừng nếu thiết bị bật "giảm chuyển động" -->
+    <div class="flex w-max font-black uppercase text-xs sm:text-sm tracking-widest whitespace-nowrap animate-marquee motion-reduce:animate-none">
+      <div class="flex items-center gap-8 pr-8 shrink-0">
+        <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+        <span>✦</span>
+        <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
+        <span>✦</span>
+        <span>GOOD THINGS LAST LONGER</span>
+        <span>✦</span>
+        <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+        <span>✦</span>
+        <span>KEEP IT CLEAN. KEEP IT COOL</span>
+        <span>✦</span>
+        <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
+        <span>✦</span>
+      </div>
+      <div class="flex items-center gap-8 pr-8 shrink-0" aria-hidden="true">
+        <span>🔥 ĐỒ HIỆU XUỐNG CẤP - TỚI ICUS GẤP!</span>
+        <span>✦</span>
+        <span>🎁 SIÊU ƯU ĐÃI: 1 TẶNG 1 VỆ SINH ĐỒ HIỆU BẤT KỲ</span>
+        <span>✦</span>
+        <span>GOOD THINGS LAST LONGER</span>
+        <span>✦</span>
+        <span>🛡️ DƯỠNG CHẤT CHÂU ÂU CHUẨN SAPHIR PHÁP</span>
+        <span>✦</span>
+        <span>KEEP IT CLEAN. KEEP IT COOL</span>
+        <span>✦</span>
+        <span>🚗 GIAO NHẬN TẬN NHÀ 2 CHIỀU TP.HCM</span>
+        <span>✦</span>
+      </div>
     </div>
   </div>
 
@@ -120,7 +145,7 @@
       <div class="flex items-center gap-4">
         <a href="#" class="flex items-center gap-3 group">
           <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-white border-2 border-icus-black shadow-brutal-sm flex items-center justify-center overflow-hidden p-1 group-hover:rotate-3 transition">
-            <img src="assets/logo-symbol.jpg" alt="ICUS Symbol" class="w-full h-full object-contain mix-blend-multiply" />
+            <img src="icus-landing-page/assets/logo-symbol.jpg" alt="ICUS Symbol" class="w-full h-full object-contain mix-blend-multiply" />
           </div>
           <div class="flex flex-col">
             <div class="flex items-center gap-2">
@@ -271,7 +296,7 @@
             <div class="rounded-3xl bg-white border-3 border-icus-black shadow-brutal-lg overflow-hidden p-3 group">
               <div class="relative rounded-2xl overflow-hidden border-2 border-icus-black bg-[#FAF6EF]">
                 <img 
-                  src="assets/sticker-sheet.jpg" 
+                  src="icus-landing-page/assets/sticker-sheet.jpg" 
                   alt="ICUS Mascot Raccoon và Bộ nhận diện Sticker Streetwear" 
                   class="w-full h-auto object-cover group-hover:scale-102 transition duration-300"
                 />
@@ -631,7 +656,7 @@
 
           <div class="rounded-2xl overflow-hidden border-2 border-icus-black">
             <img 
-              src="assets/before-after-chanel.jpg" 
+              src="icus-landing-page/assets/before-after-chanel.jpg" 
               alt="Chanel Classic Flap Bag Before and After phục hồi màu đen tại ICUS" 
               class="w-full h-auto object-cover"
             />
@@ -654,7 +679,7 @@
 
           <div class="rounded-2xl overflow-hidden border-2 border-icus-black">
             <img 
-              src="assets/before-after-ferragamo.jpg" 
+              src="icus-landing-page/assets/before-after-ferragamo.jpg" 
               alt="Giày Salvatore Ferragamo Trước và Sau khi làm màu tại ICUS" 
               class="w-full h-auto object-cover"
             />
@@ -924,14 +949,18 @@
 
         <!-- Form đăng ký -->
         <form
+          id="icus-booking-form"
           name="icus-booking"
           method="POST"
           action="/?submitted=1#booking-form"
           data-netlify="true"
-
+          netlify-honeypot="bot-field"
           class="space-y-4 max-w-xl mx-auto"
         >
           <input type="hidden" name="form-name" value="icus-booking" />
+          <p class="hidden">
+            <label>Không điền ô này: <input name="bot-field" tabindex="-1" autocomplete="off" /></label>
+          </p>
           
           <div>
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
@@ -963,12 +992,13 @@
             <label class="block text-xs font-black uppercase text-icus-black mb-1.5">
               Món đồ cần phục hồi
             </label>
+            <!-- [Sửa lỗi] value của từng lựa chọn đổi từ mã (tui-xach...) sang chữ dễ đọc để mail báo đơn hiển thị rõ -->
             <select name="service" class="w-full px-4 py-3.5 rounded-xl bg-icus-cream border-2 border-icus-black focus:outline-none focus:bg-white text-sm font-semibold text-icus-black">
-              <option value="tui-xach">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
-              <option value="giay-sneaker">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
-              <option value="giay-cao-got">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
-              <option value="dep-da">Dép da / Ví da / Thắt lưng hàng hiệu</option>
-              <option value="custom">Custom vẽ tay độc bản theo yêu cầu</option>
+              <option value="Túi xách hàng hiệu">Túi xách hàng hiệu (Chanel, Dior, LV, Hermes, Gucci...)</option>
+              <option value="Giày sneaker cao cấp">Giày Sneaker cao cấp (Jordan, Dior, Balenciaga...)</option>
+              <option value="Giày cao gót / Giày da công sở">Giày cao gót / Giày da công sở (Louboutin, Ferragamo...)</option>
+              <option value="Dép da / Ví da / Thắt lưng">Dép da / Ví da / Thắt lưng hàng hiệu</option>
+              <option value="Custom vẽ tay độc bản">Custom vẽ tay độc bản theo yêu cầu</option>
             </select>
           </div>
 
@@ -988,13 +1018,15 @@
             </div>
           </div>
 
-          <button type="submit" class="w-full sticker-btn bg-icus-orange text-white text-base font-black py-4 rounded-xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2 mt-4">
+          <button type="submit" id="icus-booking-submit" class="w-full sticker-btn bg-icus-orange text-white text-base font-black py-4 rounded-xl border-3 border-icus-black shadow-brutal flex items-center justify-center gap-2 mt-4">
             <span>👉 GỬI YÊU CẦU – NHẬN BÁO GIÁ & VOUCHER 1 TẶNG 1 NGAY</span>
           </button>
 
           <p class="text-center text-[11px] text-stone-500 italic pt-1">
             🔒 Thông tin của bạn được bảo mật tuyệt đối 100%. Chuyên viên ICUS sẽ liên hệ Zalo sau 5 phút.
           </p>
+          <div id="icus-booking-status" class="hidden p-4 rounded-xl border-2 border-icus-black text-sm font-bold" role="status" aria-live="polite"></div>
+
         </form>
 
       </div>
@@ -1012,7 +1044,7 @@
         <div class="space-y-4">
           <div class="flex items-center gap-3">
             <div class="w-12 h-12 rounded-xl bg-white border-2 border-icus-black shadow-brutal-sm p-1 flex items-center justify-center">
-              <img src="assets/logo-symbol.jpg" alt="Logo ICUS" class="w-full h-full object-contain mix-blend-multiply" />
+              <img src="icus-landing-page/assets/logo-symbol.jpg" alt="Logo ICUS" class="w-full h-full object-contain mix-blend-multiply" />
             </div>
             <div>
               <span class="font-serif text-2xl font-black text-icus-black block leading-none">ICUS</span>
@@ -1065,7 +1097,7 @@
         <div class="space-y-3">
           <h4 class="text-xs font-black uppercase tracking-wider text-icus-black">Cam Kết Từ ICUS</h4>
           <p class="text-xs text-stone-600 leading-relaxed">
-            Có các dung dịch hữu cơ nhập khẩu Saphire từ PHáp. Cam kết bảo hiểm bồi thường nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
+            Có các dung dịch hữu cơ nhập khẩu Saphir từ Pháp. Cam kết bảo hiểm bồi thường nếu có hư tổn kỹ thuật. Khách hàng ưng ý mới thanh toán.
           </p>
         </div>
 
@@ -1103,6 +1135,80 @@
         window.history.replaceState({}, document.title, cleanUrl);
       }
     });
+  </script>
+
+  <!-- ==================== GỬI FORM ĐẶT LỊCH (NETLIFY + GOOGLE SHEETS/GMAIL DỰ PHÒNG) ==================== -->
+  <script>
+    // Dán link Web App Google Apps Script (file Code.gs) vào đây để nhận thêm mail qua Gmail + lưu Google Sheets.
+    // Để trống "" nếu chỉ dùng Netlify Forms.
+    const ICUS_GOOGLE_SCRIPT_URL = "";
+    const ICUS_ZALO = "0987940077";
+
+    (function () {
+      const form = document.getElementById("icus-booking-form");
+      if (!form) return;
+      const btn = document.getElementById("icus-booking-submit");
+      const statusBox = document.getElementById("icus-booking-status");
+      const btnHtml = btn.innerHTML;
+
+      function showStatus(ok, html) {
+        statusBox.className = "p-4 rounded-xl border-2 border-icus-black text-sm font-bold " +
+          (ok ? "bg-icus-greenLight text-icus-green" : "bg-icus-orangeLight text-icus-black");
+        statusBox.innerHTML = html;
+      }
+
+      async function sendNetlify(body) {
+        try {
+          const res = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: body
+          });
+          return res.ok;
+        } catch (err) {
+          return false;
+        }
+      }
+
+      async function sendGoogle(body) {
+        if (!ICUS_GOOGLE_SCRIPT_URL) return false;
+        try {
+          const res = await fetch(ICUS_GOOGLE_SCRIPT_URL, { method: "POST", body: body });
+          const data = await res.json();
+          return data.result === "success";
+        } catch (err) {
+          return false;
+        }
+      }
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        const data = new FormData(form);
+        if (data.get("bot-field")) return;
+
+        const body = new URLSearchParams(data).toString();
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>ĐANG GỬI YÊU CẦU...</span>';
+
+        const results = await Promise.all([sendNetlify(body), sendGoogle(body)]);
+        btn.disabled = false;
+        btn.innerHTML = btnHtml;
+
+        if (results[0] || results[1]) {
+          form.reset();
+          showStatus(true, "🎉 ICUS đã nhận được yêu cầu của Quý khách! Chuyên viên kỹ thuật sẽ liên hệ qua Zalo trong vòng 5 phút.");
+        } else {
+          const msg = "Chào ICUS, mình là " + (data.get("customer_name") || "") + " - SĐT " + (data.get("phone") || "") +
+            ". Mình cần tư vấn: " + (data.get("service") || "") + " (" + (data.get("branch") || "") + ")";
+          showStatus(false, "⚠️ Chưa gửi được yêu cầu do lỗi kết nối. Quý khách vui lòng thử lại hoặc " +
+            '<a class="underline text-icus-orange" target="_blank" href="https://zalo.me/' + ICUS_ZALO + '">nhắn Zalo ' +
+            ICUS_ZALO + "</a> với nội dung: <br/><em>" + msg.replace(/[&<>"']/g, function (s) {
+              return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[s];
+            }) + "</em>");
+        }
+        statusBox.scrollIntoView({ behavior: "smooth", block: "center" });
+      });
+    })();
   </script>
 </body>
 </html>

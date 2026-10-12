@@ -1,0 +1,36 @@
+# Cấu hình Netlify cho website ICUS (file này được ưu tiên hơn phần cài đặt trên giao diện Netlify).
+
+[build]
+  # Thư mục chứa website (bản có chatbot, ảnh nằm cùng thư mục)
+  publish = "icus-landing-page"
+
+# [SEO] Các bản HTML cũ trùng nội dung trang chủ -> chuyển hướng vĩnh viễn (301) về trang chủ
+# để Google không coi là nội dung trùng lặp.
+[[redirects]]
+  from = "/index.html.html"
+  to = "/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/index_netlify_form_fixed.html"
+  to = "/"
+  status = 301
+  force = true
+
+# [SEO] Không cho Google lập chỉ mục file xác minh Zalo và các script chạy thử
+[[headers]]
+  for = "/zalo_verifier*"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+[[headers]]
+  for = "/*.ps1"
+  [headers.values]
+    X-Robots-Tag = "noindex"
+
+# [Tốc độ] Cho trình duyệt lưu ảnh, CSS trong 7 ngày để lần truy cập sau tải nhanh hơn
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"
