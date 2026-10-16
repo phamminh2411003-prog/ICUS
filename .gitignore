@@ -1,15 +1,19 @@
-# Environment variables & secrets
+# =============================================================================
+# BẢO MẬT DỮ LIỆU & BIẾN MÔI TRƯỜNG
+# =============================================================================
 .env
 .env.*
 *.env
+resend_config.txt
 
-# SQLite databases (Second Brain CRM internal data)
+# =============================================================================
+# CƠ SỞ DỮ LIỆU CỤC BỘ & CACHE
+# =============================================================================
 *.db
 *.sqlite
 brain.db
 hist.db
-
-# Python cache & virtual environments
+data/
 __pycache__/
 *.py[cod]
 *$py.class
@@ -17,21 +21,33 @@ __pycache__/
 venv/
 env/
 
-# Netlify & Node
+# =============================================================================
+# CÁC BẢN SAO LƯU & FILE TẠM CẦN LOẠI TRỪ (KHÔNG ĐẨY LÊN GITHUB/NETLIFY)
+# =============================================================================
+*.bak
+*.backup
+*.tmp
+netlify/functions/*.bak
+index-sofa.html
+
+# =============================================================================
+# MÃ NGUỒN APPS SCRIPT BACKEND & TÀI LIỆU NỘI BỘ
+# =============================================================================
+*.gs
+google-apps-script.js
+CRM_Admin_backup_before_day11.txt
+email_sequence.md
+day10.txt
+
+# =============================================================================
+# MÔI TRƯỜNG & HỆ ĐIỀU HÀNH
+# =============================================================================
 .netlify/
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# System & Editor
+*.log
 .DS_Store
 Thumbs.db
-# ICUS - Private Data
-*.db
-data/
-.env
-.env.*
-__pycache__/
-*.log
 .vscode/
