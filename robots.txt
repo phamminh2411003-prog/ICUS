@@ -1,0 +1,11 @@
+# robots.txt for ICUS Craft Studio (https://icusspa.com)
+User-agent: *
+Allow: /
+
+# Chặn thu thập dữ liệu trang quản trị CRM nội bộ và các API serverless
+Disallow: /admin
+Disallow: /admin.html
+Disallow: /.netlify/
+
+# Sơ đồ trang web chính thức
+Sitemap: https://icusspa.com/sitemap.xml
